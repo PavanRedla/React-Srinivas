@@ -1,0 +1,66 @@
+<!-- 
+Day 7:
+
+Write a function to find the given number is armstrong number or not .
+
+function fnCheck(no){
+...
+...
+return sum;
+}
+
+fnCheck(153)
+
+Armstrong Number
+
+Note: Number that is equal to the sum of cubes of its digits is called armstrong.
+  -->
+
+<script>
+  function fnCheck(num) {
+    let n = num;
+    let sum = 0;
+    while (n > 0) {
+      let r = n % 10;
+      sum = sum + r * r * r;
+      n = Math.trunc(n / 10);
+    }
+    if (sum === num) {
+      console.log("Armstrong Number");
+    } else {
+      console.log("Not an Armstrong Number");
+    }
+  }
+
+  fnCheck(153);
+</script>
+
+<!-- function fnCheck(no){
+
+    let sum=0;
+    
+    const digits=[...no.toString()];
+    
+    const power=digits.length;
+    
+    digits.forEach((value)=>{
+    
+        sum+=parseInt(value)**power;
+    
+    })
+    
+    if(sum==no){
+    
+        console.log("The given number is armstrong number")
+    
+    }
+    
+    else{
+    
+        console.log("The given number is not armstrong number")
+    
+    }
+    
+    }
+    
+    fnCheck(153) -->

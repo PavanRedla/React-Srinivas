@@ -1,0 +1,23 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  // prepare content for component
+
+  function Hellow() {
+    return <h1> Hello World </h1>;
+  }
+  // get container Reg
+  const containerRef = document.getElementById("root");
+  //or
+  // const containerRef = document.getElementsByTagName("div")[0];
+  //or
+  // const containerRef = document.querySelector("body>div");
+
+  // creating the root container and rendering the conponent
+  const rootContainer = ReactDOM.createRoot(containerRef);
+  rootContainer.render(<Hellow />);
+</script>

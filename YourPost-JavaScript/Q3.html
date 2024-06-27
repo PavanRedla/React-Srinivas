@@ -1,0 +1,31 @@
+<!-- JavaScript:
+
+const input="nnniiiittnnnitt" ;
+
+output=n6i5t4
+
+Hint: Each character should fallow, how many times it was repeated. -->
+
+<script>
+  const input = "nnniiiittnnnitt";
+
+  let arr = input.split("");
+  console.log(arr);
+
+  let setArr = [...new Set(arr)];
+
+  console.log(setArr);
+
+  let res = "";
+  for (v of setArr) {
+    let count = 0;
+    for (k of arr) {
+      if (v === k) {
+        count = count + 1;
+      }
+    }
+    res = res + v + count;
+  }
+
+  console.log(res);
+</script>

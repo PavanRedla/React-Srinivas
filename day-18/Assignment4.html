@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-4</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      #App {
+        border: 2px solid red;
+        width: 400px;
+        height: 400px;
+        margin: auto;
+        padding: 5px;
+        text-align: center;
+        position: relative;
+        top: 130px;
+      }
+      #A {
+        border: 2px solid red;
+        width: 70%;
+        height: 200px;
+        text-align: left;
+        margin: auto;
+        font-size: 13px;
+      }
+
+      #B {
+        border: 2px solid red;
+        width: 70%;
+        height: 100px;
+        text-align: left;
+        margin: auto;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const A = (props) => {
+        return (
+          <div id="A">
+            <h1>A:- {props.data.name} </h1>
+            <B data={props.data} />
+          </div>
+        );
+      };
+      const B = (props) => {
+        return (
+          <div id="B">
+            <h1>B:- {props.data.loc} </h1>
+          </div>
+        );
+      };
+
+      const App = () => {
+        // let obj = {}
+        const [data, setData] = React.useState({});
+        const ref = React.useRef({});
+        const handleChange = (eve) => {
+          //   console.log(eve.target.id, eve.target.value); // name: input box value or loc: input box value
+          const { id, value } = eve.target;
+
+          //   console.log(id, value);
+          ref.current[id] = value;
+          //   console.log(ref.current); // we cannot pass the ref.current value to the A component, because the data will not get updated unlike state variable so store the name and loc values inside state variable and pass the data to child components.
+        };
+
+        const handleClick = () => {
+          // setData(ref.current);
+          setData({ ...ref.current });
+          debugger;
+        };
+        return (
+          <div id="App">
+            <h1> App</h1>
+            <p>
+              <b> Name: </b> <input id="name" onChange={handleChange} />
+            </p>
+            <p>
+              <b>Location: </b> <input id="loc" onChange={handleChange} />
+            </p>
+            <p>
+              <button onClick={handleClick}> Submit </button>
+            </p>
+
+            <div>
+              <A data={data} />
+            </div>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

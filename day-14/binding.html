@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binding</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        // we can take the reference of any element using javascript document.querySelector or by using useRef()
+        // another way to take the reference is by using the object of SyntheticBaseEvent class.
+        // SyntheticBaseEvent class has one of the property called target which holds the element as a value.
+        // // SyntheticBaseEvent{
+        //         ------------
+        //             --------
+        //             target: <input />
+        //             .....
+        // }
+
+        // var value = "No Data"; // var value can be used but it will not re-render the output.
+        // so we have to use state variable which re-renders the output on the browser when it is changed.
+
+        const [value, setValue] = React.useState("No Data");
+
+        function handleChange(eve) {
+          //   console.log(eve.target); //<input />
+          //   console.log(eve.target.value); // value inside input box
+
+          const text = eve.target.value;
+          //   value = text;
+          //   console.log(value);
+          setValue(text); // used to update the value with text and re-render the output.
+        }
+
+        return (
+          <div>
+            <div>
+              <b>Enter Value: </b>
+              <input onChange={handleChange} />
+            </div>
+            <div>
+              <h1>{value}</h1>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

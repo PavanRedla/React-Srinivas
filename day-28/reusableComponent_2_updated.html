@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reusable Component - 2</title>
+    <script src="../react.development.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <script src="../babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Question = (props) => {
+        const { questions, optionValues, fnChange } = props;
+        return (
+          <div>
+            {questions.map((ele, ind, oa) => {
+              const { que, options, type, id } = ele;
+              return (
+                <div key={ind}>
+                  <h3>
+                    {ind + 1}.{que}
+                  </h3>
+                  {options.map((val, index) => {
+                    return (
+                      <p key={index}>
+                        <input
+                          type={type == "S" ? "radio" : "checkbox"}
+                          name={id}
+                          id={id}
+                          value={optionValues[index]}
+                          onChange={fnChange}
+                        />
+                        {val}
+                      </p>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        );
+      };
+      const App = () => {
+        const questions = [
+          {
+            id: "1",
+            que: "How to pass the data from child to parent ?",
+            options: ["attribute", "callback", "props", "state"],
+            type: "S",
+            ans: "B",
+          },
+          {
+            id: "2",
+            que: "How to pass the data from parent to child ?",
+            options: ["attribute", "children", "callabck", "context"],
+            type: "M",
+            ans: "ABD",
+          },
+          {
+            id: "3",
+            que: "Which lib used to compile JSX ?",
+            options: ["react", "reactDOM", "babel"],
+            type: "S",
+            ans: "C",
+          },
+        ];
+
+        const ansObj = {};
+        const optionValues = ["A", "B", "C", "D"];
+
+        const fnClick = () => {
+          console.log(ansObj);
+          // we cannot use for of loop for iterating objects we have to use for in loop to iterate the objects.
+          // for in loop gives the keys when we iterate the object using it.
+
+          let marks = 0;
+          for (let key in ansObj) {
+            const keyQueObj = questions.find((ele, ind, oa) => {
+              return ele.id === key; // returns the ele  that satisfies the condition.
+            });
+            console.log(keyQueObj);
+            if (keyQueObj.ans === ansObj[key]) {
+              marks++;
+            }
+          }
+          alert("you got " + marks + " marks");
+        };
+
+        const fnChange = (eve) => {
+          const { id, value, type, checked } = eve.target;
+          if (type === "checkbox") {
+            const checkedValues = ansObj[id] ? ansObj[id].split("") : [];
+
+            // creating empty checkedValues Array if we donot have checkbox values in ansObj, if we have values in ansObj then
+            // split the values present in hobbies key separated by nothing (no space).
+
+            // to differentiate the checkbox from other input elements we use type attribute.
+            // checked is an attribute which return true if checkbox is checked and return false if checkbox is unchecked.
+            if (checked) {
+              checkedValues.push(value);
+            } else {
+              const index = checkedValues.indexOf(value);
+              checkedValues.splice(index, 1); // splice(startIndex, ?DeleteCount, ...items to be added)
+            }
+            ansObj[id] = checkedValues.sort().join("");
+            // sorting the checkedValues array and converiting into string using join() method.
+          } else {
+            ansObj[id] = value;
+          }
+        };
+        return (
+          <div>
+            {/*
+              {questions.map((ele, ind, oa) => {
+              return (
+                <div>
+                  <h3 key={ind}>
+                    {ind + 1} {ele.que}
+                  </h3>
+
+                  {ele.options.map((val, index) => {
+                    return (
+                      <p>
+                        <input
+                          type={ele.type === "S" ? "radio" : "checkbox"}
+                          //   name={ele.type === "S" ? "r" : "c"}
+                          name={ind} // every ele index.
+                          value={optionValues[index]}
+                          id={ele.id}
+                          onChange={fnChange}
+                        />
+                        {val}
+                      </p>
+                    );
+                  })}
+                </div>
+              );
+            })}
+
+            making above code as reusable component
+           */}
+
+            <Question
+              questions={questions}
+              optionValues={optionValues}
+              fnChange={fnChange}
+            />
+
+            <button onClick={fnClick}>Submit</button>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

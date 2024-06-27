@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        // navigator is the BOM object using which we can find the longitude and latitude of our location.
+
+        // navigator is the predefined object of Navigator class
+
+        /*
+        console:
+
+        > navigator
+
+        < Navigator {....geolocation: Geolocation(){}, ...}
+
+        we have geolocation object and we can access the data using . notation or square brackets.
+
+         > navigator.geolocation
+
+        < Geolocation { .... getCurrentPosition : function getCurrentPosition() { [native code] }}
+
+        we have getCurrentPosition function so we can call it.
+
+         > navigator.geolocation.getCurrentPosition()
+
+        <Uncaught TypeError: Failed to execute 'getCurrentPosition' on 'Geolocation': 1 argument required, but only 0 present
+
+        so we have to call getCurrentPosition with one parameter.
+
+        getCurrentPosition accepts the success callback function as parameter as shown below
+         syntax: navigator.geolocation.getCurrentPosition(function(successCallback,?errorCallback,?options))
+
+         > navigator.geolocation.getCurrentPosition(function(a, b, c){
+            console.log('called',a,b,c);
+         })
+
+         o/p: called GeolocationPosition {coords:GeolocationCoordinates {latitude: 17.0005383, longitude: 81.8040345, altitude: null, accuracy: 296842.8380282947, altitudeAccuracy: null, …}} undefined undefined
+
+          so, getCurrentPosition calls the callback function by passing one parameter and that parameter is object type.
+
+        */
+        return <div></div>;
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

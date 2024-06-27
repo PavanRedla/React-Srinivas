@@ -1,0 +1,75 @@
+<!-- Demo on Lists and Keys -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List And Keys</title>
+    <script src="../react.development.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <script src="../babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const players = ["Sachin", "Dhoni", "Kohli", "Rohit", "Gaikwad"];
+        return (
+          <div>
+            <h1> Players </h1>
+
+            {/*
+            <ol>
+              <li>Sachin</li>
+              <li>Dhoni</li>
+              <li>Kohli</li>
+            </ol>
+
+            above code is duplicated.
+
+            map takes two arguments 1. callback fn, 2. this Arg
+            callback fn can be arrow fn or named fn or anonymous function.
+            map calls the callback fn with 3 parameters -- 1. element, 2. index, 3. Original Array
+            map method return type is array and returns an array of size equal to original array.
+
+            Here, we have to perform same operation on each and every element of players array. so go with map method.
+
+            we cannot use forEach or for loop to do the same operation as forEach or for loop donot return anything.
+            */}
+
+            <ol>
+              {players.map((ele, ind, oa) => {
+                return <li key={ind}>{ele}</li>; // ele is JS variable so any JS content should be written in curly braces in JSX.
+              })}
+            </ol>
+
+            {/* Display the Players line by line with high font size*/}
+
+            {players.map((ele, ind, oa) => {
+              return <h1 key={ind}>{ele}</h1>;
+            })}
+
+            {/* Display the Players as dropdown */}
+
+            <p>
+              Players:
+              <select>
+                {players.map((ele, ind, oa) => {
+                  return (
+                    <option key={ind} value={ele}>
+                      {ele}
+                    </option>
+                  );
+                })}
+              </select>
+            </p>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

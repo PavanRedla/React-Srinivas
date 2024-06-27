@@ -1,0 +1,71 @@
+<!-- Day 20:
+
+Write a program to generate a following structure:
+
+1.
+
+1
+2 3
+4 5 6
+7 8 9 10
+
+2.
+A
+B B
+C C C
+D D D D
+
+
+3.
+
+1
+2 2
+3 3 3
+4 4 4 4
+5 5 5 5 5
+4 4 4 4
+3 3 3
+2 2
+1  -->
+
+<script>
+  const n = +prompt("Enter the value of n: ");
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= i; j++) {
+      count++;
+      if (count <= 9) {
+        document.write("0" + count + " ");
+      } else {
+        document.write(count + " ");
+      }
+    }
+    document.writeln("<br />");
+  }
+
+  document.write("<hr />");
+
+  let ch = 65;
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= i; j++) {
+      document.write(String.fromCharCode(ch) + " ");
+    }
+    ch++;
+    document.writeln("<br />");
+  }
+
+  document.write("<hr />");
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= i; j++) {
+      document.write(i + " ");
+    }
+    document.writeln("<br />");
+  }
+  for (let i = n - 1; i >= 1; i--) {
+    for (let j = 1; j <= i; j++) {
+      document.write(i + " ");
+    }
+    document.writeln("<br />");
+  }
+</script>

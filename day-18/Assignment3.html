@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-3</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+
+    <style>
+      .main-div {
+        border: 2px solid red;
+        padding: 5px;
+        width: 300px;
+        text-align: center;
+        margin: auto;
+        position: relative;
+        top: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const [data, setData] = React.useState("");
+        const inputRef = React.useRef();
+
+        const handleClick = () => {
+          console.log(inputRef.current, inputRef.current.value); // <input /> , input box value
+          setData(inputRef.current.value);
+        };
+        return (
+          <div className="main-div">
+            <p>
+              <b> Enter Name: </b> <input ref={inputRef} />
+            </p>
+            <p>
+              <button onClick={handleClick}> Submit </button>
+            </p>
+            <p>
+              <b>Show Data: </b> <input disabled value={data} />
+              {/* <b>ShowData: </b> <input readOnly/>  */}
+            </p>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

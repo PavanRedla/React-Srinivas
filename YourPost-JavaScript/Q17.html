@@ -1,0 +1,77 @@
+<!-- Day 17:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=pagination
+
+JavaScript:
+
+Polyfill of slice method
+
+const name="Sachin"
+
+const output=name.slice()
+output is "Sachin"
+
+const output=name.slice(2)
+output is "chin"
+
+const output=name.slice(2,4)
+output is "ch"
+
+Can you create your own mySlice method , which should equally work like normal slice method.
+
+String.prototype.mySlice=(start,end)=>{
+
+}
+
+const output=name.mySlice()
+output is "Sachin"
+
+const output=name.mySlice(2)
+output is "chin"
+
+const output=name.mySlice(2,4)
+output is "ch" 
+
+-->
+
+<script>
+  //const name = "Sachin";
+
+  //   const output=name.slice()
+  //   //output is "Sachin"
+
+  //   const output=name.slice(2)
+  //   //output is "chin"
+
+  //   const output=name.slice(2,4)
+  //   //output is "ch"
+
+  //Can you create your own mySlice method , which should equally work like normal slice method.
+
+  const name = "Sachin";
+  String.prototype.mySlice = (start, end) => {
+    start === undefined ? (start = 0) : "";
+    end === undefined ? (end = name.length) : "";
+    let diff = end - start;
+    let res = "";
+
+    for (let i = start; i < start + diff; i++) {
+      res = res + name[i];
+    }
+    return res;
+  };
+
+  const output1 = name.mySlice();
+  console.log(output1);
+  //output is "Sachin"
+
+  const output2 = name.mySlice(2);
+  console.log(output2);
+  //output is "chin"
+
+  const output3 = name.mySlice(2, 4);
+  console.log(output3);
+  //output is "ch"
+</script>

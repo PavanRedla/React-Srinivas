@@ -1,0 +1,34 @@
+<!-- Day 15:
+
+Write a function Check for Pangram (Sentence containing every letter of the alphabet):
+
+function isPangram(sentence) {
+  
+   return true/false;
+}
+
+let sentence = "The quick brown fox jumps over the lazy dog";
+
+Note: Panagram is a Sentence, which containing every letter of the alphabet -->
+
+<script>
+  function isPangram(sentence) {
+    let uniqsentence = new Set();
+
+    let lowercase = sentence.toLowerCase();
+
+    for (let i = 0; i < lowercase.length; i++) {
+      let char = lowercase[i];
+
+      if (char >= "a" && char <= "z") {
+        uniqsentence.add(char);
+      }
+    }
+
+    return uniqsentence.size === 26;
+  }
+
+  let sentence = "The quick brown fox jumps over the lazy dog";
+
+  console.log(isPangram(sentence));
+</script>

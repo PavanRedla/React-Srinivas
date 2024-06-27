@@ -1,0 +1,22 @@
+<!-- Day 21:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=carousel
+
+JavaScript:
+
+Write a recursive function to calculate the factorial of a given number.  -->
+
+<script>
+  function factorial(n) {
+    if (n === 0 || n === 1) {
+      return 1;
+    } else {
+      return n * factorial(n - 1);
+    }
+  }
+  let num1 = 6;
+  let result = factorial(num1);
+  console.log("The factorial of given number is :" + result);
+</script>

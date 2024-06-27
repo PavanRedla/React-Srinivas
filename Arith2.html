@@ -1,0 +1,88 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  function App() {
+    const no1Ref = React.useRef();
+    const no2Ref = React.useRef();
+    const h1Ref = React.useRef();
+    console.log(no1Ref, no2Ref, h1Ref);
+
+    function findSum(eveObj) {
+      // Using Javascript
+      //   const no1Ref = document.querySelector(
+      //     "#root > div > p:nth-child(1) > input[type=number]"
+      //   );
+      //   const no2Ref = document.querySelector(
+      //     "#root > div > p:nth-child(2) > input[type=number]"
+      //   );
+      //   const h1Ref = document.querySelector("#root > div > h1");
+      //   const n1 = no1Ref.value;
+      //   const n2 = no2Ref.value;
+      //   const sum = Number(n1) + parseInt(n2);
+      //   h1Ref.innerText = sum;
+      //   if (sum < 100) {
+      //     h1Ref.style.color = "red";
+      //   } else {
+      //     h1Ref.style.color = "blue";
+      //   }
+
+      // Using React
+
+      console.log(no1Ref, no2Ref, h1Ref);
+      console.log(no1Ref.current, no2Ref.current, h1Ref.current);
+
+      // get ref of no1 textBox
+      const no1TextBox = no1Ref.current;
+
+      // get ref of no2 textBox
+      const no2TextBox = no2Ref.current;
+      // get ref of h1 element
+      const h1EleRef = h1Ref.current;
+      // take data from textBox1
+      const n1 = no1TextBox.value;
+      // take data from
+      const n2 = no2TextBox.value;
+      // action
+      const sum = Number(n1) + parseInt(n2);
+      // render result inside the component
+      h1EleRef.innerText = sum;
+
+      // apply css -1
+      //   if (sum < 100) {
+      //     h1EleRef.style.color = "red";
+      //   } else {
+      //     h1EleRef.style.color = "blue";
+      //   }
+
+      // apply css -2
+      let color = "blue";
+      if (sum < 100) {
+        color = "red";
+      }
+      h1EleRef.style.color = color;
+    }
+    return (
+      <div>
+        <p>
+          Enter Number 1: <input type="number" ref={no1Ref} />
+        </p>
+        <p>
+          Enter Number 2: <input type="number" ref={no2Ref} />
+        </p>
+        <p>
+          <button onClick={findSum}>Sum </button>
+        </p>
+        <h1 ref={h1Ref}></h1>
+      </div>
+    );
+  }
+
+  const rootContainer = ReactDOM.createRoot(
+    document.querySelectorAll("#root")[0]
+  );
+  rootContainer.render(<App />);
+</script>

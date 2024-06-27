@@ -1,0 +1,21 @@
+<!-- Day 24
+
+Write a function  to find the sum of natural numbers using recursion
+
+function findSum(num) {
+   // have to call findSum inside this function
+}
+
+findSum(10) // 1 to 10 numbers sum 
+55 -->
+
+<script>
+  function findSum(num) {
+    if (num == 0) {
+      return num;
+    } else {
+      return num + findSum(num - 1);
+    }
+  }
+  console.log(findSum(10));
+</script>

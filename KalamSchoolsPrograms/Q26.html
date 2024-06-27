@@ -1,0 +1,28 @@
+<!-- 
+Que 26:
+
+Create a promise object which should return success response.
+One way , by creating object to Promise class object
+Another way using resolve static method. -->
+
+<script>
+  // 1.
+  function getPromise() {
+    return new Promise(function (resolve, reject) {
+      resolve("Sachin");
+    });
+  }
+
+  // 2.
+  let promiseObj2 = Promise.resolve("Sachin");
+
+  let promiseObj1 = getPromise();
+
+  promiseObj1.then((data) => {
+    console.log(data);
+  });
+
+  promiseObj2.then((data) => {
+    console.log(data);
+  });
+</script>

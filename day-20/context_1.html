@@ -1,0 +1,72 @@
+<!-- We want to pass data from component App to component D, to pass the data from App component to D component we are
+    passing data from Component App to component A and from component A to component B and from component B to Component C
+    and from component C to component D. But this is not recommended 
+
+    we can pass the data using 3 ways.
+
+    1. Using Props/Attributes - used when only 1-level hierarchy (1 parent - 1 child)
+    2. contextAPI 
+    3.Redux (It is a separate library.)
+
+
+    1. Using Props Example.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Context_1</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const A = (props) => {
+        return (
+          <div>
+            <h1>A</h1>
+            <B name={props.name} />
+          </div>
+        );
+      };
+      const B = (props) => {
+        return (
+          <div>
+            <h1>B</h1>
+            <C name={props.name} />
+          </div>
+        );
+      };
+      const C = (props) => {
+        return (
+          <div>
+            <h1>C</h1>
+            <D name={props.name} />
+          </div>
+        );
+      };
+      const D = (props) => {
+        return (
+          <div>
+            <h1>D: {props.name}</h1>
+          </div>
+        );
+      };
+      const App = () => {
+        return (
+          <div>
+            <h1>App</h1>
+            <A name="Sachin" />
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

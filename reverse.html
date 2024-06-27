@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse</title>
+
+    <script src="react.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        const nameRef = React.useRef();
+        const h1Ref = React.useRef();
+
+        function reverseString(str) {
+          //   return str.split("").reverse().join("");
+          // or
+          let result = "";
+          for (let i = str.length - 1; i >= 0; i--) {
+            result = result + str[i];
+          }
+          return result;
+        }
+        function fnReverse() {
+          console.log(nameRef.current);
+
+          let name = nameRef.current.value;
+          let reverseName = reverseString(name);
+          h1Ref.current.innerText = reverseName;
+        }
+        return (
+          <div>
+            <p>
+              <b>Name: </b>
+              <input type="text" ref={nameRef} />
+            </p>
+            <p>
+              <button onClick={fnReverse}>Reverse</button>
+            </p>
+            <h1 ref={h1Ref}></h1>
+          </div>
+        );
+      }
+
+      const rootContainer = ReactDOM.createRoot(
+        document.querySelector("#root")
+      );
+      rootContainer.render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Number</title>
+
+    <script src="react.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        const noRef = React.useRef();
+        const h1Ref = React.useRef();
+
+        function prime() {
+          console.log(noRef.current.value);
+          const no = noRef.current.value;
+          const h1 = h1Ref.current;
+
+          let factors = 0;
+          for (let i = 1; i <= no; i++) {
+            if (no % i === 0) {
+              factors++;
+            }
+          }
+          //   if (factors === 2) {
+          //     h1.innerText = no + " is a prime number";
+          //   } else {
+          //     h1.innerText = no + " is not a prime number";
+          //   }
+
+          // OR
+          let result = no + " is not a prime number";
+          if (factors === 2) {
+            result = no + " is a prime number";
+          }
+          h1.innerText = result;
+        }
+        return (
+          <div>
+            <p>
+              <b>No: </b>
+              <input type="number" ref={noRef} />
+            </p>
+            <p>
+              <button onClick={prime}>Submit</button>
+            </p>
+            <h1 ref={h1Ref}></h1>
+          </div>
+        );
+      }
+
+      const rootContainer = ReactDOM.createRoot(
+        document.querySelector("#root")
+      );
+      rootContainer.render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reusable Component - 1</title>
+    <script src="../react.development.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <script src="../babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const OrderList = (props) => {
+        const { data } = props;
+        return (
+          <ol>
+            {data.map((ele, ind, oa) => {
+              return <li key={ind}> {ele}</li>;
+            })}
+          </ol>
+        );
+      };
+      const App = () => {
+        const players = ["Sachin", "Dhoni", "Kohli", "UV"];
+        const students = ["s1", "s2", "s3", "s4", "s5"];
+        return (
+          <div>
+            {/*
+            <h1> Players </h1>
+            <ol>
+              {players.map((ele, ind, oa) => {
+                return <li key={ind}>{ele}</li>;
+              })}
+            </ol>
+            <h1> students </h1>
+            <ol>
+              {students.map((ele, ind, oa) => {
+                return <li key={ind}>{ele}</li>;
+              })}
+            </ol>
+                
+            In the above code we are using ol tag for 2 times, so let us keep the repeated code in one component and we can re-use that template whenever needed.
+            */}
+
+            <h1>Players</h1>
+            <OrderList data={players} />
+            <h1>Students</h1>
+            <OrderList data={students} />
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

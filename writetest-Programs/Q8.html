@@ -1,0 +1,37 @@
+<!-- Day 8:
+
+Write a function to find the Average of 6 subjects(array) of marks(out of 100): .
+
+function findAverage(marks){
+...
+...
+return average
+}
+
+findAverage([80,75,99,88,50,44]) -->
+
+<script>
+  function findAverage(marks) {
+    let average,
+      sum = 0;
+    for (let i = 0; i < marks.length; i++) {
+      sum += marks[i];
+    }
+    average = sum / marks.length;
+
+    return Math.round(average);
+  }
+  findAverage([80, 75, 99, 88, 50, 44]);
+</script>
+
+<!-- <script>
+  function findAverage(marks) {
+    var num = marks.reduce(function (inti, val) {
+      return inti + val;
+    });
+    var average = num / marks.length;
+    return average;
+  }
+  findAverage([80, 75, 99, 88, 50, 44]);
+  72.66666666666667;
+</script> -->

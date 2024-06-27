@@ -1,0 +1,430 @@
+
+
+console.log(a)
+
+//Error
+
+a is not defined
+
+----------------
+
+var a;
+
+console.log(a) 
+
+undefined
+
+--------------
+var a;
+a()
+
+Error 
+
+a is not a function
+
+=============
+
+function fn(a,b){
+ console.log(a,b)
+}
+fn()
+
+// valid 
+undefined undefined
+============
+
+function fn(a,b){
+ console.log(a,b)
+}
+fn(10,20,30,40)
+
+// valid
+10,20
+==========================
+
+function fn(a){
+ a()
+}
+
+fn  type - function
+parameters - 1
+type of parameter - a should be function
+
+other that funciton if you pass any value  you can get - a is not a function 
+
+=========================================
+
+function fn(a){
+  a()
+}
+
+While calling fn , output should be "Sachin"
+
+fn() // a is not a function 
+fn(10) //  a is not funciton
+
+funciton f1(){
+  console.log("Sachin")
+}
+
+fn(f1)
+
+f1 - callback function 
+
+fn - Higher Order Function
+================================
+
+super object - window
+
+predefined members
+
+document
+localStorage
+sessionStorage
+fetch
+setTimeout
+setInterval
+Array
+Number
+etc...
+
+
+==========================
+Promise
+	- functional class
+	- while creating an object have to pass one callback function
+	- callback called by Promise, passing 2 arguments
+	- 2 arguments are funciton type.
+
+
+Why we go for callback and Promises ?
+
+
+==============================================
+shop
+
+function printCards(no,text,scb,ecb){
+    console.log("started printing the cards")
+	console.log("going...")
+	console.log(no +" cards printed")
+	var isPrinted=false
+	if(isPrinted){
+    var printedCards=100
+	scb(printedCards)
+	}else{
+		ecb(0)
+	}
+}
+
+college
+
+funciton f1(printedCards){
+   console.log("4,5,6")
+}
+funciton f2(cards){
+	console.log("find some other solution")
+}
+
+printCards(100,"NIT",f1,f2)
+===================================
+
+Promise
+================
+//shop
+
+function printCards(no, text) {
+
+    return new Promise(function (resolve, reject) {
+        console.log("started printing the cards")
+        console.log("going...")
+        var isPrinted = true
+        if (isPrinted) {
+            console.log(no + " cards printed")
+            var printedCards = 100
+            resolve(printedCards)
+        } else {
+            reject(0)
+        }
+    })
+
+}
+//college
+
+var promiseObj=printCards(100, "NIT")
+console.log(promiseObj)
+
+
+How  many ways we can get the data from promiseObj ?
+
+1. then
+2. await
+
+===========================
+//shop
+
+function printCards(no, text) {
+
+    return new Promise(function (resolve, reject) {
+        console.log("started printing the cards")
+        console.log("going...")
+        var isPrinted = true
+        if (isPrinted) {
+            console.log(no + " cards printed")
+            var printedCards = 100
+            resolve(printedCards)
+        } else {
+            reject(0)
+        }
+    })
+
+}
+//college
+/*
+var promiseObj = printCards(100, "NIT")
+
+promiseObj.then(
+    function (printedCards) {
+        console.log('4,5,6')
+    },
+    function () {
+console.log('find some other solution')
+    }
+)
+// another ways
+promiseObj
+.then(
+    function (printedCards) {
+        console.log('4,5,6')
+    }
+)
+.catch(
+    function () {
+        console.log('find some other solution')
+    }
+)
+.finally(
+    function () {
+       console.log("success/failure")
+    }
+)
+
+*/
+
+async function getCards() {
+    try {
+        var result = await printCards(100, "nit")
+        console.log(result + " cards recived")
+        console.log('4,5,6')
+    } catch (ex) {
+        console.log(ex)
+    } finally {
+
+    }
+}
+
+getCards()
+
+
+===========================
+Observables:
+
+
+==========================
+
+function sendGetReq(url){
+                return new rxjs.Observable(function(observer ){
+                    var obj=new XMLHttpRequest();
+                    obj.open('get',url,true);
+                    obj.send();
+                    obj.onload=function(){
+                     var res= obj.responseText;
+                     observer.next(res);
+                    }
+                    obj.onerror=function(){
+                      observer.error('something went wrong');
+                    }
+                });
+             }
+
+ sendGetReq('https://jsonplaceholder.typicode.com/posts')
+                .subscribe(
+                    function(res){
+                        console.log(res);
+                    },
+                    function(error){
+                      console.log(res);
+                    }
+                    )
+
+
+
+
+
+
+referecne website:
+
+https://uijavakit.com/#/js/promise-vs-observable
+
+==================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

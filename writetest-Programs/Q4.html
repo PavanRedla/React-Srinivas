@@ -1,0 +1,26 @@
+<!-- Day 4:
+
+Write a function to find the factors(count) of given number.
+
+function fnFindFactors(no){
+...
+...
+}
+
+fn(6)
+4
+Hint:
+factor:  The number, which exactly divisible by how many numbers, those all are factors  -->
+
+<script>
+  let count = 0;
+  function fnFindFactors(no) {
+    for (i = 1; i <= no; i++) {
+      if (no % i === 0) {
+        count++;
+      }
+    }
+    console.log(count);
+  }
+  fnFindFactors(6);
+</script>

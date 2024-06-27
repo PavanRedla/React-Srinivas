@@ -1,0 +1,89 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  //   function App() {
+  //     return (
+  //       <div>
+  //         <h1>My Name is Sachin, am from Mumbai, scored 10000 runs</h1>
+  //         <h1>My Name is Dhoni, am from Mumbai, scored 7000 runs</h1>
+  //         <h1>My Name is Kohli, am from Mumbai, scored 5000 runs</h1>
+  //       </div>
+  //     );
+  //   }
+
+  // above is the duplicate code
+  // props is an object which collects data from outside from Players component in the form of key value pair
+
+  //   function Players(props) {
+  //     return (
+  //       <h1>
+  //         My Name is {props.name}, am from {props.loc}
+  //       </h1>
+  //     );
+  //   }
+
+  //   function App() {
+  //     return (
+  //       <div>
+  //         <Players name="Sachin" loc="Mumbai" />
+  //         <Players name="Dhoni" loc="Ranchi" />
+  //         <Players name="Kohli" loc="Delhi" />
+  //       </div>
+  //     );
+  //   }
+
+  // props.children  will take the key as children and value as the child of Player component
+
+  // <div>
+  //     ABC  -- here ABC is children of div tag/Element
+  // </div>
+
+  // <Player>
+  //     ABC  -- here ABC is children of Player component/Element
+  // </Player>
+
+  function Players(props) {
+    const { name, loc, children } = props;
+    // object destructuring - props is an object. so object can be hold using another object.
+    // const {name, loc, children} is an object and now we can use the name loc and children properties of props directly
+    // without using . notation or square bracket notation.
+
+    return (
+      // <h1>
+      //   My Name is {props.name}, am from {props.loc}, scored {props.children}{" "}
+      //   runs
+      // </h1>
+      // <h1>
+      //   My Name is {props["name"]}, am from {props["loc"]}, scored{" "}
+      //   {props["children"]}
+      // </h1>
+      <h1>
+        My Name is {name}, am from {loc}, scored {children} runs
+      </h1>
+    );
+  }
+
+  function App() {
+    return (
+      <div>
+        <Players name="Sachin" loc="Mumbai">
+          10000
+        </Players>
+        <Players name="Dhoni" loc="Ranchi">
+          20000
+        </Players>
+        <Players name="Kohli" loc="Delhi">
+          30000
+        </Players>
+      </div>
+    );
+  }
+
+  const containerRef = document.getElementById("root");
+  const root = ReactDOM.createRoot(containerRef);
+  root.render(<App />);
+</script>

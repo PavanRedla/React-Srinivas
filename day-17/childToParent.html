@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Child to Parent Communicaton</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Passing data from child to Parent -->
+
+    <script type="text/babel">
+      const A = (props) => {
+        const inputRef = React.useRef();
+
+        // useRef Hook is used to get the reference of any element, and it  returns one object which contains one property
+        // called current.
+        // ref = {
+        //         current: undefined
+        //        }
+        // as we have binded the inputRef with input box using ref variable, property current value is updated from undefined to input element.
+        // ref = {
+        //         current: <input />
+        //        }
+
+        const handleClick = () => {
+          //   let val = inputRef.current.value; // returns the data we type inside the text/input box.
+          //   alert(val);
+          console.log(props.cbf);
+          // it prints the function as we have passed the callback function to child component from parent component
+
+          props.cbf(inputRef.current.value);
+          // calling the callback function received from parent again with someother reference and passing the child data to parent component in the from of parameter (inputRef.current.value)
+        };
+        return (
+          <div>
+            <h1> A (child) </h1>
+            <p>
+              Enter Name: <input ref={inputRef} />
+            </p>
+            <p>
+              <button onClick={handleClick}>Pass data to Parent </button>
+            </p>
+          </div>
+        );
+      };
+      const App = () => {
+        // Always the child component(<A />) should be loaded inside the parent component(<App />) and we cannot pass the data from child to parent component using attribute value concept because parent component will not present inside parent component. so we use callback function concept to pass the data from child to parent component.
+        // callback function (fn) will be defined in parent component and it is passed as props (attribute-value) format to child component. child component call the callback function (fn) with another reference by passing the data of of child component as a parameter to that call back function. Now due to this function call the data comes to parent component through callback function.
+
+        const [name, setName] = React.useState();
+        const fn = (data) => {
+          //   console.log(data);
+          setName(data);
+        };
+
+        return (
+          <div>
+            <h1> App (Parent) :- {name}</h1>
+            <A cbf={fn} />
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

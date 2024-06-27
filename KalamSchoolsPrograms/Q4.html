@@ -1,0 +1,24 @@
+<!-- Que 4:
+
+Create a variable with array of objects (3 objects, object should have name, runs, loc properties).
+ Add “hun” property to all objects with some value using Array class map method.
+ So finally the output should be array of 3 objects and every object should have name, runs, loc, hun. -->
+
+<script>
+  let arr = [
+    { name: "sachin", runs: 10000, loc: "Mumbai" },
+    { name: "kohli", runs: 15000, loc: "Delhi" },
+    { name: "Dhoni", runs: 2000, loc: "Ranchi" },
+  ];
+
+  console.log(arr);
+
+  let arr2 = arr.map((item) => {
+    return ({...item, item.hun = 4});
+  });
+
+  //   function addProp(item) {
+  //     return (item.hun = 4);
+  //   }
+  console.log(arr2);
+</script>

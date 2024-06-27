@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-9</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <style>
+      .app {
+        width: 400px;
+        height: 250px;
+        margin: auto;
+        border: 2px solid red;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .image-box {
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        border: 2px solid red;
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [selValue, setSelValue] = React.useState("");
+        const handleChange = (eve) => {
+          console.log(eve.target.value);
+          setSelValue(eve.target.value);
+        };
+        return (
+          <div className="app">
+            <p>
+              <b>Gender: </b>
+
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                onChange={handleChange}
+              />
+              <b>Male</b>
+
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                onChange={handleChange}
+              />
+              <b>Female</b>
+            </p>
+            <div className="image-box">
+              {selValue && <img src={`${selValue}.png`} />}
+            </div>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

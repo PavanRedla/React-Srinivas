@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Call Backs</title>
+  </head>
+  <body>
+    <!-- we can pass asynchronous result back to caller in 3 ways
+
+    1.Callback functions
+    2.Promises
+    3.Observables
+    
+    Passing asynchronous result back to caller using Callback -->
+
+    <script>
+      // shop:
+
+      function printCards(no, text, scb, ecb) {
+        console.log("Started printing the cards");
+        console.log("going");
+        // var isPrinted = true;
+        var isPrinted = false;
+        if (isPrinted) {
+          console.log(no + " cards printed.. ");
+          var printedCards = 100;
+          scb(printCards);
+        } else {
+          ecb(0);
+        }
+      }
+
+      function f1(printCards) {
+        console.log("All cards are printed, you can distribute and invite");
+      }
+
+      function f2(cards) {
+        console.log(
+          "sorry!, please find alternate shop to print your cards..."
+        );
+      }
+
+      printCards(100, "NIT", f1, f2);
+    </script>
+  </body>
+</html>

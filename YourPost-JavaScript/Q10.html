@@ -1,0 +1,32 @@
+<!-- Day 10:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=shoot
+
+JavaScript:
+
+Write a function to find the longest word in a sentence using reduce method.
+
+function findLongest(sentence){
+   const words =sentence(" ");
+   ….
+   …
+}
+
+findLongest("Hi this is Sachin")
+
+output is Sachin. -->
+
+<script>
+  function findLongest(sentence) {
+    let words = sentence.split(" ");
+    return words.reduce((longestword, currentword) => {
+      return currentword.length > longestword.length
+        ? currentword
+        : longestword;
+    });
+  }
+
+  console.log(findLongest("Hi this is Sachin"));
+</script>

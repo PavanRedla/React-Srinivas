@@ -1,0 +1,42 @@
+<!-- Day 13:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=print
+
+JavaScript:
+
+Polyfill of filter method
+
+const arr=[22,15,35,83]
+
+const output=arr.filter((val,ind)=>{
+   return val>30
+});
+
+output is [35,83]
+
+Can you create your own myFilter method , which should equally work like normal filter method.
+Array.prototype.myFilter=()=>{
+
+}
+const result=arr.myFilter((val,ind)=>{
+   return val>30
+});
+
+result should be [35,83] -->
+
+<script>
+  Array.prototype.myfilter = function (callback) {
+    const FilteredArray = [];
+    for (let i = 0; i < this.length; i++) {
+      if (callback(this[i], i, this)) {
+        FilteredArray.push(this[i]);
+      }
+    }
+    return FilteredArray;
+  };
+  [22, 15, 35, 83].myfilter(function (val, ind) {
+    return val > 30;
+  });
+</script>

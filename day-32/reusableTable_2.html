@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reusable Table</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const Table = (props) => {
+        const { ths, tds, data, heading } = props;
+        return (
+          <div>
+            <h1> {heading}</h1>
+            <table border="2px">
+              <thead>
+                <tr>
+                  {ths.map((ele, ind) => {
+                    return <th key={ind}>{ele}</th>;
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((eleObj, index) => {
+                  return (
+                    <tr key={index}>
+                      {tds.map((key, ind) => {
+                        return <td key={ind}>{eleObj[key]}</td>;
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+      const App = () => {
+        const data = [
+          {
+            heading: "Players",
+            tds: ["name", "runs", "location"],
+            ths: ["Name", "Runs", "Location"],
+            rows: [
+              {
+                name: "sachin",
+                runs: 20000,
+                location: "Mumbai",
+              },
+              {
+                name: "dhoni",
+                runs: 10000,
+                location: "Ranchi",
+              },
+            ],
+          },
+          {
+            heading: "Students",
+            tds: ["name", "rno"],
+            ths: ["Name", "Rno"],
+            rows: [
+              {
+                name: "s1",
+                rno: "1",
+              },
+              {
+                name: "s2",
+                rno: "2",
+              },
+              {
+                name: "s3",
+                rno: "3",
+              },
+            ],
+          },
+        ];
+        return (
+          <div>
+            {data.map(({ heading, tds, ths, rows }, ind) => {
+              // const { heading, tds, ths, rows } = props;
+              return (
+                <Table heading={heading} ths={ths} data={rows} tds={tds} />
+              );
+            })}
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

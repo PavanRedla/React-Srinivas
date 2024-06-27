@@ -1,0 +1,36 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  //function App()
+  //{
+  // return (
+  //   <div>
+  //     <h1>NIT</h1> <h1>NIT</h1> <h1>NIT</h1> <h1>NIT</h1> <h1>NIT</h1>
+  //   </div>
+  // );
+  // duplicate code. let us create one component for duplicate code
+  // }
+  function Name() {
+    // child component
+    return <h1>NIT</h1>;
+  }
+
+  function App() {
+    // App is root compoenent
+    return (
+      <div>
+        <Name /> <Name /> <Name /> <Name /> <Name />
+      </div>
+    );
+  }
+
+  const containerRef = document.getElementById("root");
+
+  const rootContainer = ReactDOM.createRoot(containerRef);
+
+  rootContainer.render(<App />);
+</script>

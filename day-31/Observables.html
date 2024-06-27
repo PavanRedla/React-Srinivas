@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <body>
+    <!-- we can pass asynchronous result back to caller in 3 ways
+
+    1.Callback functions
+    2.Promises
+    3.Observables
+    
+    Passing asynchronous result back to caller using Promises -->
+
+    <script>
+      // shop:
+
+      function printCards(no, text) {
+        return new Promise(function (resolve, reject) {
+          console.log("Started printing the cards");
+          console.log("going....");
+          var isPrinted = true;
+          // var isPrinted = false;
+          if (isPrinted) {
+            resolve(no);
+          } else {
+            reject(0);
+          }
+        });
+      }
+
+      // REFER UIJAVAKIT.COM
+
+      // REFER RUNNING NODES
+    </script>
+  </body>
+</html>

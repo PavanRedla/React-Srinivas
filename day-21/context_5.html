@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Context-5</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- creating multiple contexts.  -->
+    <script type="text/babel">
+      const ctx1 = React.createContext();
+      const ctx2 = React.createContext();
+
+      // 1. create the context outside the components and it is available in React functional class.
+
+      // it returns one object, that object contains one property called Provider and Provider is a component.
+      // Provider is a component, so use it in element format.
+
+      // <Provider  >  // 3. provide the data to the context by using attribute format.  key should be "value" always.
+      //    <A /> // 2. we pass component A and B components as children to Provider component, so Provider  is available to
+      //     <B />       all direct and indirect children of components A and B
+      //  </ Provider>
+
+      const A = () => {
+        return (
+          <div>
+            <h1>A</h1>
+            <C />
+          </div>
+        );
+      };
+      const B = () => {
+        return (
+          <div>
+            <h1>B</h1>
+            <D />
+          </div>
+        );
+      };
+      const C = () => {
+        const ctxData1 = React.useContext(ctx1);
+        return (
+          <div>
+            <h1> C: {ctxData1[0]}</h1>
+          </div>
+        );
+      };
+      const D = () => {
+        const ctxData1 = React.useContext(ctx1);
+        const ctxData2 = React.useContext(ctx2);
+        return (
+          <div>
+            <h1> D: {ctxData1[0]} - Data from ctx1</h1>
+            <h1> D: {ctxData2[1]} - Data from ctx2</h1>
+          </div>
+        );
+      };
+      const App = () => {
+        const players = ["Sachin", "Dhoni", "Kohli"];
+        const students = ["s1", "s2"];
+        return (
+          <div>
+            <h1>App</h1>
+            <ctx1.Provider value={players}>
+              <A />
+              <ctx2.Provider value={students}>
+                <B />
+              </ctx2.Provider>
+            </ctx1.Provider>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+
+      // <ctx1.Provider  >
+      //    <A />
+      //  </ ctx1.Provider>
+      // <ctx2.Provider  >
+      //    <B />
+      //  </ ctx2.Provider>
+
+      // if we follow above approach then ctx1 is available to component A and its direct and indirect childrens and ctx2
+      // is  availble to component B and its direct and indirect childrens.
+
+      // <ctx1.Provider  >
+      //    <A />
+      //    <B />
+      //  </ ctx1.Provider>
+      // <ctx2.Provider  >
+      //  <A />
+      //    <B />
+      //  </ ctx2.Provider>
+
+      // if we follow above approach then ctx1 is available to component A and component B and their direct and indirect
+      // childrens , but components A and B gets rendered again in the webpage.
+
+      // <ctx1.Provider  >
+      //    <ctx2.Provider  >
+      //        <A />
+      //        <B />
+      //    </ ctx2.Provider>
+      //  </ ctx1.Provider>
+
+      // if we follow above approach then ctx1 is available to component A and component B and their direct and indirect
+      // childrens, components A and B gets rendered only once in the webpage unlike above approach.
+
+      //   <ctx1.Provider value={players}>
+      //   <A />
+      //     <ctx2.Provider value={students}>
+      //       <B />
+      //     </ctx2.Provider>
+      //   </ctx1.Provider>;
+
+      // if we follow above approach then only ctx1 is available to component A its direct and indirect childrens
+      //  and ctx1 and ctx2 are available to component component B and its direct and indirectchildrens
+    </script>
+  </body>
+</html>

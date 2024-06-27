@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-6</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+
+    <style>
+      .board {
+        height: 300px;
+        width: 400px;
+        border: 2px solid red;
+        position: relative;
+        margin: auto;
+      }
+      .baloon {
+        border: 2px solid black;
+        border-radius: 50%;
+        position: absolute;
+      }
+      .active {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const Baloon = (props) => {
+        const { name, size, l, t, isActive, getActiveBaloon } = props;
+        const handleClick = (eve) => {
+          console.log(eve.target.id, eve.target.value);
+          getActiveBaloon(eve.target.id);
+        };
+        return (
+          <div
+            id={name}
+            onClick={handleClick}
+            className={`baloon ${isActive ? "active" : ""}`}
+            style={{ width: size, height: size, left: l, top: t }}
+          ></div>
+        );
+      };
+      const App = () => {
+        const [activeBaloon, setActiveBaloon] = React.useState("");
+        const getActiveBaloon = (baloonId) => {
+          setActiveBaloon(baloonId);
+        };
+
+        return (
+          <div className="board">
+            <Baloon
+              getActiveBaloon={getActiveBaloon}
+              name="bal1"
+              size="50px"
+              l="300px"
+              t="30px"
+              isActive={activeBaloon === "bal1"}
+            />
+            <Baloon
+              getActiveBaloon={getActiveBaloon}
+              name="bal2"
+              size="100px"
+              l="200px"
+              t="100px"
+              isActive={activeBaloon === "bal2"}
+            />
+            <Baloon
+              getActiveBaloon={getActiveBaloon}
+              name="bal3"
+              size="30px"
+              l="350px"
+              t="200px"
+              isActive={activeBaloon === "bal3"}
+            />
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!-- Day 11:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=modal
+
+JavaScript:
+
+Polifill of bind method:
+
+function fn(n1,n2){
+console.log(this.x+n1+n2)
+}
+
+var obj={x:10}
+
+fn.bind(obj,10,20)()
+fn.bind(obj,10)(20)
+fn.bind(obj)(10,20)
+
+Above 3 statements output is 40.
+
+Now can you write polyfill of bind method, means your own equal bind method
+
+function myBind(…){
+….
+….
+}
+
+fn.myBind(obj,10,20) 
+fn.myBind(obj,10)(20)
+fn.myBind(obj)(10,20)
+
+Above 3 statements output should be 40. -->

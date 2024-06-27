@@ -1,0 +1,20 @@
+<!-- Que 24:
+
+Can you reproduce the error “cann"t read property of undefined (reading length)”
+Can you handle the above exception using try, catch, finally -->
+
+<script>
+  // 1.
+  var loc;
+  console.log(loc.length);
+
+  // 2.
+  try {
+    var loc;
+    console.log(loc.length);
+  } catch (e) {
+    console.log(e);
+  } finally {
+    console.log("end");
+  }
+</script>

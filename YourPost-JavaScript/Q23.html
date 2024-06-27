@@ -1,0 +1,32 @@
+<!-- Day 23:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=quiz
+
+JavaScript:
+
+Write a function that takes an array of integers and returns the largest difference between any two numbers in the array. 
+
+function fn(arr){
+....
+....
+return output;
+}
+
+var output=fn([22,33,99,55])
+output- 77 -->
+
+<script>
+  function fn(arr) {
+    arr.sort((a, b) => {
+      return a - b;
+    });
+    console.log(arr);
+    let output = arr[arr.length - 1] - arr[0];
+    return output;
+  }
+
+  var output = fn([22, 33, 99, 55]);
+  console.log(output);
+</script>

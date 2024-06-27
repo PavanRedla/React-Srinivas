@@ -1,0 +1,140 @@
+Workshop
+
+Promises
+
+1. what is promise ?
+
+
+    a. predefined
+    b. lib
+    c. defined by user
+
+x is not defined
+
+1. Predefined functional class
+2.while creating an object we have to pass callback
+3. callback called by Promise by passing 2 parameters
+4. those 2 paramers type is function
+
+const promiseObj=new Promise((a,b)=>{
+    // a,b are functions
+})
+
+a. why we go ?
+
+ if you want to pass anynchronous action results back to caller
+
+b. How we can anynchronous action results back to caller ?
+
+
+Shop:
+
+function printCards(no, text){      
+ return new Promise(function(resolve,reject){
+    console.log("start print the cards");
+    console.log("going...");
+    const isPrinted=true;
+    if(isPrinted){
+       resolve(no)
+    }else{
+       reject(0);
+    }
+ })
+}
+
+College:
+
+    printCards(100,"nit")
+
+How we can get the result(succ/fail) from Promise object ?
+
+    1. then
+    2. await keyword
+
+
+cosnt promiseObj=printCards(100,"nit")
+
+promiseObj.then()
+
+
+
+1. how many members are there inside the Promise class ?
+
+    a. then method
+    b. catch method
+    c. finally method
+
+b. then, catch, finally returns the promise Object
+
+ function Promise(){
+    this.then=function(scb,ecb){ scb(succData) return this}
+       this.catch=function(){ return this}
+       this.finally=function(){ return this}
+ }
+
+
+i. asynchronous action
+
+function printCards(no, text){      
+ return new Promise(function(resolve,reject){
+    console.log("start print the cards");
+    console.log("going...");
+    const isPrinted=true;
+    if(isPrinted){
+       resolve(no)
+    }else{
+       reject(0);
+    }
+ })
+}
+const obj=printCards(100,"nit")
+obj
+.then((data)=>{
+   console.log("received "+ data + " cards")
+console.log("distribute "+ data + " cards")
+
+})
+.catch((data)=>{
+   console.log("received " + data + " cards")
+  console.log("find some alternate")
+})
+.finally(()=>{
+   console.log("start/end");
+})
+
+
+new Promise(functoin(resolve,reject){
+       reject(20)
+})
+
+This JS  code already written
+
+functon Promise(cb){
+ this.successData;
+ this.failureData;
+ functoin resolve(data){
+  this.succeeData=data;
+ }
+ function reject(data){
+    this.failurecode=data
+}
+ cb(resolve,reject);
+ this.then=function(cb){
+   cb(this.successData);
+ }
+this.catch=function(cb){
+   cb(this.failureData);
+ }
+ 
+}
+
+obj.then(function(){
+
+})
+
+
+==============================
+
+
+ 
+

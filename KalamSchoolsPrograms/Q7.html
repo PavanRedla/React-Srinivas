@@ -1,0 +1,18 @@
+<!-- Que 7:
+
+Create a array with some rando numbers
+On that array perform insert, update, delete operations on any position using splice method. -->
+
+<script>
+  const arr = [34, 45, 67, 55, 78, 89, 90];
+  arr.splice(2, 0, 58);
+  console.log("Array after insertion", arr);
+  arr.splice(3, 1, 23);
+  console.log("Array after updation", arr);
+  arr.splice(1, 1);
+  console.log("Array after deletion", arr);
+  //   output
+  //   Array after insertion (8) [34, 45, 58, 67, 55, 78, 89, 90]
+  //   Array after updation (8) [34, 45, 58, 23, 55, 78, 89, 90]
+  //    Array after deletion (7) [34, 58, 23, 55, 78, 89, 90]
+</script>

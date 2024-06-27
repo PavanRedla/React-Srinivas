@@ -1,0 +1,40 @@
+<!-- Day 10:
+
+Write a function to find the given the Strings are Anagrams.
+
+function areAnagrams(str1, str2){
+...
+...
+return true/false
+}
+
+areAnagrams("listen","silent")
+
+Note: An anagram is a literary device where the letters that make up a word, phrase, or name are rearranged to create new ones. -->
+
+<script>
+  //1.
+
+  //   function areAnagrams(str1, str2) {
+  //     if (str1.length !== str2.length) {
+  //       return false;
+  //     }
+  //     const sortedStr1 = str1.split("").sort().join("");
+  //     const sortedStr2 = str2.split("").sort().join("");
+  //     return sortedStr1 === sortedStr2;
+  //   }
+  //   // output
+  //   console.log(areAnagrams("listen", "silent")); // true
+
+  // 2.
+
+  function areAnagrams(str1, str2) {
+    let chstr1 = str1.toLowerCase().split("").sort().join("");
+
+    let chstr2 = str2.toLowerCase().split("").sort().join("");
+
+    return chstr1 == chstr2 ? true : false;
+  }
+
+  console.log(areAnagrams("listen", "silent"));
+</script>

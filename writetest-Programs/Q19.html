@@ -1,0 +1,49 @@
+<!-- Day 19
+
+Write a program to generate a following structure:
+1. 
+12345
+12345
+12345
+12345
+12345
+2.
+54321
+54321
+54321
+54321
+54321 
+3.
+55555
+44444
+33333
+22222
+11111 -->
+
+<script>
+  const n = +prompt("Enter the value of n: ");
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      document.write(j);
+    }
+    document.writeln("<br />");
+  }
+
+  document.write("<hr />");
+
+  for (let i = n; i >= 1; i--) {
+    for (let j = n; j >= 1; j--) {
+      document.write(j);
+    }
+    document.writeln("<br />");
+  }
+
+  document.write("<hr />");
+
+  for (let i = n; i >= 1; i--) {
+    for (let j = n; j >= 1; j--) {
+      document.write(i);
+    }
+    document.writeln("<br />");
+  }
+</script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props Change</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const [cnt, setCnt] = React.useState(0);
+
+        const handleClick = () => {
+          // for (let i = 1; i <= 5; i++) {
+          //   setCnt(cnt + 1);
+          //    }
+          // o/p : 1 but our expected result is 5.
+          // because before upating the cnt value by setCnt function the loop gets executed within nano seconds and for every iteration the cnt value will be zero itself as the setCnt method is asynchronous action.
+
+          // for (let i = 1; i <= 5; i++) {
+          //   setCnt(cnt + 1); // 1  2  3  4  5
+          //   console.log(cnt); // 0  1  2  3  4
+          // }
+          // if we observe the above output, when we click the submit button for first time  count value is 1 but in console it is printing 0 and for second click cnt is 2 but in console cnt is 1. This is because of some lag. This lag is because the setCnt function used for updating state variable is an asynchronous acion so it takes some time to execute. meanwhile console statement gets execueted so console is printing the previous state value.
+
+          // so if there is any state variable updation with less time interval then we have to go with second approach mentioned below.
+
+          // state variable updation function (setCnt)takes function either number, boolean, string, object or array or function as its argument.
+
+          // stae variable updation function(setCnt) calls the callback function directly by passing one parameter which holds current state of the variable
+
+          // callback function result will be returned back to caller(setCnt function)
+
+          for (let i = 1; i <= 5; i++) {
+            setCnt((currVal) => {
+              return currVal + 1;
+            }); // 1  2  3  4  5
+            console.log(cnt); // 1  2  3  4  5
+          }
+        };
+
+        return (
+          <div>
+            <h1>{cnt}</h1>
+            <button onClick={handleClick}>Increment</button>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

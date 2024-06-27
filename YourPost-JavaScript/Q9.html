@@ -1,0 +1,100 @@
+<!-- 
+Day 9 : 
+
+JavaScript:
+
+const players=[
+    {
+    "name":"Sachin",
+    "runs":20000,
+    "loc":"Mumbia",
+    "hun":100
+    },
+    {
+    "name":"Dhoni",
+    "runs":18000,
+    "loc":"Ranchi",
+    "hun":40
+    },
+    {
+    "name":"Dravid",
+    "runs":10000,
+    "loc":"Banglore",
+    "hun":32
+    },
+   {
+    "name":"Kohli",
+    "runs":19000,
+    "loc":"Delhi",
+    "hun":76
+    },
+]
+
+Write code snippet -
+
+1. to get the player object whose name is "Kohli"
+2. to get the players whose runs grater than 18000
+3. is All palyers Hit min one century - true/false
+4. Add one extra property to all players "fif", value is half of the hun property value. -->
+
+<script>
+  const players = [
+    {
+      name: "Sachin",
+      runs: 20000,
+      loc: "Mumbia",
+      hun: 100,
+    },
+    {
+      name: "Dhoni",
+      runs: 18000,
+      loc: "Ranchi",
+      hun: 40,
+    },
+    {
+      name: "Dravid",
+      runs: 10000,
+      loc: "Banglore",
+      hun: 32,
+    },
+    {
+      name: "Kohli",
+      runs: 19000,
+      loc: "Delhi",
+      hun: 76,
+    },
+  ];
+  players.find(function (obj) {
+    return (players.name = "kohli");
+  });
+
+  players.filter(function (obj) {
+    return "players.runs>18000";
+  });
+
+  players.every(function (obj) {
+    return "players.hun≥1";
+  });
+
+  players.forEach(function (obj) {
+    return (players.fif = players.hun / 2);
+  });
+
+  //   players.find(function(obj)
+  //            {
+  //                return obj.name="kholi"
+  //            })
+
+  // players.find(function(obj)
+  //            {
+  //                return obj.runs >18000
+  //            })
+  // players.some(function(obj)
+  //            {
+  //                return obj.hun >1
+  //            })
+  // players.map(function(obj)
+  //            {
+  //                return obj.fif=obj.hun/2
+  //            })
+</script>

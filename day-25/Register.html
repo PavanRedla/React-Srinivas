@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <script src="react.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        // const obj = {};
+        // const ref = React.useRef({});
+
+        const [obj, setObj] = React.useState({});
+
+        const fnRegister = () => {
+          // console.log(obj);
+          // console.log(ref.current);
+          console.log(obj);
+        };
+        const fnChange = (eve) => {
+          //console.log(eve.target.name, eve.target.value);
+          const { name, value, type, checked } = eve.target;
+
+          //obj[name] = value;
+
+          // ref.current[name] = value; // normal variable and useRef variables will not re-render when changes occur.
+
+          // to differentiate the checkbox from other input elements we use type attribute.
+          // checked is an attribute which return true if checkbox is checked and return false if checkbox is unchecked.
+
+          if (type === "checkbox") {
+            // console.log(name, value, checked);
+            const hobbiesArr = obj.hobbies ? obj.hobbies.split(",") : [];
+            // creating empty hobbiesArr if we donot have hobbies key in obj, if we have hobbies key in obj then
+            // split the values present in hobbies key separated by comma.
+            if (checked) {
+              hobbiesArr.push(value);
+            } else {
+              const index = hobbiesArr.indexOf(value);
+              hobbiesArr.splice(index, 1); // splice(startIndex, ?DeleteCount, ...items to be added)
+            }
+
+            obj[name] = hobbiesArr.sort().join(); // sorting the hobbiesArr  and converiting into string using join() method.
+          } else {
+            setObj({ ...obj, [name]: value });
+          }
+        };
+        return (
+          <div>
+            <p>
+              User Name:
+              <input type="text" name="uid" onChange={fnChange} />
+            </p>
+            <p>
+              Password:
+              <input type="password" name="pwd" onChange={fnChange} />
+            </p>
+            <p>
+              Gender:
+              <input type="radio" name="gender" value="M" onChange={fnChange} />
+              Male
+              <input type="radio" name="gender" value="F" onChange={fnChange} />
+              Female
+              {/* Radio button works fine when they are grouped, to group them we give the same name attribute to all the radio buttons. In Radio buttons we cannot retrieve any value because it's not a text box so we can give our own value to radio button using value attribute. Same applicables in case of checkbox as well. */}
+            </p>
+            <p>
+              Hobbies:
+              <input
+                type="checkbox"
+                name="hobbies"
+                value="CRIC"
+                onChange={fnChange}
+              />
+              Cricket
+              <input
+                type="checkbox"
+                name="hobbies"
+                value="HOC"
+                onChange={fnChange}
+              />
+              Hockey
+              <input
+                type="checkbox"
+                name="hobbies"
+                value="FB"
+                onChange={fnChange}
+              />
+              Foot Ball
+            </p>
+            <p>
+              DOB:
+              <input type="date" name="dob" onChange={fnChange} />
+            </p>
+
+            <p>
+              Country:
+              <select name="country" onChange={fnChange}>
+                <option value="IND">India</option>
+                <option value="CH">China</option>
+                <option value="USA">United States of America</option>
+              </select>
+            </p>
+
+            <p>
+              Address: <textarea name="address" onChange={fnChange}></textarea>
+            </p>
+
+            <p>
+              photo: <input type="file" name="photo" onChange={fnChange} />
+            </p>
+
+            <p>
+              <button onClick={fnRegister}>Sign Up</button>
+            </p>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

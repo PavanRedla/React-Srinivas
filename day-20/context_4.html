@@ -1,0 +1,103 @@
+<!-- We want to pass data from component App to component D, to pass the data from App component to D component we are
+    passing data from Component App to component A and from component A to component B and from component B to Component C
+    and from component C to component D. But this is not recommended 
+
+    we can pass the data using 3 ways.
+
+    1. Using Props/Attributes - used when only 1-level hierarchy (1 parent - 1 child)
+    2. contextAPI  - used to resolve the drawback of Props data transfer.
+    3.Redux (It is a separate library.)
+
+
+    2. Using contextAPI Example.
+        Create a context and keep the data inside context, and ask the consumer to take the data from that context.
+
+        steps:
+        1. create the context
+        2. make the context available to all the components
+        3. provide the data to the context.
+        4. consume the data from context.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Context_4</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 1. create the context outside the components and it is available in React functional class.
+
+      const context = React.createContext();
+      // it returns one object, that object contains one property called Provider and Provider is a component.
+      // Provider is a component, so use it in element format.
+
+      // <Provider  >  // 3. provide the data to the context by using attribute format.  key should be "value" always.
+      //    <A /> // 2. we pass component A as children to Provider component, so Provider  is available to all direct and
+      //                  indirect children of component A
+      //  </ Provider>
+
+      const A = () => {
+        const ctxData = React.useContext(context);
+        return (
+          <div>
+            <h1>A: {ctxData.name}</h1>
+            <B />
+          </div>
+        );
+      };
+      const B = () => {
+        const ctxData = React.useContext(context);
+        return (
+          <div>
+            <h1>B: {ctxData.loc}</h1>
+            <C />
+          </div>
+        );
+      };
+      const C = () => {
+        const ctxData = React.useContext(context);
+        return (
+          <div>
+            <h1>C: {ctxData.runs}</h1>
+            <D />
+          </div>
+        );
+      };
+      0;
+      const D = () => {
+        // 4. React.useContext hook is used to consume the data from the context.
+        // from the above line React.useContext takes the data from context passed as parameter to it and give the data to ctxData.
+
+        const ctxData = React.useContext(context);
+
+        return (
+          <div>
+            <h1>D </h1>
+          </div>
+        );
+      };
+      const App = () => {
+        const dataObj = { name: "Sachin", loc: "Mumbai", runs: 20000 };
+        return (
+          <div>
+            <h1>App</h1>
+            <context.Provider value={dataObj}>
+              <A />
+            </context.Provider>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

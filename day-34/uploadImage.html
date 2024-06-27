@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Image</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const [data, setData] = React.useState(
+          "https://images.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+        );
+        const fnUpload = () => {};
+
+        const handleChange = (eve) => {
+          console.log(eve.target.value); //C:\fakepath\17A61A0442.jpg
+          console.log(eve.target.files);
+          //FileList {0: File, length: 1} so it is an object of FileList class
+
+          console.log(eve.target.files["0"]);
+          // if the property is number, then we have to retrieve the data using square bracket notation only.
+
+          // // File {name: '17A61A0442.jpg', size:529951 , type:"image/jpeg"} is also an object of File class.
+
+          // size:529951 = 529951/1024 = 5 kB
+          const file = eve.target.files[0];
+          const { type, size } = file;
+          console.log(type, size);
+
+          if (!type.includes("image/")) {
+            alert("Please select image only...");
+            return;
+          }
+
+          if (size > 555555) {
+            // 1024 bytes = 1KB
+            alert("file size should not exceed 6KB");
+            return;
+          }
+
+          // Now we have to read the data from the file, to read the data from the above file we use one predefined
+          // class called FileReader. Inorder to get the services from the class, we should create object.
+
+          //    if we have the file url, to read the data from that particular URL in the base 64 format, we use one method from
+          //    FileReader class called readAsDataURL
+
+          //    readAsDataURL is an asynchronous action, so we may get success response or failure response.
+
+          //    if we get the  success response  onload callback will be executed,
+          //    and if we get the failure response onerror callback will be executed.
+
+          const readerObj = new FileReader();
+          //   readerObj.readAsDataURL(eve.target.files[0]);
+          readerObj.readAsDataURL(file);
+
+          readerObj.onload = function () {
+            console.log(readerObj.result);
+            setData(readerObj.result);
+          };
+
+          readerObj.onerror = function () {
+            console.log("onerror");
+          };
+        };
+        return (
+          <div>
+            <p>
+              <b>Select Image: </b>
+              <input type="file" onChange={handleChange} />
+              <img src={data} width="100" height="100" />
+            </p>
+            <button onClick={fnUpload}>Upload</button>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

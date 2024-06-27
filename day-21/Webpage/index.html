@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Webpage</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="react.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      //Header Component
+      const Header = () => {
+        return <div className="header">My First React Static Webpage</div>;
+      };
+
+      // Menu Component
+
+      const Menu = () => {
+        return (
+          <div>
+            <ul className="menu">
+              <li>Home</li>
+              <li>About</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+        );
+      };
+
+      // Footer Component
+      const Footer = () => {
+        return <div className="footer"> &copy; rights belongs to Redla.</div>;
+      };
+
+      const App = () => {
+        return (
+          <div>
+            <Header />
+            <Menu />
+            <Footer />
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

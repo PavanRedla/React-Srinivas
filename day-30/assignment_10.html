@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-10</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <style>
+      .app {
+        width: 400px;
+        height: 250px;
+        margin: auto;
+        border: 2px solid red;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .image-box {
+        width: 80%;
+        height: 50%;
+        margin: auto;
+        border: 2px solid red;
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [selValues, setSelValues] = React.useState([]);
+        const handleChange = (eve) => {
+          const { value, checked } = eve.target;
+          if (checked) {
+            setSelValues([...selValues, value]);
+          } else {
+            const selectedValue = [...selValues];
+            // we cannot perform the operations on state variable. so we have created selectedValue array
+            const index = selectedValue.indexOf(value);
+            selectedValue.splice(index, 1);
+            setSelValues(selectedValue);
+            console.log(selValues);
+          }
+        };
+        return (
+          <div className="app">
+            <b>Games: </b>
+            <input type="checkbox" value="c" onChange={handleChange} />
+            <b>Cricket</b>
+            <input type="checkbox" value="f" onChange={handleChange} />
+            <b>FootBall</b>
+            <input type="checkbox" value="h" onChange={handleChange} />
+            Hockey{" "}
+            <div className="image-box">
+              {selValues &&
+                selValues.map((ele, ind, oa) => {
+                  return (
+                    <img
+                      key={ind}
+                      src={`${ele}.jpg`}
+                      style={{
+                        widht: "100px",
+                        height: "100px",
+                        display: "inline-block",
+                      }}
+                    />
+                  );
+                })}
+            </div>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

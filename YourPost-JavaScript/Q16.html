@@ -1,0 +1,48 @@
+<!-- Day 16:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=captcha
+
+JavaScript:
+
+Polyfill of indexOf method
+
+const arr=[22,15,35,83]
+
+const output=arr.indexOf(35)
+output is 2
+
+const output=arr.indexOf(30)
+output is -1
+
+Can you create your own myIndexOf method , which should equally work like normal indexOf method.
+
+Array.prototype.myIndexOf=(searchEle,startIndex)=>{
+
+}
+
+const output=arr.myIndexOf(35)
+output is 2
+
+const output=arr.myIndexOf(30)
+output is -1 -->
+
+<script>
+  const arr = [22, 15, 35, 83];
+  Array.prototype.myIndexOf = (searchEle, startIndex) => {
+    startIndex === undefined ? (startIndex = 0) : "";
+    for (var i = startIndex; i < arr.length; i++) {
+      if (arr[i] === searchEle) {
+        return i;
+      }
+    }
+    return -1;
+  };
+
+  const output1 = arr.myIndexOf(35);
+  console.log(output1);
+
+  const output2 = arr.myIndexOf(30);
+  console.log(output2);
+</script>

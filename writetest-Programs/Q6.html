@@ -1,0 +1,24 @@
+<!-- Day 6:
+
+Write a function to find the sum of elements in the array.
+
+function fnFindSum(input){
+...
+...
+return sum;
+}
+
+fnFindSum([10,20,30])
+60 
+-->
+<script>
+  function fnFindSum(input) {
+    let sum = 0;
+    for (let index = 0; index < input.length; index++) {
+      sum = sum + input[index];
+    }
+    return sum;
+  }
+  let res = fnFindSum([10, 20, 30]);
+  console.log(res);
+</script>

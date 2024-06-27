@@ -1,0 +1,45 @@
+<!-- JavaScript:
+
+var o1={
+ “name”:"Sachin"
+}
+var o2=o1
+o2.name="Dhoni"
+
+Now o2 name property value is Dhoni as well as o1 name property value also get changed to Dhoni (you can check because of singleton behavior).
+
+But as per my requirement  o1 value should not change to Dhnoi , should be Sachin only.
+
+Can you write the code for that (at least 2 ways)
+
+1st way:
+
+……
+
+2nd way:
+
+…..
+
+3rd way:
+
+….
+
+Hint: We can do it by creating cloned object for o2 like below
+
+using Spread operator
+using Object.assign()
+using JSON.stringifyand JSON.parse methods -->
+
+<script>
+  var o1 = {
+    name: "Sachin",
+  };
+  var o2 = Object.assign({}, o1);
+  o2.name = "Dhoni";
+
+  var o1 = {
+    name: "Sachin",
+  };
+  var o2 = { ...o1 };
+  o2.name = "Dhoni";
+</script>

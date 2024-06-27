@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filter Data</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const data = [
+          "Sachin",
+          "Dhoni",
+          "Sourav",
+          "Kohli",
+          "UV",
+          "Dravid",
+          "Panth",
+          "Zaheer",
+          "Lara",
+          "Pointing",
+        ];
+
+        const [listItems, setListItems] = React.useState(data);
+
+        const handleChange = (eve) => {
+          //   console.log(eve.target.value);
+
+          const filteredData = data.filter((ele, ind, oa) => {
+            return ele.toLowerCase().includes(eve.target.value.toLowerCase());
+          });
+          setListItems(filteredData);
+        };
+        return (
+          <div>
+            <p>
+              <b>Search: </b>
+              <input type="text" onChange={handleChange} />
+            </p>
+            {/*
+            <ol>
+              {data.map((ele, ind, oa) => {
+                return <li key={ind}>{ele}</li>;
+              })}
+            </ol> 
+                
+            */}
+
+            <ol>
+              {listItems.map((ele, ind, oa) => {
+                return <li key={ind}>{ele}</li>;
+              })}
+            </ol>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

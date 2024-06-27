@@ -1,0 +1,26 @@
+<!-- Que 14:
+
+Write a functional class , which should inherit one variable and method. -->
+
+<script>
+  function Sum() {
+    this.n1 = 10;
+    this.n2 = 20;
+    this.add = function () {
+      console.log(this.n1 + this.n2);
+    };
+    this.sub = function () {
+      console.log(this.n1 - this.n2);
+    };
+  }
+  //inherit the variable
+  Sum.prototype.n3 = 30;
+  //inherit the method
+  Sum.prototype.multi = function () {
+    console.log(this.n2 * this.n3);
+  };
+
+  var obj = new Sum();
+  console.log(obj.n3);
+  console.log(obj.multi());
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table-1</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const data = [
+          {
+            name: "s1",
+            rno: 1,
+            marks: 89,
+          },
+          {
+            name: "s2",
+            rno: 2,
+            marks: 90,
+          },
+        ];
+        return (
+          <div>
+            <table border="2px">
+              <thead>
+                <tr>
+                  <th>Name </th>
+                  <th>Roll</th>
+                  <th>Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/*
+                <tr>
+                  <td>s1 </td>
+                  <td>1</td>
+                  <td>89</td>
+                </tr>
+                <tr>
+                  <td>s2 </td>
+                  <td>2</td>
+                  <td>90</td>
+                </tr>
+
+                   or
+
+                {data.map((ele, ind, oa) => {
+                  const { name, rno, marks } = ele;
+                  return (
+                    <tr key={ind}>
+                      <td>{name}</td>
+                      <td>{rno}</td>
+                      <td>{marks}</td>
+                    </tr>
+                  );
+                })}
+                            OR
+
+                */}
+
+                {data.map(({ name, rno, marks }, ind) => {
+                  // we can directly destruct the object in the parameters
+                  return (
+                    <tr key={ind}>
+                      <td>{name}</td>
+                      <td>{rno}</td>
+                      <td>{marks}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

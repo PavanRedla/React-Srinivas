@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <body>
+    <!-- we can pass asynchronous result back to caller in 3 ways
+
+    1.Callback functions
+    2.Promises
+    3.Observables
+    
+    Passing asynchronous result back to caller using Promises -->
+
+    <script>
+      // shop:
+
+      function printCards(no, text) {
+        return new Promise(function (resolve, reject) {
+          console.log("Started printing the cards");
+          console.log("going....");
+          var isPrinted = true;
+          // var isPrinted = false;
+          if (isPrinted) {
+            resolve(no);
+          } else {
+            reject(0);
+          }
+        });
+      }
+
+      // College:
+      var promiseObj = printCards(100, "NIT");
+
+      // How can we get the result(success response/ fail response) from promise object.
+      // 2 ways - 1. then method 2. await keyword
+
+      // then, catch, finally, resolve, reject - all these methods are present in Promise Object.
+
+      //1. then method : then method is accessed through promise Object reference.
+      //    then method takes two functions as an input.
+      //   then method calls the first function passed as parameter to it when success response is received from promiseObject
+      //   then method calls the second function passed as parameter to it when failure response is received from promiseObject
+
+      // promiseObj.then(
+      //   function (data) {
+      //     console.log(data + " cards printed.. ");
+      //     console.log("you can perform remaining activities");
+      //   },
+      //   function (data) {
+      //     console.log(data + " cards printed.. ");
+      //     console.log(
+      //       "sorry!, please find alternate shop to print your cards..."
+      //     );
+      //   }
+      // );
+
+      // we can use then, catch, finally methods to retrieve the data from Promise Object.
+      // then method is used to hold the success response.
+      // catch method is used to hold the failure response
+      // finally method will be executed either if the response is success or failed.
+
+      // using arrow function
+
+      // promiseObj
+      //   .then((data) => {
+      //     console.log(data + " cards printed.. ");
+      //     console.log("you can perform remaining activities");
+      //   })
+      //   .catch((data) => {
+      //     console.log(
+      //       "sorry!, please find alternate shop to print your cards..."
+      //     );
+      //   })
+      //   .finally(() => {
+      //     console.log("end");
+      //   });
+
+      // using normal function
+
+      promiseObj
+        .then(function (data) {
+          console.log(data + " cards printed.. ");
+          console.log("you can perform remaining activities");
+        })
+        .catch(function (data) {
+          console.log(
+            "sorry!, please find alternate shop to print your cards..."
+          );
+        })
+        .finally(function () {
+          console.log("end");
+        });
+
+      /* 2. await keyword
+        await keyword should always follow (prefix) the function which returns promiseObject. Here printCards is the
+        function which returns promise object.
+
+        any function having await keyword must have a return type of async.
+
+        await keyword can only hold the success response.
+
+        if it receives the failure response, it throws an error. so to handle the error we use catch block
+
+        finally block will be executed either if the response is success or failed.
+
+      */
+
+      // async function getCards() {
+      //   try {
+      //     var res = await printCards(100, "NIT");
+      //     console.log(res + " cards printed.. ");
+      //     console.log("you can perform remaining activities");
+      //   } catch (e) {
+      //     console.log(e + " cards printed.. ");
+      //     console.log(
+      //       "sorry!, please find alternate shop to print your cards..."
+      //     );
+      //   } finally {
+      //     console.log("end");
+      //   }
+      // }
+
+      // // college:
+      // getCards();
+    </script>
+  </body>
+</html>

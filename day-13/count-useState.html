@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count-useState</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+
+    <style>
+      .increment {
+        margin-right: 5px;
+      }
+      .decrement {
+        margin-left: 5px;
+      }
+      .inputBox {
+        display: inline-block;
+        border: 2px solid grey;
+        width: 15px;
+        text-align: center;
+      }
+      .main-div {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        // syntax of useState Hook:
+        //----------------------------
+        // function useState(intiValue) {
+        //   var init = initValue;
+        //   function updateInit(newVal) {
+        //     init = newValue;
+        //   }
+        //   return [init, updateInit];
+        // }
+        // useState is a Hook which should be used inside functional component.
+        // useState takes only one parameter(may be string, boolean, number, function, array,..) as input and return one array
+        // which contains 2 elements. [variable, function]. or [init, updateInit]
+        // updateInit is a function which is used to update the state variable(init) and re-render the content in the browser or DOM when the initial value gets changed.
+        //
+
+        // var no = 0;
+        // const no = 0;
+        // let no = 0;
+        // when we use var/let/const type, the variable will not get re-rendered, eventhough the value gets changed.
+        const [no, setNo] = React.useState(0);
+        // useState Hook returns array and we can store it using array only (array destructuring)
+        function fnIncrement() {
+          setNo(no + 1);
+          // setNo is a function which is used to update the state variable and re-render the content inside the DOM or browser when the state variable changes.
+        }
+        function fnDecrement() {
+          setNo(no - 1);
+        }
+        return (
+          <div className="main-div">
+            <button className="increment" onClick={fnIncrement}>
+              Increment
+            </button>
+            <div className="inputBox">{no}</div>
+            <button className="decrement" onClick={fnDecrement}>
+              Decrement
+            </button>
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

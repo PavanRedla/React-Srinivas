@@ -1,0 +1,36 @@
+<!-- Day 12:
+
+Find the Intersection of Two Arrays:
+
+const arr1=[1,2,3,4,5]
+const arr2=[3,4,5,6,7]
+...
+...
+output:
+[3,4,5] -->
+
+<script>
+  const arr1 = [1, 2, 3, 4, 5];
+
+  const arr2 = [3, 4, 5, 6, 7];
+
+  const intersectionArr = arr1.filter(function (value) {
+    return arr2.includes(value);
+  });
+  console.log(intersectionArr);
+
+  //   const arr1 = [1, 2, , 3, 4, 5];
+  //   const arr2 = [3, 4, 5, 6, 7];
+  //   const intersection = (arr1, arr2) => {
+  //     var arr = [];
+  //     for (let i = 0; i < arr1.length; i++) {
+  //       arr2.find(function (value) {
+  //         if (value == arr1[i]) {
+  //           arr.push(value);
+  //         }
+  //       });
+  //     }
+  //     return arr;
+  //   };
+  //   intersection(arr1, arr2);
+</script>

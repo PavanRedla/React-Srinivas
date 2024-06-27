@@ -1,0 +1,42 @@
+<!-- Day 14:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=loader
+
+JavaScript:
+
+Polyfill of find method
+
+const arr=[22,15,35,83]
+const output=arr.find((val,ind,oa)=>{
+  return val==35
+});
+output is 35
+
+Can you create your own myFind method , which should equally work like normal find method.
+
+Array.prototype.myFind=()=>{
+}
+
+const result=arr.myFind((val,ind,oa)=>{
+
+  return val==35
+
+});
+
+result should be 35 -->
+
+<script>
+  Array.prototype.myFind = function (callback) {
+    for (let i = 0; i < this.length; i++) {
+      if (callback(this[i], i, this)) {
+        return this[i];
+      }
+    }
+    return undefined;
+  };
+  const result = arr.myFind((val, ind, oa) => {
+    return val == 35;
+  });
+</script>

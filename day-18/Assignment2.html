@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-2</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+
+    <style>
+      .main-div {
+        border: 2px solid red;
+        height: 200px;
+        width: 270px;
+        /* padding: 5px; */
+        margin: auto;
+        position: relative;
+        top: 230px;
+      }
+      .c1 {
+        border: 2px solid black;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 100px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+      }
+      .c2 {
+        border: 2px solid black;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 70px;
+        position: absolute;
+        /* left: 125px;
+        top: 75px; */
+        top: 72px;
+        left: 113px;
+      }
+      .c3 {
+        border: 2px solid black;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        position: absolute;
+        left: 195px;
+        top: 125px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      //   const Circle1 = (props) => {
+      //     return (
+      //       <div>
+      //         <div className="c1">{props.data} </div>
+      //       </div>
+      //     );
+      //   };
+      //   const Circle2 = (props) => {
+      //     return (
+      //       <div>
+      //         <div className="c2">{props.data} </div>
+      //       </div>
+      //     );
+      //   };
+      //   const Circle3 = (props) => {
+      //     return (
+      //       <div>
+      //         <div className="c3">{props.data} </div>
+      //       </div>
+      //     );
+      //   };
+      const Circle = (props) => {
+        return (
+          <div>
+            <div className={props.className}>{props.data}</div>
+          </div>
+        );
+      };
+      const App = () => {
+        return (
+          <div className="main-div">
+            <Circle data="3" className="c1" />
+            <Circle data="2" className="c2" />
+            <Circle data="1" className="c3" />
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

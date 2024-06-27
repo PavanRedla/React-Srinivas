@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Webpage</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="react.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // Home Component
+
+      const Home = () => {
+        return (
+          <div>
+            <h1> Home Component</h1>
+          </div>
+        );
+      };
+
+      // About Component
+
+      const About = () => {
+        return (
+          <div>
+            <h1> About Component</h1>
+          </div>
+        );
+      };
+
+      // Contact Component
+
+      const Contact = () => {
+        return (
+          <div>
+            <h1> Contact Component</h1>
+          </div>
+        );
+      };
+
+      //Header Component
+      const Header = () => {
+        return <div className="header">My First React Static Webpage</div>;
+      };
+
+      // Menu Component
+
+      const Menu = (props) => {
+        const { cbf, menuItem } = props; // destructuring object(props)
+
+        // navigator.userAgent returns gives the result of the device name in which the webpage is opened.
+
+        const [isMobileView, setIsMobileView] = React.useState(
+          /android|iphone|kindle|ipad/i.test(navigator.userAgent)
+            ? screen.width < 700
+            : window.innerWidth < 700
+        );
+        // if screen width is less than 700 then it is mobile view
+
+        // window is a super object, so we cannot add the event directly on object.
+        // to listen the window object changes, we have to use addEventListener
+        // add event listerner takes 3 parameters as input.
+        //  1. event name
+        //  2. event handler function - gets called when the event gets triggered.
+        //  3. event capturing or event bubbling
+
+        // in below code, whenever the window size changes, resize event gets triggered and evend handler gets called.
+
+        window.addEventListener("resize", () => {
+          setIsMobileView(
+            /android|iphone|kindle|ipad/i.test(navigator.userAgent)
+              ? screen.width < 700 // to work on mobiles
+              : window.innerWidth < 700 // to work on desktops when we decrease the size of broswer less than 700 px
+          );
+        });
+
+        const handleClick = (eve) => {
+          console.log(eve.target); //   <li>Home</li> or <li >About</li> or <li>Contact</li>
+          // console.log(eve.target.value); // 0 - we should not use value here as the content is static, value should be used
+          // if the value we are retrieving is dynamic
+          console.log(eve.target.innerHTML); // Home  or About or Contact - we have to use innerHTML to retrieve static content
+
+          // Now we are getting output  but we have to pass this output to App component for conditional rendering.
+          // we have to pass data from Menu component (child) to App component (Parent) so. we have to use callback function.
+
+          // props.cbf(eve.target.innerHTML);
+          // after props destructing we can directly write above line as
+          cbf(eve.target.innerHTML);
+          setLeft(-150); // hiding the menu items when we click any menu
+        };
+
+        const [left, setLeft] = React.useState(-150);
+        const handleMobileMenuBtnClick = (eve) => {
+          setLeft(left == 0 ? -150 : 0); // toggling left
+        };
+        return (
+          <div>
+            {isMobileView && (
+              <button
+                onClick={handleMobileMenuBtnClick}
+                className="mobileMenuBtn"
+              >
+                Menu
+              </button>
+            )}
+            <ul
+              // style={{ color: "red", fontSize: "100px" }}
+              // in react we can apply inline css using style attribute and the value should not be in the form of string, should be in object format (key value pair) and the object should be in expression as it is a JSX code.
+              // Outer braces indicates JSON code and inner braces indicates object.
+
+              style={{ left: left }}
+              className={isMobileView ? "mobileMenu" : "menu"}
+            >
+              <li
+                className={menuItem === "Home" ? "menuActive" : ""}
+                onClick={handleClick}
+              >
+                Home
+              </li>
+              <li
+                className={menuItem === "About" ? "menuActive" : ""}
+                onClick={handleClick}
+              >
+                About
+              </li>
+              <li
+                className={menuItem === "Contact" ? "menuActive" : ""}
+                onClick={handleClick}
+              >
+                Contact
+              </li>
+              {/*  we have to apply the className dynamically on the active menu item so menuItem data is present in
+              App component get the data from App component to this component using props and apply the style dynamically */}
+            </ul>
+          </div>
+        );
+      };
+
+      // Footer Component
+      const Footer = () => {
+        return <div className="footer"> &copy; rights belongs to Redla.</div>;
+      };
+
+      const App = () => {
+        const [menuItem, setMenuItem] = React.useState("Home");
+        const getMenuItem = (data) => {
+          setMenuItem(data);
+        };
+        return (
+          <div>
+            <Header />
+            <Menu cbf={getMenuItem} menuItem={menuItem} />
+            {menuItem === "Home" && <Home />}
+            {menuItem === "About" && <About />}
+            {menuItem === "Contact" && <Contact />}
+            <Footer />
+          </div>
+        );
+      };
+
+      //{menuItem === "Home" && <Home />}
+      // && - AND : if first expression is false AND operator will not check the remaining expressions. it will return false.
+      //              so if first expression is true then only AND goes to next expression.
+      //||- OR : if first expression is true OR operator will not check the remaining expressions. it will return true.
+      //               so if first expression is false then only OR goes to next expression.
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

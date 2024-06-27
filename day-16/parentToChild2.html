@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent To Child Communication 2</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function A(props) {
+        return (
+          <div>
+            <h1> {props.data}</h1>
+          </div>
+        );
+      }
+      function App() {
+        // let value = "No Data";
+
+        const [value, setValue] = React.useState("No Data");
+        const ref = React.useRef();
+        // useRef Hook is used to get the reference of any element, and it  returns one object which contains one property
+        // called current..
+        // ref = {
+        //         current: undefined
+        //        }
+        // as we have not passed any value to useRef the property current value is undefined.
+
+        function handleChange(eve) {
+          //   value = eve.target.value; // value is getting changed but cannot re-render its change in browser.
+          //   console.log(value);
+          //   setValue(eve.target.value);
+          // here the value is being passed to the child without clicking the button as
+          // the state variable is getting updated when we change it. so we should not
+          // pass the state variable data until we click the button so store the input box value
+          //in any other variable till the button is clicked. so, take on useRef and store the value in it
+
+          ref.current = eve.target.value;
+
+          // ref = {
+          //         current: eve.target.value;
+          //        }
+        }
+
+        function handleClick(eve) {
+          setValue(ref.current);
+        }
+        return (
+          <div>
+            <p>
+              <b>Enter Value: </b>
+              <input onChange={handleChange} />
+            </p>
+            <p>
+              <button onClick={handleClick}> Pass Data to Child(A) </button>
+            </p>
+            <A data={value} />
+            {/* we can pass data to child using 2 ways, using attribute and using children   */}
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

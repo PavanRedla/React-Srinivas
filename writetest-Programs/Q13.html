@@ -1,0 +1,23 @@
+<!-- Day 13:
+
+Find the Union of Two Arrays:
+
+const arr1=[1,2,3,4,5]
+const arr2=[3,4,5,6,7]
+...
+...
+output:
+[1,2,3,4,5,6,7] -->
+
+<script>
+  const arr1 = [1, 2, 3, 4, 5];
+  const arr2 = [3, 4, 5, 6, 7];
+  const combinedArray = arr1.concat(arr2);
+  const unionArray = [];
+  for (let i = 0; i < combinedArray.length; i++) {
+    if (!unionArray.includes(combinedArray[i])) {
+      unionArray.push(combinedArray[i]);
+    }
+  }
+  console.log(unionArray);
+</script>

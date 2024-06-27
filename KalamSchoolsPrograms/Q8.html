@@ -1,0 +1,32 @@
+<!-- Que 8:
+
+Create on JSON variable with out any properties.
+Perform insert, update, delete  and retrieve operations on the above variable. -->
+
+<script>
+  const obj = {};
+  // insert
+  obj.n1 = 10;
+  obj["n2"] = 20;
+  obj["name"] = "Sachin";
+  obj["Full Name"] = "Sachin Ramesh Tendulkar";
+  console.log(obj);
+
+  // update
+
+  obj.n1 = 50;
+  obj["name"] = "Dhoni";
+  console.log(obj);
+
+  //retrieve
+
+  console.log(obj.n1);
+  console.log(obj.name);
+  console.log(obj["Full Name"]);
+
+  // delete
+
+  delete obj.n1;
+  delete obj["Full Name"];
+  console.log(obj);
+</script>

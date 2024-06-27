@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>arith3</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function App() {
+        // const obj = {};
+        // here we have not created n1 and n2 variables as state variables, because there is no need to re-render the
+        // n1 and n2 values anywhere in the browser, but if we do not declare n1 and n2 as state variables then
+        // aslo we may get wrong results like Nan. This is because when state value gets changed the entire page gets reloaded again due to this the object variable obj gets emptied everytime . so n1 and n2 becomes undefined.
+        // so we have to make n1 and n2 also as state variables.
+
+        // creating state variable for obj
+
+        const [obj, setObj] = React.useState({});
+
+        const [sum, setSum] = React.useState(0);
+        // we have to render sum value inside h1 tag so we need to declare it as
+        // state variable.
+        function findSum() {
+          const { n1, n2 } = obj;
+          let result = Number(n1) + parseInt(n2);
+          setSum(result);
+        }
+        function handleChange(eve) {
+          //   console.log(eve.target, eve.target.id,eve.target.value);
+          // eve parameter is a SyntheticBaseEvent object, we can take the properties from eve object through object.
+
+          const { id, value } = eve.target;
+          //   obj.id = value; // we should not use . notation to insert property into object when the key is dynamic the key
+          // can be n1 or n2 so use [] notation.
+          // obj[id] = value;
+          // setObj({ [id]: value });
+          //
+          setObj({ ...obj, [id]: value });
+          //...spread operator is used to get all the properties inside object obj.
+          // obj1 = {n1: 10};
+          // obj2 = {n2: 20};
+          // obj3 = {...obj1, ...obj2, n3:30};
+          // console.log(obj3) = {n1:10, n2:20; n3:30}
+        }
+        return (
+          <div>
+            <p>
+              {" "}
+              No:1 <input type="number" id="n1" onChange={handleChange} />{" "}
+            </p>
+            <p>
+              {" "}
+              No:2 <input type="number" id="n2" onChange={handleChange} />{" "}
+            </p>
+            <p>
+              <button onClick={findSum}>Sum</button>
+            </p>
+            <h1>{sum}</h1>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

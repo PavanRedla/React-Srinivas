@@ -1,0 +1,29 @@
+<!-- Day 17:
+
+Find the GCD (Greatest Common Divisor) of Two Numbers:
+
+let num1 = 12;
+let num2 = 18; -->
+
+<script>
+  function gcd(a, b) {
+    if (a < b) {
+      let temp = a;
+      a = b;
+      b = temp;
+    }
+    while (b !== 0) {
+      let remainder = a % b;
+      a = b;
+      b = remainder;
+    }
+
+    return a;
+  }
+
+  let num1 = 12;
+  let num2 = 18;
+
+  gcd(12, 18);
+  //output: 6;
+</script>

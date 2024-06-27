@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-7</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+
+    <style>
+      .main-div {
+        width: 400px;
+        height: 300px;
+        margin: auto;
+        border: 2px solid red;
+        text-align: center;
+        line-height: 300px;
+      }
+      .left,
+      .right {
+        width: 100px;
+        height: 50px;
+        border: 2px solid;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const [leftColor, setLeftColor] = React.useState("red");
+        const [rightColor, setRightColor] = React.useState("green");
+
+        const handleClick = (eve) => {
+          setLeftColor(leftColor === "red" ? "green" : "red");
+          setRightColor(rightColor === "green" ? "red" : "green");
+        };
+        return (
+          <div className="main-div">
+            <div
+              className="left"
+              style={{ background: leftColor }}
+              onClick={handleClick}
+            ></div>
+            <div
+              className="right"
+              style={{ background: rightColor }}
+              onClick={handleClick}
+            ></div>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

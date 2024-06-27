@@ -1,0 +1,67 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    display: inline-block;
+    text-align: center;
+    line-height: 100px;
+    /* 
+    display: block ;          --  parent width
+    display:inline;          -- content width
+    display: inline-block;  -- to get the specified width
+    text-align: center;       -- to make the content centered horizontally
+    line-height: 100px;       -- to make the content centered vertically (we have to keep same  height given to the container)
+    
+    */
+  }
+</style>
+
+<script type="text/babel">
+  //   function App() {
+  //     return (
+  //       <div>
+  //         <div>
+  //           <div className="box"></div>   // class selector is from javascript code, but in JSX to sepecify class selector r                                          we use class Name. classs attribute also works fine as babel can compile   -//                                           both javascript and jsx code.
+  //           <div className="box"></div>
+  //         </div>
+  //         <div>
+  //           <div className="box"></div>
+  //           <div className="box"></div>
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  //          the above component has duplicate code so create one child component holds duplicate content and
+  //             one parent content
+
+  function Box(a) {
+    // child component // function parameter(a) is an JSON Object as it is storing key value pair data passed from Box component
+    return <div className="box">{a.name}</div>; // to execute javascript code in JSX we need to keep it in expression form -{}
+  }
+
+  function App() {
+    // parent component
+    return (
+      <div>
+        <div>
+          <Box name="Sachin" />
+          <Box name="Dhoni" />
+        </div>
+        <div>
+          <Box name="Kohli" />
+          <Box name="UV" />
+        </div>
+      </div>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App></App>);
+</script>

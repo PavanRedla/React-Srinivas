@@ -1,0 +1,29 @@
+<!-- JavaScript:
+
+var array=[1,2,3,4,1,8,2,7,2,3,2,3,4,5,2]
+
+Output : 2
+
+Hint: Most repeated element in the array -->
+
+<script>
+  var array = [1, 2, 3, 4, 1, 8, 2, 7, 2, 3, 2, 3, 4, 5, 2];
+
+  let setArr = [...new Set(array)];
+  console.log(setArr);
+  let res;
+  let initCount = 0;
+  for (i of setArr) {
+    let count = 0;
+    for (j of array) {
+      if (i === j) {
+        count++;
+      }
+    }
+    if (count > initCount) {
+      initCount = count;
+      res = i;
+    }
+  }
+  console.log(res);
+</script>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-8</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <style>
+      .App {
+        width: 700px;
+        height: 500px;
+        margin: auto;
+        text-align: center;
+        border: 2px solid red;
+      }
+      .a {
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        text-align: center;
+        border: 2px solid red;
+        margin-top: 15px;
+        padding: 5px;
+      }
+      .b {
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        text-align: center;
+        border: 2px solid red;
+        margin-top: 15px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const context = React.createContext();
+
+      const A = () => {
+        return (
+          <div className="a">
+            <h2 style={{ textAlign: "left" }}> A </h2>
+            <B />
+          </div>
+        );
+      };
+      const B = () => {
+        return (
+          <div className="b">
+            <h3 style={{ textAlign: "left" }}> B </h3>
+            <C />
+            <D />
+          </div>
+        );
+      };
+
+      const C = () => {
+        const ctx = React.useContext(context);
+        return (
+          <div>
+            <h4> C : {ctx.name}</h4>
+          </div>
+        );
+      };
+
+      const D = () => {
+        const ctx = React.useContext(context);
+        return (
+          <div>
+            <h4> D: {ctx.loc} </h4>
+          </div>
+        );
+      };
+
+      const App = () => {
+        const [data, setData] = React.useState({});
+        const dataRef = React.useRef({});
+        const handleChange = (eve) => {
+          const { id, value } = eve.target;
+          dataRef.current[id] = value;
+        };
+        const handleClick = () => {
+          setData(dataRef.current);
+          console.log(data);
+        };
+        return (
+          <div className="App">
+            <h1> App </h1>
+            <b>Name: </b>
+            <input id="name" onChange={handleChange} />
+            <b style={{ marginLeft: "10px" }}>Location: </b>
+            <input
+              id="loc"
+              onChange={handleChange}
+              style={{ marginRight: "10px" }}
+            />
+            <button onClick={handleClick}>Submit</button>
+            <context.Provider value={data}>
+              <A />
+            </context.Provider>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
