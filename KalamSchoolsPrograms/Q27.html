@@ -1,0 +1,48 @@
+<!-- Que 27:
+
+Create a promise object which should return success response.
+Get that success response using then
+Another way using await keyword -->
+
+<script>
+  // 1.
+  function getPromise() {
+    return new Promise(function (resolve, reject) {
+      let noError = true;
+      if (noError) {
+        resolve("Sachin");
+      } else {
+        reject("error");
+      }
+    });
+  }
+
+  let promiseObj1 = getPromise();
+
+  // 1. using then
+  promiseObj1
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((e) => {
+      console.log(e);
+    })
+    .finally(function () {
+      console.log("end");
+    });
+
+  //2. await keyword
+
+  async function getData() {
+    try {
+      let data = await getPromise();
+      console.log(data);
+    } catch (e) {
+      console.log("error");
+    } finally {
+      console.log("end");
+    }
+  }
+
+  getData();
+</script>

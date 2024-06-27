@@ -1,0 +1,949 @@
+9 AM 20-5-2024
+
+23/6/2024 class Link:  https://nareshit.zoom.us/s/83751782092#success
+
+workshop on callbacks, promises and Observables
+===============================================
+
+https://youtube.com/live/oGBdi__l3Zc?feature=share
+
+workshop on OOPS
+=================
+
+https://www.youtube.com/watch?v=Em5cS9FKe0w&t=5237s
+
+Workshop on Array methods
+=========================
+
+27/04  session :  https://www.youtube.com/watch?v=PBcYaAFU5aw&t=34s
+28/04 Session  :  https://youtu.be/CprFHF4ZXn0
+
+Workshop on Exception Handling
+==============================
+
+25/05 session: https://www.youtube.com/watch?v=ILOEINsphhw
+
+Array methods:
+
+Session 1: https://www.youtube.com/watch?v=PBcYaAFU5aw&t=31s
+
+Session 2: https://www.youtube.com/watch?v=CprFHF4ZXn0
+
+
+
+Whats app - https://chat.whatsapp.com/CnjVPwHV4W84n4W9cG9o7y
+
+Srinivas
+
+10 years
+
+React
+
+prerequisites : HTML, CSS, JavaScript
+
+2months+
+
+React Course Content (60 days):  
+
+React:
+=====
+
+1. Why do we go for React ?
+2. How to prepare the templates in react (functional components) and JSX
+3. How to handle the events(click, focus, blur ...) ?
+4. How to take the data from inputControls(textbox,password,radio,checkbox,textarea,fileupload,dropdown)?
+5. State vs Props
+6. State value update, prop value update
+7. Communication b/w components (parent-child , child-parent)
+8. Context API
+9. How to handle AJAX(XMLHttpRequest, fetch, axios)
+10. Lifecycle phases
+11. Lists and keys
+12. Reusable components
+13. How to apply styles dynamically (inline, class)
+14. Handle Routing in React
+15. Conditional Rendering
+16. Integrate bootstrap, react-bootstrap, material UI design
+17. Module CSS, styled-components, SASS.
+18. DefaultProps , PropTypes
+19. Higher Order Components
+20. React Testing(jest+RTL)
+21. PlayWright(JavaScript Automation Testing)
+22. Create and publish your own lib in npmjs.
+
+React Hooks:
+===========
+
+1. useState
+2. useEffect
+3. useRef
+4. useContext
+5. useReducer
+6. useMemo
+7. useCallback
+8. useTransistion
+9. Custom Hook
+
+Build and Deploy:
+=================
+Vercel
+
+Version Control:
+===============
+GIT
+
+Backend:
+=======
+1. node 
+
+DataBase:
+========
+1. MongoDB
+
+Redux(state management at application level):
+=============================
+1. How to implement Redux in your React Application ?
+2. actions, reducers, store
+3. Redux Saga
+
+Data Visualization:
+=============
+1. Visualization(charts)
+
+
+EtoE Application(DML operations(login, insert, update, delete, retrieve)) :
+=======================================================================
+1. client(React +Redux) + Server(node with express ) + MongoDB
+
+JWT:
+====
+1. client(React ) + Server(node with express )
+
+Others:
+======
+1. Next JS --
+2. React Native --
+3. React With Typescript --
+
+Softwares need to install:
+=================
+1. Visual Studio Code : https://code.visualstudio.com/
+2. git : https://git-scm.com/downloads
+3. MongoDB compass : https://www.mongodb.com/products/compass
+4. Node s/w or nvm : https://nodejs.org/en/download or https://github.com/coreybutler/nvmwindows/releases
+5. postman : https://www.postman.com/downloads/
+
+Create Accounts:
+=================
+1. https://github.com/
+2. https://www.vercel.com/
+3. https://mongodb.com/
+4. https://aws.amazon.com/ 
+5. https://www.npmjs.com/
+
+Learning Websites:
+==================
+1. www.uijavakit.com
+2. www.kalamschools.com
+3. www.yourpost.in
+4. www.writetest.in
+
+Email:
+===
+chenchala.srinu@gmail.com
+
+Videos: 
+
+Day-1 https://youtu.be/4q_9W-iNBLA
+
+Day-2 https://youtu.be/-nzOpKzS21s
+
+ Day-3 https://youtu.be/lMy4lq39fAA
+
+Day4 - https://youtu.be/Rapj-4E72IY
+
+Day-5 https://youtu.be/3yPfmgb0onw
+
+Day-6 https://youtu.be/ji2LN1VH3pU
+
+Day-7 https://youtu.be/Jmoj9HY0g0g
+
+Day-8 https://youtu.be/3VJNPX0UItw
+
+
+60m
+5- HTML
+5- CSS
+30min - JS
+
+react -30m
+
+workshops - 8
+
+3. distributed applications
+
+4. enterprise applications
+
+============================================
+
+1. Developer Console window  
+    browser
+
+
+hello.java
+
+...
+...
+...
+
+compile
+run 
+output
+
+HT ML
+
+hello.html
+
+...
+...
+...
+
+run 
+output
+browser
+
+
+html
+head
+body
+
+div
+span
+p
+h1
+a
+img
+
+block -
+
+inline -
+
+
+==============
+
+static -
+    default postion
+    we cannot t,r,l,b
+
+absolute-
+    we can apply t,r,l,b
+    change the behaviour(content width)
+    remove the space from DOM
+    take parent as ref, whenever the parent other that static postion
+
+<div>Sachin</div>
+
+postion:abosolute
+top:100
+
+
+realtive- 
+    
+
+sticky
+
+selectors:
+
+tag
+.
+#
+:first-child
+:last-child
+:first-of-type
+:las-of-type
+>
+space
++
+~
+nth-child
+
+
+media queries
+
+
+===========================
+
+1. Why we go for HTML ?
+
+2. What is inline & block level ?
+
+3. Waht is an attirbute ?
+
+4. CAn we convert inline to block ?
+
+5. can I cahnge the behaviour of eleemtn ?
+
+6. Tell me somethiong about developer console window ?
+
+7. Some of the HTML5 features ?
+
+8. How many ways we can apply CSS ?
+
+9. What is the priority order ?
+
+10. What is boxmodel ?
+
+11. Tell me somethig about the postions ?
+
+12. Tell me some selctor what you know ?
+
+13. Why we go for media queries ?
+
+1. why we go for React ?
+
+2. How we prepare the templates in react ?
+
+3. How many ways we can create the components ?
+
+4. tell me the syntax of functional compnent ?
+
+5. How to use 
+    function App(){
+        return <h1>Hell</h1>
+    }
+  as a component
+
+6. what is JSX ?
+
+7. When we can pass the data to the component ?
+
+8. How many ways we can pass the data to the componet 
+while loading ?
+
+9. What is props ?
+
+10. tell something about the childrne prop key?
+
+11. In react , the event hanldler should be ?
+
+12. handler funciton called by passing how may para?
+
+13. some error message what you know ?
+
+14. syntax error
+
+15. Runtime error -
+
+
+
+1.
+
+<App />
+
+App is not defined
+
+
+2. cannot read properyt of undefined reading length
+
+var loc;
+loc.length
+
+3. var b=10;
+
+   b()
+
+b is not a function
+
+4. var container =null;
+
+   ReactDOM.createRoot(container)
+
+
+===============================
+
+function App(){
+  return <div>{props.name}</div>
+
+}
+
+<App />
+
+props is not defined
+
+==============
+
+
+function App(props){
+  return <div>{props.name}</div>
+
+}
+
+<App />
+
+==============
+
+
+function App(props){
+  return <div>{props.name.length}</div>
+
+}
+
+<App />
+cannot read property of undefined(reading lenght)
+==============
+
+
+function App(props){
+  return <div>{props.name.length}</div>
+
+}
+
+<App name="abcdef" />
+---------------------
+
+function App(props){
+  return <div>{props.children}</div>
+
+}
+<App>Sachin</App>
+
+===========================
+
+
+18.3.1
+
+
+
+functional
+
+            static content
+
+class
+
+           static content,dynamic content
+
+16.8
+
+functional+ hooks
+
+        static content,dynamic content
+class
+
+           static content,dynamic content
+
+
+========================
+
+useRef
+
+============
+
+function App(){
+   return <div>hellow world</div>
+}
+
+
+const root=ReactDom.createRoot(document.getElementById("root");
+root.render(<App />
+
+
+Error Message - ReactDom is not defined
+
+
+1. React-dom lib loaded or not ? 
+            a. in source table check for react-dom lib
+            b. in the console check ReactDOM variable
+=============================
+
+function App(){
+   return <div>hellow world</div>
+}
+
+
+const root=ReactDOM.createRoot(Document.getElementById("root");
+root.render(<App />
+
+
+Error Message - Document.getElementById is not function
+
+
+1.check Document.getElementById value in console
+
+=======================
+
+1. How to check React variable avaible or not in my page?
+    a. in the console type React
+    b. in the source tab , check for react lib.
+    c. on the page load , check in the network tab
+
+=====================
+
+
+
+5AM-6AM - Physical fitness
+7AM to 8AM - React
+
+1h
+
+10min - kalamschools - write program - read running notes
+
+10min - writetest
+
+10min - yourpost -
+
+30min - class programs / uijavakit.com
+
+1. Hellow world
+
+2. Print Name 5 times
+
+3. 4 Boxs create, pass the data to that Box component as an att
+
+4. Players component  and pass the data as an att and children
+
+5. Find sum using JS
+
+6. Find sum using useRef
+
+7. prime, Reverse, shoot
+
+
+============================
+
+1. why we go for useRef
+
+  useRef(10)
+
+  ref=useRef()
+  
+  <div ref={ref}></div>
+
+2.
+
+
+   function useState(init){
+
+    var init=init;
+    function updateInit(newVal){
+            init=newval
+    }
+
+        return [init,updateInit]
+
+   }
+
+
+    const [a,b]=useState(100)
+
+    a - 100
+      b-  f updateInit
+
+    b(200)
+
+
+
+
+
+    
+   const val=fn()
+
+index
+
+   val[0]
+   val[1]
+
+for
+
+for in
+
+for of
+
+forEach
+
+destructring
+
+
+var obj={
+  name:"sachin",
+  loc: {
+     pin:34343
+     area:hyd
+     100..
+  }
+  100..
+}
+
+
+obj.loc.pin
+obj.loc.area
+
+const {pin,area}=obj.loc
+
+
+
+const [no,setNo]=React.useState(10)
+
+no ? 10
+
+setNo(100)
+
+no- 100
+
+setNo({})
+
+no - {}
+
+setNo(true,100)
+
+no - true
+
+=========================
+
+onChange
+
+<input onChange={} />
+
+
+event - onresize
+
+Q. How we can add onClick event to one element (button) in JS ?
+
+ans: 
+    1. <button onclick="handler()" ></button>
+
+    2. const btnRef=document.querySelector("button")
+        btnRef.addEventLister("click",handler)
+    3. btnRef.onClick=handler
+
+
+window.addEventListener("resize",()=>{
+  
+})
+
+
+=======================================
+
+1. Why we go for React ?
+
+2. How many min lib required ?
+
+3. which version u used ? 18.3
+
+4. Which hooks u used in you application ?
+
+5. state vs props ?
+
+6. state variable vs normal js varibale
+
+7. conditional rendering
+
+8. how to apply CSS class dynamicall ?
+
+9. how to apply inline styling in React ?
+
+10. Tell me somthing about JSX ?
+
+11. Why we go for context ?
+
+12. how to share the data across all the componet in your applcation ?
+
+13. How you implements context api ?
+
+14. why we go for useContext ?
+
+15. tell me something about useRef ?
+
+16. What is the procedure you are following ?
+
+    dev - test - stage- adoption - production
+
+17.
+
+HTML:
+
+1. inline vs block leve elements ?
+
+2. What is an attributes ?
+
+3. tell me some elements ?
+
+4. What is semantic elements ?
+
+5. what are the new fetures in HTML5 ?
+================================
+
+CSS:
+
+1. how many ways we can apply ?
+
+2. Box modal
+
+3. positions
+
+4. selectors
+
+5. flex
+
+6. grid
+
+7. media queries
+
+8. CSS3 fetures
+==============================
+
+JS
+
+1. variable and functions
+
+2. JSON
+
+3. Array methods
+
+4. String methods
+
+5. OOPS
+
+6. Exception Handling
+
+7. Browser Storages
+
+8. Promises
+
+9. BOM vs DOM
+
+10. Closure, hoisting..etc
+
+===============================
+
+Array methods
+
+Session 1: https://www.youtube.com/watch?v=PBcYaAFU5aw&t=31s
+
+Session 2: https://www.youtube.com/watch?v=CprFHF4ZXn0
+
+
+method -
+
+class A{
+  n1=10
+  f1(){
+  }
+}
+
+function A(){
+    this.n1=10;
+    this.f1=function(){}
+}
+
+funciton vs methods
+
+Array - predefined
+
+variables
+methods
+
+how many ?
+
+==========================
+
+var arr=new Array()
+
+arr - []
+
+==
+
+var arr=[];
+arr - []
+
+=========================
+
+
+var arr=new Array(10,20,30)
+
+arr - [10,20,30]
+
+==
+
+var arr=[10,20,30];
+arr - [10,20,30]
+=========================
+
+
+var arr=[10,20,30]
+
+
+arr.push - add an element(s) in the last index
+     type - method
+     parameters- rest (o to any)
+     return value - new arary length
+     return type - number
+arr.pop - remove the element from last index
+    type - method
+    parameters- 0
+    return value - last index element
+    return type  - any
+
+arr.unshift - add an element(s) in the 0th index
+     type - method
+     parameters- rest (o to any)
+     return value - new arary length
+     return type - number
+arr.shift - remove the element from 0th index
+    type - method
+    parameters- 0
+    return value - last index element
+    return type  - any
+
+arr.indexOf - find the index of an element| element there or not there
+    type - method
+    parameters- max 2
+    return value - index(if there) -1 (not there)
+    return type  - number
+
+
+arr.includes - element there or not there
+    type - method
+    parameters- max 2
+    return value - true(if there) false (not there)
+    return type  - boolean
+
+Workshop
+
+Promises
+
+1. what is promise ?
+
+
+    a. predefined
+    b. lib
+    c. defined by user
+
+x is not defined
+
+1. Predefined functional class
+2.while creating an object we have to pass callback
+3. callback called by Promise by passing 2 parameters
+4. those 2 paramers type is function
+
+const promiseObj=new Promise((a,b)=>{
+    // a,b are functions
+})
+
+a. why we go ?
+
+ if you want to pass anynchronous action results back to caller
+
+b. How we can anynchronous action results back to caller ?
+
+
+Shop:
+
+function printCards(no, text){      
+ return new Promise(function(resolve,reject){
+    console.log("start print the cards");
+    console.log("going...");
+    const isPrinted=true;
+    if(isPrinted){
+       resolve(no)
+    }else{
+       reject(0);
+    }
+ })
+}
+
+College:
+
+    printCards(100,"nit")
+
+How we can get the result(succ/fail) from Promise object ?
+
+    1. then
+    2. await keyword
+
+
+cosnt promiseObj=printCards(100,"nit")
+
+promiseObj.then()
+
+
+
+1. how many members are there inside the Promise class ?
+
+    a. then method
+    b. catch method
+    c. finally method
+
+b. then, catch, finally returns the promise Object
+
+ function Promise(){
+    this.then=function(scb,ecb){ scb(succData) return this}
+       this.catch=function(){ return this}
+       this.finally=function(){ return this}
+ }
+
+
+i. asynchronous action
+
+function printCards(no, text){      
+ return new Promise(function(resolve,reject){
+    console.log("start print the cards");
+    console.log("going...");
+    const isPrinted=true;
+    if(isPrinted){
+       resolve(no)
+    }else{
+       reject(0);
+    }
+ })
+}
+const obj=printCards(100,"nit")
+obj
+.then((data)=>{
+   console.log("received "+ data + " cards")
+console.log("distribute "+ data + " cards")
+
+})
+.catch((data)=>{
+   console.log("received " + data + " cards")
+  console.log("find some alternate")
+})
+.finally(()=>{
+   console.log("start/end");
+})
+
+
+new Promise(functoin(resolve,reject){
+       reject(20)
+})
+
+This JS  code already written
+
+functon Promise(cb){
+ this.successData;
+ this.failureData;
+ functoin resolve(data){
+  this.succeeData=data;
+ }
+ function reject(data){
+    this.failurecode=data
+}
+ cb(resolve,reject);
+ this.then=function(cb){
+   cb(this.successData);
+ }
+this.catch=function(cb){
+   cb(this.failureData);
+ }
+ 
+}
+
+obj.then(function(){
+
+})
+
+
+==============================
+
+
+ 
+
