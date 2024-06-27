@@ -1,0 +1,119 @@
+Lifecylce Phases:
+==================
+Any component in react may enter into a max of 3 phases 
+
+They are: 
+1. Mounting Phase
+2. Updating Phase
+3. Unmounting Phase
+
+const App=()=>{
+    return <div>Sachin</div>
+}
+
+loading - <App /> - first time load on browser also called as mounting phase
+
+Sachin to dhoni
+
+After first time load - if the component is rerendered again due to state variable updation or something then it is called updating phase.
+
+unloading - when we donot want the component anymore
+
+UseCase 1: 
+    want execute 100 lines of code, before rendering content 
+    inside the browser on first time load.
+
+Ans : wirte those 100 lines, inside the component before the return statement.
+
+const App=()=>{
+ console.log("100 lines")
+ return <div>Sachin</div>
+}
+
+<App />
+
+
+useEffect is a functional hook present in React Library.
+
+React.useEffect is an asynchronous action which returns the result in the form of callback
+
+useEffect takes a max of 2 parameters and min 1 parameter is mandatory 
+
+1st parameter is callback functional
+2nd parameter is dependency which tells when to execute the useEffect hook
+
+React.useEffect((a,b)=>{
+    console.log("called", a, b);
+ },)
+
+ o/p: called undefined undefined
+
+useEffect calls the callback function directly and while calling it won't pass any parameters to callback function.
+
+
+UseCase 2:
+    want execute 100 lines of code, after rendering content 
+    inside the browser at first time load and not for every new data updation.
+
+const App=()=>{
+ 
+ React.useEffect(()=>{
+    console.log("100 lines code");
+ },[]) // empty array dependency parameter is passed.
+
+ return <div>Sachin</div>
+}
+
+<App />
+
+
+UseCase 3:
+    want execute 100 lines of code, after rendering content 
+    inside the browser first time load and for every new data rendering
+
+const App=()=>{
+ 
+ React.useEffect(()=>{
+    console.log("100 lines code");
+ })  // no dependency paramter is passed
+ return <div>Sachin</div>
+}
+
+<App />
+
+UseCase 4:
+     want execute 100 lines of code, after render content
+    inside the browser first time load and for cnt change
+
+const App=({runs})=>{
+ const [cnt, setCnt] = React.useState(0)
+ const [name, setName] = React.useState("Sachin")
+ React.useEffect(()=>{
+    console.log("100 lines code");
+ },[cnt]) 
+ return <div>Sachin</div>
+}
+
+<App />
+
+
+========================
+useEffect(()=>{
+
+})// callback called 1st time load and every change(state,props,context,redux)
+use
+
+useEffect(()=>{
+
+},[])//callback called by useEffect only first time render the content inisde the browser
+
+useEffect(()=>{
+
+},[cnt])// callback called by useEffect firt time load after render the content and for every cnt change
+
+useEffect(()=>{
+
+},[cnt,name])// callback called by useEffect firt time load after render the content and for every cnt,name change
+
+
+

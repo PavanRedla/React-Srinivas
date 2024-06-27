@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Cycle Phases-4</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [cnt, setCnt] = React.useState(0);
+        const [name, setName] = React.useState("Sachin");
+        debugger;
+        React.useEffect(() => {
+          debugger;
+          console.log("100 lines of code executed");
+        }, [cnt]);
+        return (
+          <div>
+            <h1>{name}</h1>
+            <button
+              onClick={() => setName(name === "Sachin" ? "Dhoni" : "Sachin")}
+            >
+              Toggle name
+            </button>
+
+            <h3>{cnt}</h3>
+            <button onClick={() => setCnt(cnt + 1)}>Increment</button>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
+
+<!-- UseCase 1: 
+    want execute 100 lines of code, before rendering content 
+    inside the browser on first time load.
+
+Ans : wirte those 100 lines, inside the component before the return statement.
+
+const App=()=>{
+ console.log("100 lines")
+ return <div>Sachin</div>
+} -->
