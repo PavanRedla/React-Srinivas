@@ -17,7 +17,7 @@ Sachin to dhoni
 
 After first time load - if the component is rerendered again due to state variable updation or something then it is called updating phase.
 
-unloading - when we donot want the component anymore
+unloading - when we donot want the component anymore, we will delete the component. this is called Unmounting Phase.
 
 UseCase 1: 
     want execute 100 lines of code, before rendering content 
@@ -105,15 +105,15 @@ use
 
 useEffect(()=>{
 
-},[])//callback called by useEffect only first time render the content inisde the browser
+},[])//callback called by useEffect only first time after rendering the content inisde the browser
 
 useEffect(()=>{
 
-},[cnt])// callback called by useEffect firt time load after render the content and for every cnt change
+},[cnt])// callback called by useEffect firt time load after rendering the content and for every cnt change
 
 useEffect(()=>{
 
-},[cnt,name])// callback called by useEffect firt time load after render the content and for every cnt,name change
+},[cnt,name])// callback called by useEffect firt time load after rendering the content and for every cnt,name change
 
 
 
