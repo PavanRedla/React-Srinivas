@@ -1,0 +1,31 @@
+<!-- Day 29
+
+Write a function to check whether the last digit of given numbers same or not ?
+
+function checkLastDigits(input){
+    ---
+    ---
+    return true/false
+}
+
+checkLastDigits([12,332,442]) 
+true
+
+checkLastDigits([12,331,421]) 
+false -->
+
+<script>
+  function checkLastDigits(input) {
+    let lastDigit = input[0] % 10;
+
+    let res = input.every((ele, ind) => {
+      return ele % 10 === lastDigit;
+    });
+    return res;
+  }
+  let res1 = checkLastDigits([12, 332, 442]);
+
+  console.log(res1);
+  let res2 = checkLastDigits([12, 331, 421]);
+  console.log(res2);
+</script>

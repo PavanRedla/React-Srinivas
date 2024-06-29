@@ -1,0 +1,81 @@
+<!-- case : 100 lines code - I donot want to execute on first time load ,only want to execure whenever the cnt variable changes.
+
+const App=()=>{
+const [cnt,setCnt]=React.useState(0)
+
+ React.useEffect(()=>{
+    if(cnt!==0){
+     console.log("100 lines")
+       }
+ },[cnt]) 
+  
+ return <div>
+    <h3>{cnt}</h3>
+    <button onClick={()=>setCnt(cnt+1)}></button>
+ </div>
+}
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Cycle Phase-5</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [cnt, setCnt] = React.useState(0);
+
+        // React.useState(()=>{
+        //     console.log("100 lines of code")
+        // })
+
+        // above code executes after the contenet is rendered and also executes if any state changes are there.
+
+        // React.useState(()=>{
+        //     console.log("100 lines of code")
+        // },[])
+
+        // above code executes after the contenet is rendered and will not execute again even if any state changes are there.
+
+        // React.useState(()=>{
+        //     console.log("100 lines of code")
+        // },[cnt])
+
+        // above code executes after the contenet is rendered and also executes if there is any change in cnt state variable.
+        debugger;
+        React.useEffect(() => {
+          debugger;
+          if (cnt !== 0) {
+            console.log("100 lines of code");
+          }
+        }, [cnt]);
+
+        // for the first time load, count is 0. so after the content is rendered, the control goes to useEffect hook to
+        // execute the 100 lines of code present in it. But there is a if condition which will not allow useEffect to
+        // execute the 100 lines of code as if condition becomes false in this case as the count value is 0.
+        // so 100 lines of code will not execute on first time load
+
+        // after we click the Increment button the cnt state variable changes and component gets rerendered
+        // Now after the new content is rendered, again control goes to useEffect hook to execute the code.
+        // This time the code gets executed successfully as the if condition is true (cnt becomes 1)
+
+        return (
+          <div>
+            <h1>App</h1>
+            <h3>{cnt}</h3>
+            <button onClick={() => setCnt(cnt + 1)}>Increment</button>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

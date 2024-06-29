@@ -1,0 +1,91 @@
+<!-- 
+case : cnt related 50 lines - I want to execute only when cnt state variable changes
+      name related 50 line - I wnat to execute only when name state variable changes
+
+const App=()=>{
+const [cnt,setCnt]=React.useState(0)
+const [name,setName]=React.useState("sachin")
+ const isFirstTimeLoadRef=React.useRef(true)
+   React.useEffect(()=>{
+    if(cnt!==0){
+     console.log("50 lines cnt related")
+       }
+ },[cnt])
+
+ React.useEffect(()=>{
+       if(isFirstTimeLoadRef.current){
+         isFirstTimeLoadRef.current=false;
+         return;
+       }
+    console.log("50 lines name related")
+    },[name])
+
+ 
+ return <div>
+    <h3>{cnt}</h3>
+    <button onClick={()=>setCnt(cnt+1)}></button>
+       <h3>{name}</h3>
+    <button onClick={()=>setName(name==="sachin" ? "dhoni" : "sachin")}></button>
+
+ </div>
+} -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Cycle Phase-6</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [cnt, setCnt] = React.useState(0);
+        const [name, setName] = React.useState("Sachin");
+        const isFirstTimeLoadRef = React.useRef(true);
+
+        debugger;
+        React.useEffect(() => {
+          debugger;
+          if (cnt !== 0) {
+            console.log("50 lines of cnt related code");
+          }
+        }, [cnt]);
+
+        debugger;
+        React.useEffect(() => {
+          debugger;
+          if (isFirstTimeLoadRef.current) {
+            isFirstTimeLoadRef.current = false;
+            return;
+          }
+          console.log("50 lines of name related code");
+        }, [name]);
+
+        // we can write any number of useEffects in the component.
+
+        return (
+          <div>
+            <h1>App</h1>
+            <h3>{cnt}</h3>
+            <button onClick={() => setCnt(cnt + 1)}>Increment</button>
+            <h3>{name}</h3>
+            <button
+              onClick={() => {
+                setName(name === "Sachin" ? "Dhoni" : "Sachin");
+              }}
+            >
+              Toggle Name
+            </button>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
