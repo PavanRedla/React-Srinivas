@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-12</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [selCountries, setSelCountries] = React.useState([]);
+        const [selStates, setSelStates] = React.useState([]);
+        const [selCities, setSelCities] = React.useState([]);
+        const data = [
+          {
+            name: "India",
+            states: [
+              {
+                name: "AP",
+                cities: ["Vishakapatnam", "Amaravathi"],
+              },
+              {
+                name: "TS",
+                cities: ["Hyderabad", "Nalgonda"],
+              },
+            ],
+          },
+          {
+            name: "US",
+            states: [
+              {
+                name: "Newyork",
+                cities: ["new1", "new2"],
+              },
+              {
+                name: "California",
+                cities: ["cal1", "cal2"],
+              },
+            ],
+          },
+        ];
+
+        React.useEffect(() => {
+          const countriesList = data.map((obj) => {
+            return obj.name;
+          });
+          setSelCountries(countriesList);
+        }, []);
+
+        const handleCountryChange = (eve) => {
+          setSelStates([]);
+          setSelCities([]);
+          const countryObj = data.find((obj) => {
+            return obj.name === eve.target.value;
+          });
+          console.log(countryObj);
+
+          setSelStates(countryObj.states);
+        };
+
+        const handleStateChange = (eve) => {
+          const stateObj = selStates.find((obj) => {
+            return obj.name === eve.target.value;
+          });
+          setSelCities(stateObj.cities);
+        };
+
+        return (
+          <div>
+            <p>
+              <b>Country: </b>
+              <select onChange={handleCountryChange}>
+                <option>---select option---</option>
+                {selCountries.map((country, ind) => {
+                  return <option key={ind}>{country}</option>;
+                })}
+              </select>
+            </p>
+            <p>
+              <b>State: </b>
+              <select onChange={handleStateChange}>
+                <option>---select option---</option>
+                {selStates.map((obj, ind) => {
+                  return <option key={ind}>{obj.name}</option>;
+                })}
+              </select>
+            </p>
+            <p>
+              <b>City: </b>
+              <select>
+                <option>---select option---</option>
+                {selCities.map((val, ind) => {
+                  return <option key={ind}>{val}</option>;
+                })}
+              </select>
+            </p>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

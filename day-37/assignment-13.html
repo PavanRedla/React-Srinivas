@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-13</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [obj, setObj] = React.useState({
+          uid: "Sachin",
+          gender: "M",
+          hobbies: "CRIC,HOC",
+          country: "us",
+          address: "Hyd",
+        });
+
+        const fnChange = (eve) => {
+          const { name, value, checked, type } = eve.target;
+
+          if (type === "checkbox") {
+            const hobbiesArr = obj.hobbies ? obj.hobbies.split(",") : [];
+
+            if (checked) {
+              hobbiesArr.push(value);
+            } else {
+              const index = hobbiesArr.indexOf(value);
+              hobbiesArr.splice(index, 1);
+            }
+
+            obj[name] = hobbiesArr.sort().join();
+          } else {
+            setObj({ ...obj, [name]: value });
+          }
+        };
+        const fnSubmit = () => {
+          console.log(obj);
+        };
+        return (
+          <div>
+            <p>
+              <b>Name: </b>
+
+              <input
+                type="text"
+                name="uid"
+                value={obj.uid}
+                onChange={fnChange}
+              />
+
+              {/* suppose if we want to set a default value for Name feild as Sachin. we can do it with value attribute in input tag as value="Sachin". this works fine until we try to change the value in Name feild in the output.
+              because if we set the value like this then Name field will not allow us to change the value of Name feild.
+
+              so give the default values in the obj state variable and then set the value attribute with obj.value */}
+            </p>
+            <p>
+              <b>Gender: </b>
+              <input
+                type="radio"
+                name="gender"
+                value="M"
+                onChange={fnChange}
+                checked={obj.gender === "M"}
+              />{" "}
+              Male
+              <input
+                type="radio"
+                name="gender"
+                value="F"
+                onChange={fnChange}
+                checked={obj.gender === "F"}
+              />{" "}
+              Female
+            </p>
+            <p>
+              <b>Hobbies: </b>
+              <input
+                type="checkbox"
+                name="hobbies"
+                value="CRIC"
+                onChange={fnChange}
+                checked={obj.hobbies.split(",").includes("CRIC")}
+              />
+              Cricket
+              <input
+                type="checkbox"
+                name="hobbies"
+                value="FB"
+                onChange={fnChange}
+                checked={obj.hobbies.split(",").includes("FB")}
+              />
+              FootBall
+              <input
+                type="checkbox"
+                name="hobbies"
+                value="HOC"
+                onChange={fnChange}
+                checked={obj.hobbies.split(",").includes("HOC")}
+              />
+              Hockey
+            </p>
+            <p>
+              <b>Country: </b>
+              <select name="country" onChange={fnChange}>
+                <option value="ind" selected={obj.country === "ind"}>
+                  India
+                </option>
+                <option value="chi" selected={obj.country === "chi"}>
+                  China
+                </option>
+                <option value="us" selected={obj.country === "us"}>
+                  United States of America
+                </option>
+              </select>
+            </p>
+            <p>
+              <b>Address: </b>
+              <textarea
+                name="address"
+                onChange={fnChange}
+                value={obj.address}
+              ></textarea>
+            </p>
+            <p>
+              <button onClick={fnSubmit}>Submit</button>
+            </p>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

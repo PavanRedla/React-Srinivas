@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-11</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [data, setData] = React.useState("");
+        const handleChange = (eve) => {
+          const { files } = eve.target;
+
+          console.log(files);
+          const readerObj = new FileReader();
+          readerObj.readAsDataURL(files[0]);
+          console.log(readerObj);
+          readerObj.onload = () => {
+            setData(readerObj.result);
+          };
+          readerObj.onerror = () => {
+            console.log("error");
+          };
+        };
+        return (
+          <div>
+            <b>Select File: </b>
+            <input type="file" onChange={handleChange} />
+
+            <img src={data} width="200px" height="200px" />
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
