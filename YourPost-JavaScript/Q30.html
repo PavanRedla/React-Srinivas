@@ -1,0 +1,54 @@
+<!-- Day 30:
+
+React:
+
+https://kalamschools.com/#/react-programs?name=modal
+
+JavaScript:
+
+Find the Maximum Occurring Character in a String:
+
+
+function maxOccurringChar(str) {
+   ….
+   ....
+ 
+   return maxChar;
+}
+
+let text = "hello world";
+
+Ans: l -->
+
+<script>
+  function maxOccurringChar(str) {
+    let strArr = str.split("");
+    let maxCount = 0;
+    let maxCharObj = {};
+    for (val of strArr) {
+      let key = val;
+      let count = 0;
+      for (item of strArr) {
+        if (item === key) {
+          count++;
+        }
+      }
+      if (count >= maxCount) {
+        maxCharObj[key] = count;
+        maxCount = count;
+      }
+    }
+    console.log(maxCount);
+    let maxChar = [];
+    for (let prop in maxCharObj) {
+      if (maxCharObj[prop] === maxCount) {
+        maxChar.push(prop);
+      }
+    }
+
+    return maxChar.join(" ");
+  }
+
+  let text = "hello world";
+  console.log(maxOccurringChar(text));
+</script>
