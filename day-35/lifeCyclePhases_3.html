@@ -12,6 +12,7 @@
     <div id="root"></div>
     <script type="text/babel">
       const App = () => {
+        // want to execute the code after rendering the content and should execute even if there is any change.
         const [cnt, setCnt] = React.useState(0);
         debugger;
         React.useEffect(() => {

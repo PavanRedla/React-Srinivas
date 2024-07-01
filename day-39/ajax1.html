@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX-1</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Table = (props) => {
+        const handleDelete = () => {};
+        const { headers, data, columns } = props;
+        return (
+          <div>
+            <table border="2px">
+              <thead>
+                <tr>
+                  {headers.map((ele, ind) => {
+                    return <th key={ind}>{ele}</th>;
+                  })}
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((obj, ind) => {
+                  return (
+                    <tr key={ind}>
+                      {columns.map((ele, index) => {
+                        return <td key={index}>{obj[ele]}</td>;
+                      })}
+                      <td>
+                        <button onClick={handleDelete}>Delete</button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+      const App = () => {
+        const [users, setUsers] = React.useState([]);
+        const handleClick = () => {
+          // create an object for XMLHTTPRequest functional class to use the services from it.
+
+          const httpObj = new XMLHttpRequest();
+
+          // prepare the request
+          // open is the method in XMLHTTPRequest functional class which is used to create or prepare request.
+          // open method min 2 paramters as input 1. request method(in string format), 2. URL(in string format)
+
+          httpObj.open("get", "https://jsonplaceholder.typicode.com/users");
+
+          // send is the method in XMLHTTPRequest functional class which is used to send the request to server application.
+          httpObj.send();
+          // send is an asynchronous action. so we will either get success or failure response. if we get success response
+          // onload callback will be executed otherwise onerror callback gets executed.
+
+          httpObj.onload = function () {
+            console.log(httpObj.responseText);
+            let res = httpObj.responseText;
+            // XMLHTTPRequest always returns the result (responseText) in string format.
+            // so to get the original format of users data (array of objects) we have to use parse method in JSON as shown below
+
+            res = JSON.parse(res);
+            setUsers(res);
+          };
+
+          httpObj.onerror = function () {
+            console.log("request failed");
+          };
+        };
+        return (
+          <div>
+            <button onClick={handleClick}>Get Users</button>
+            {users.length > 0 && (
+              <Table
+                headers={["Name", "Phone Number", "Email"]}
+                data={users}
+                columns={["name", "phone", "email"]}
+              />
+            )}
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+          React is not able to communicate with database directly. so Middle ware like server App is required as a interface
+          between front end/ client side app and database. 
+
+          React will send request to server application and server application will take the request and process it from database and sends back the response to React.
+
+          To send a request to the server application or receive the response from server App for any client side technologies, we use one technique called AJAX (Asynchronous Javascript And XML)
+
+          To send a request to the server Application, two mandatory inputs are required they are request method and URL
+
+          both the request method and URL will be given by server side developer only.
+
+          Based on below DML operations, request methods are decided.
+
+          Insert -- post
+          update -- put/patch
+          delete -- delete
+          get    -- get
+
+          partial updation of record - use patch
+          full updation of record  - use put
+
+          To handle AJAX, we use below 3 
+          1. XMLHTTPRequest - functional class so create an object to get the services from it
+          2. fetch() - is a function - so call it to get the result- returns promise object.
+          3. axios - it is a 3rd party library.
+
+          console:
+
+          XMLHttpRequest
+            ƒ XMLHttpRequest() { [native code] }
+          
+          fetch
+            ƒ fetch() { [native code] }
+          
+          axios
+            VM76:1 Uncaught ReferenceError: axios is not defined
+             at <anonymous>:1:1
+
+
+            Note: we can track the requests that send by the browser in Network tab of developer console's window.
+
+
+    -->

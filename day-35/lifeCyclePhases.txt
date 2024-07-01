@@ -154,7 +154,7 @@ a. first time load after rendering the content
 b. for every cnt,name change after first time load
 
 
-case : 100 lines - I donot want to execute first time load,only for cnt changes want to execute
+case : 100 lines - I donot want to execute on first time load,only for cnt changes want to execute
 
 const App=()=>{
 const [cnt,setCnt]=React.useState(0)
