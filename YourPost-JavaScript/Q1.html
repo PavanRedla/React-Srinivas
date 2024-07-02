@@ -18,4 +18,108 @@ return true;
 }
 equals(obj1,obj2) -->
 
-<script></script>
+<script>
+  //   var obj1 = { n1: 10, n2: 20 };
+  //   var obj2 = { n1: 10, n2: 20 };
+
+  //   function equals(obj1, obj2) {
+  // if ({obj1 === obj2})  // This condition will always return 'false' since JavaScript compares objects by reference, not value.{
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+  // let a = JSON.stringify(obj1);
+  // let b = JSON.stringify(obj2);
+  // console.log(JSON.parse(a)); // to get the original format, we use parse method in JSON object.
+  // console.log(a, b);
+  // if (a === b) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+
+  // the above code will not work even if the key value pairs are same but the order of keys is different.
+  //   }
+
+  var obj1 = { n1: 10, z: 35, n2: 20, a: 40 };
+  var obj2 = { z: 35, n1: 10, n2: 20, a: 40 };
+
+  function equals(obj1, obj2) {
+    let c = Object.keys(obj1).sort();
+    let d = Object.keys(obj2).sort();
+    console.log(c);
+    console.log(d);
+
+    let sortedObj1 = {};
+    let sortedObj2 = {};
+
+    for (key of c) {
+      sortedObj1[key] = obj1[key];
+    }
+    console.log(sortedObj1);
+
+    for (key of d) {
+      sortedObj2[key] = obj2[key];
+    }
+    console.log(sortedObj2);
+
+    if (JSON.stringify(sortedObj1) === JSON.stringify(sortedObj2)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  console.log(equals(obj1, obj2));
+</script>
+
+<!-- 
+How to Compare Objects Using The JSON.stringify() Function in JavaScript
+One way you can compare two objects by value is by using the JSON.stringify function.
+
+The JSON.stringify() function converts objects into equivalent JSON strings. You can then use any of the comparison operators to compare the strings.
+
+let a = { name: 'Dionysia', age: 29};
+let b = { name: 'Dionysia', age: 29};
+
+console.log(JSON.stringify(a) === JSON.stringify(b)); // true
+
+The JSON.stringify() function converted both objects into JSON strings, and since both a and b have the same properties and values, the result is true.
+
+But JSON.stringify() isn't always the best solution for comparing objects by value since it has limitations.
+
+First of all, when using JSON.stringify(), the order of the keys matters.
+
+Look at what happens when the keys are in a different order:
+
+let a = { age: 29, name: 'Dionysia'};
+let b = { name: 'Dionysia', age: 29};
+
+console.log(JSON.stringify(a) === JSON.stringify(b)); //false
+In this example, you would expect the result to be true since the values are the same – only the order of the keys got reversed.
+
+JSON.stringify() stringifies the object as it is, so the order of the keys is important. If they are not in the same order, the result will be false.
+
+So, JSON.stringify() is not the best choice for comparing objects since you can't always be certain of the order of the keys.
+
+There is also an additional limitation: JSON doesn't represent all types.
+
+Look at what happens when the value of one key is undefined:
+
+let a = { name: 'Dionysia'};
+let b = { name: 'Dionysia', age: undefined};
+
+console.log(JSON.stringify(a) === JSON.stringify(b)); //true
+In the example above, the result is unexpected. The result should have been false but returned as true because JSON ignores keys whose values are undefined.
+
+How to Compare Objects Using the Lodash _.isEqual() Method in JavaScript
+An elegant and sophisticated solution for comparing objects by their value is to use the well-tested JavaScript library Lodash and its _.isEqual() method.
+
+Let's take the example from the previous section, where the keys have the same value but are in a different order, and use the _.isEqual() method:
+
+let a = { age: 29, name: 'Dionysia'};
+let b = { name: 'Dionysia', age: 29};
+
+console.log(_.isEqual(a, b)); // true
+In the previous section, the result when using JSON.stringify was false.
+
+The Lodash library offers a variety of edge cases and performs a deep comparison between two values to check if the two objects are deeply equal. -->

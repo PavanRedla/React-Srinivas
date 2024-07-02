@@ -12,8 +12,8 @@
     <div id="root"></div>
     <script type="text/babel">
       const Table = (props) => {
-        const handleDelete = () => {};
-        const { headers, data, columns } = props;
+        const { headers, data, columns, handleDelete } = props;
+
         return (
           <div>
             <table border="2px">
@@ -33,7 +33,23 @@
                         return <td key={index}>{obj[ele]}</td>;
                       })}
                       <td>
-                        <button onClick={handleDelete}>Delete</button>
+                        <button
+                          onClick={() => {
+                            handleDelete(obj);
+                          }}
+                        >
+                          Delete
+                        </button>
+                        {/*when we click this button the respective row should be deleted but we cannot implement this function
+                          in Table component as Table is a reusable component in our code, so we cannot change the props passed 
+                          to it. Actual users data is present in App component. so there should be communication b/w delete
+                          button in Table component and App component and is possible through callback as it is a parent child 
+                          relationship.
+
+                          so create a callback function at parent component and pass the callback to table component and call the callback fucntion in parent component from Table component with particular object/row as parameter. while calling we have to pass object which is clikced as a paramter. in react handler function should be function name not function call. so use arrow function and call the function inside the arrow function
+                          
+                          
+                          */}
                       </td>
                     </tr>
                   );
@@ -45,6 +61,32 @@
       };
       const App = () => {
         const [users, setUsers] = React.useState([]);
+
+        const handleDelete = (row) => {
+          console.log(row);
+          // const clonedUsers = users; // we should not copy the objects in this way because only references are copied data is not copied. i.e., clonedUsers and users will point to same reference. so to copy the data from one object to another object we have to use either spread opertor or we have to use JSON methods as shown below.
+
+          // using JSON methods
+          // const clonedUsers = JSON.parse(JSON.stringify(users));
+          // stringify method will convert the object into stringifed object. string is immutable and everytime it creates a separate object.
+          // parse method will retrieve the original format of object passed to it.
+          // console.log(clonedUsers);
+
+          // using spread operator
+
+          const clonedUsers = [...users];
+
+          // finding the index of row that needs to be deleted.
+          const index = clonedUsers.findIndex((obj) => {
+            return obj.id === row.id;
+          });
+
+          // deleting the row
+          clonedUsers.splice(index, 1);
+          // updating the users
+
+          setUsers(clonedUsers);
+        };
         const handleClick = () => {
           // create an object for XMLHTTPRequest functional class to use the services from it.
 
@@ -83,6 +125,7 @@
                 headers={["Name", "Phone Number", "Email"]}
                 data={users}
                 columns={["name", "phone", "email"]}
+                handleDelete={handleDelete}
               />
             )}
           </div>
