@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX(fetch)</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Table = (props) => {
+        const { headers, data, columns, handleDelete, isShowDelete } = props;
+        return (
+          <div>
+            <table border="2px">
+              <thead>
+                <tr>
+                  {headers.map((ele, ind) => {
+                    return <th key={ind}>{ele}</th>;
+                  })}
+                  {isShowDelete && <th>Delete</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((obj, ind) => {
+                  return (
+                    <tr key={ind}>
+                      {columns.map((key, index) => {
+                        return <td key={index}>{obj[key]}</td>;
+                      })}
+                      {isShowDelete && (
+                        <td>
+                          <button onClick={() => handleDelete(obj)}>
+                            Delete
+                          </button>
+                          {/*when we click this button the respective row should be deleted but we cannot implement this handleClick functionin Table component as Table is a reusable component in our code, so we cannot change the props passed to it. Actual users data is present in App component. so there should be communication b/w delete button in Table component and App component and is possible through callback as it is a parent child relationship.
+
+                          so create a callback function at parent component and pass the callback to table component and call the callback fucntion in parent component from Table component with particular object/row as parameter. while calling we have to pass object which is clikced as a paramter. in react handler function should be function name not function call. so use arrow function and call the function inside the arrow function
+
+
+                          */}
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+      const App = () => {
+        const [tableData1, setTableData1] = React.useState([]);
+        const [tableData2, setTableData2] = React.useState([]);
+
+        const handleDelete = (row) => {
+          console.log(row);
+          const clonedUsers = [...tableData1];
+
+          const index = clonedUsers.findIndex((obj) => {
+            return obj.id === row.id;
+          });
+
+          clonedUsers.splice(index, 1);
+
+          setTableData1(clonedUsers);
+        };
+        const handleClick = async () => {
+          // await keyword always prefixes the Promise object, fetch method returns Promise Object.
+          // await keyword can handle only success response. so to handle faiure response we use catch block.
+          // any function having await keyword should be asynchronous function. to make a function asynchronous, use async keyword
+
+          // fetch method takes a max of 2 parameters. one parameter is mandatory
+          // 1. URL (string format)
+          // 2. init object which has one propety called method.
+          // if we donot pass any method type to fetch by default it takes get method
+
+          try {
+            const res = await fetch(
+              "https://jsonplaceholder.typicode.com/users"
+            );
+
+            console.log(res);
+            // fetch do not returns the final result it returns the object of Response class.
+            // in Response class object if we see the inherited members using Response.prototype we can see json function.
+            // call the json fucntion we will get the required result in the form of Promise Object
+            // ( res.json() == Response.prototype.json())
+
+            let result = await res.json(); // res.json() also returns promise object so await keyword is prefixed before it.
+
+            setTableData1(result.slice(0, 5));
+            setTableData2(result.slice(5));
+          } catch (e) {
+            console.log(e);
+          } finally {
+          }
+        };
+        return (
+          <div>
+            <button onClick={handleClick}>Get Users</button>
+            {tableData1.length > 0 && (
+              <Table
+                headers={["Name", "Phone Number", "Email"]}
+                data={tableData1}
+                columns={["name", "phone", "email"]}
+                handleDelete={handleDelete}
+                isShowDelete={true}
+              />
+            )}
+            {tableData2.length > 0 && (
+              <Table
+                headers={["Name", "Phone Number", "Email", "Website"]}
+                data={tableData2}
+                columns={["name", "phone", "email", "website"]}
+              />
+            )}
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

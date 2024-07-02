@@ -40,11 +40,8 @@
                         >
                           Delete
                         </button>
-                        {/*when we click this button the respective row should be deleted but we cannot implement this function
-                          in Table component as Table is a reusable component in our code, so we cannot change the props passed 
-                          to it. Actual users data is present in App component. so there should be communication b/w delete
-                          button in Table component and App component and is possible through callback as it is a parent child 
-                          relationship.
+                        {/*when we click this button the respective row should be deleted but we cannot implement this
+                          handleClick function in Table component as Table is a reusable component in our code, so we cannot change the props passed to it. Actual users data is present in App component. so there should be communication b/w delete button in Table component and App component and is possible through callback as it is a parent child relationship.
 
                           so create a callback function at parent component and pass the callback to table component and call the callback fucntion in parent component from Table component with particular object/row as parameter. while calling we have to pass object which is clikced as a paramter. in react handler function should be function name not function call. so use arrow function and call the function inside the arrow function
                           
@@ -94,7 +91,7 @@
 
           // prepare the request
           // open is the method in XMLHTTPRequest functional class which is used to create or prepare request.
-          // open method min 2 paramters as input 1. request method(in string format), 2. URL(in string format)
+          // open method takes min 2 paramters as input 1. request method(in string format), 2. URL(in string format)
 
           httpObj.open("get", "https://jsonplaceholder.typicode.com/users");
 

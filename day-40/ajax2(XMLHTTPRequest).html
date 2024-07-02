@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX(XMLHTTPRequest)</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Table = (props) => {
+        const { headers, data, columns, handleDelete, isShowDelete } = props;
+        return (
+          <div>
+            <table border="2px">
+              <thead>
+                <tr>
+                  {headers.map((ele, ind) => {
+                    return <th key={ind}>{ele}</th>;
+                  })}
+                  {isShowDelete && <th>Delete</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((obj, ind) => {
+                  return (
+                    <tr key={ind}>
+                      {columns.map((key, index) => {
+                        return <td key={index}>{obj[key]}</td>;
+                      })}
+                      {isShowDelete && (
+                        <td>
+                          <button onClick={() => handleDelete(obj)}>
+                            Delete
+                          </button>
+                          {/*when we click this button the respective row should be deleted but we cannot implement this handleClick functionin Table component as Table is a reusable component in our code, so we cannot change the props passed to it. Actual users data is present in App component. so there should be communication b/w delete button in Table component and App component and is possible through callback as it is a parent child relationship.
+
+                          so create a callback function at parent component and pass the callback to table component and call the callback fucntion in parent component from Table component with particular object/row as parameter. while calling we have to pass object which is clikced as a paramter. in react handler function should be function name not function call. so use arrow function and call the function inside the arrow function
+                          
+                          
+                          */}
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+      const App = () => {
+        const [tableData1, setTableData1] = React.useState([]);
+        const [tableData2, setTableData2] = React.useState([]);
+
+        const handleDelete = (row) => {
+          console.log(row);
+          const clonedUsers = [...tableData1];
+
+          const index = clonedUsers.findIndex((obj) => {
+            return obj.id === row.id;
+          });
+
+          clonedUsers.splice(index, 1);
+
+          setTableData1(clonedUsers);
+        };
+        const handleClick = () => {
+          const httpObj = new XMLHttpRequest();
+          httpObj.open("get", "https://jsonplaceholder.typicode.com/users");
+          httpObj.send();
+          httpObj.onload = function () {
+            let res = httpObj.responseText;
+            // XMLHTTPRequest always returns the result (responseText) in string format.
+            // so to get the original format of users data (array of objects) we have to use parse method in JSON as shown below
+            res = JSON.parse(res);
+            setTableData1(res.slice(0, 5));
+            setTableData2(res.slice(5));
+          };
+          httpObj.onerror = function () {
+            console.log("error");
+          };
+        };
+        return (
+          <div>
+            <button onClick={handleClick}>Get Users</button>
+            {tableData1.length > 0 && (
+              <Table
+                headers={["Name", "Phone Number", "Email"]}
+                data={tableData1}
+                columns={["name", "phone", "email"]}
+                handleDelete={handleDelete}
+                isShowDelete={true}
+              />
+            )}
+            {tableData2.length > 0 && (
+              <Table
+                headers={["Name", "Phone Number", "Email", "Website"]}
+                data={tableData2}
+                columns={["name", "phone", "email", "website"]}
+              />
+            )}
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.querySelectorAll("#root")[0]);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
