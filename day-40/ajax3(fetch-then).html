@@ -38,7 +38,7 @@
                           </button>
                           {/*when we click this button the respective row should be deleted but we cannot implement this handleClick functionin Table component as Table is a reusable component in our code, so we cannot change the props passed to it. Actual users data is present in App component. so there should be communication b/w delete button in Table component and App component and is possible through callback as it is a parent child relationship.
 
-                          so create a callback function at parent component and pass the callback to table component and call the callback fucntion in parent component from Table component with particular object/row as parameter. while calling we have to pass object which is clikced as a paramter. in react handler function should be function name not function call. so use arrow function and call the function inside the arrow function
+                          so create a callback function at parent component and pass the callback to table component and call the callback function in parent component from Table component with particular object/row as parameter. while calling we have to pass object which is clicked as a paramter. in react handler function should be function name not function call. so use arrow function and call the function inside the arrow function
 
 
                           */}
@@ -88,7 +88,13 @@
 
               setTableData1(result.slice(0, 5));
               setTableData2(result.slice(5));
-            });
+            })
+            .catch((ex) => {
+              console.log(ex);
+              setTableData1([]);
+              setTableData2([]);
+            })
+            .finally(() => {});
 
           // fetch do not returns the final result it returns the object of Response class.
           // in Response class object if we see the inherited members using Response.prototype we can see json function.

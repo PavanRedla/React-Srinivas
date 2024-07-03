@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX(axios)</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const data = [
+        {
+          id: "1",
+          url: "33434",
+        },
+        {
+          id: "2",
+          url: "kkk",
+        },
+        {
+          id: "3",
+          url: "jdkfjd",
+        },
+        {
+          id: "4",
+          url: "kkk",
+        },
+        {
+          id: "5",
+          url: "jdkfjd",
+        },
+      ];
+
+      const Pagination = () => {
+        return (
+          <div className="pagination">
+            <div>
+              Go <input type="number" />
+            </div>
+            <div>
+              <button>Prev</button>pgNo<button>Next</button>
+            </div>
+            <div>Toatal Pages: </div>
+          </div>
+        );
+      };
+      const Table = ({ headers, data, columns }) => {
+        return (
+          <div>
+            <table border="2px">
+              <thead>
+                <tr>
+                  {headers.map((ele, ind) => {
+                    return <th key={ind}>{ele}</th>;
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((obj, ind) => {
+                  return (
+                    <tr key={ind}>
+                      {columns.map((ele, index) => {
+                        return <td key={index}>{obj[ele]}</td>;
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <Pagination />
+          </div>
+        );
+      };
+
+      const App = () => {
+        const [photos, setPhotos] = React.useState([]);
+        const handleClick = () => {
+          setPhotos(data);
+        };
+        return (
+          <div>
+            <button onClick={handleClick}>
+              <b>Get Data</b>
+            </button>
+
+            {photos.length > 0 && (
+              <Table
+                headers={["ID", "URL"]}
+                data={photos}
+                columns={["id", "url"]}
+              />
+            )}
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
+
+<!-- 
+    write a program to display 5 records 
+
+    per page 2 records
+
+    total pages = math.ceil(totalrecords.length/perpage) = 3
+
+    page-1:
+
+    totalRecords.slice(0,2);
+
+    page-2: 
+    
+    totalRecords.slice(2,4)
+
+    Generic form
+
+    const end = perPage * pgNO
+    const start = end - perPage
+
+    totalRecords.slice(start,end)
+-->
