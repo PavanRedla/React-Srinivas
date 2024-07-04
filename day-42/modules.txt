@@ -1,7 +1,206 @@
 
-modules - export , default, import , as
+modules - to take or give data we use these 4 keywords in modules - export , default, import , as
+
+let use say 1.js and 2.js and 3.js are in the same module.
+
+1.js
+-----
+const n1=10
+
+2.js
+----
+const n2=20
+
+3.js
+-----
+console.log(n1+n2)
+
+o/p: error: n1 is not defined and n2 is not defined.
+
+My requirement is o/p should be 30
+
+===========================================
+
+1.js
+-----
+const n1=10
+export default n1;
+
+2.js
+----
+const n2=20
+export default n2;
+
+3.js
+-----
+import n1 from "./1.js";  
+import n2 from "./2.js"; 
+
+//- dot represents current folder. if 1.js and 3.js are present in the same folder then we can use like this.
+
+console.log(n1+n2)
 
 
+o/p: 30
+
+=======================================
+
+1.js
+-----
+const n1=10
+const n3 = 30
+
+export default n1, n3;   // Invalid syntax
+
+export default n1;
+export default n3; // Invalid syntax - one file should contain only one export default
+
+// solution: we can use any no. of export without default in one file.
+
+1.js
+----
+const n1=10
+export const n3 = 30;  // export without default
+
+
+export default n1;  // export with default
+
+2.js
+----
+const n2=20
+export default n2;
+
+3.js
+-----
+import n1,{n3} from "./1.js";  
+
+// export with default is imported normally without any curly braces, but export without default is imported with curly braces.
+
+import n2 from "./2.js"; 
+
+console.log(n1+n2+n3);
+
+
+o/p: 60
+
+=========================================================
+
+1.js
+-----
+const n1=10
+const n3 = 30
+const n4 = 40
+
+export default n1, n3, n4;   // Invalid syntax
+
+export default n1;
+export default n3; 
+export default n4; // Invalid syntax - one file should contain only one export default
+
+// solution: we can use any no. of export without default in one file.
+
+1.js
+----
+const n1=10
+export const n3 = 30;  // export without default
+export const n4 = 40;  // export without default
+
+export default n1;  // export with default
+
+2.js
+----
+const n2=20
+export default n2;
+
+3.js
+-----
+import n1,{n3,n4} from "./1.js";  
+
+// export with default is imported normally without any curly braces, but export without default is imported with curly braces.
+
+import n2 from "./2.js"; 
+
+console.log(n1+n2+n3+n4);
+
+
+o/p: 100
+
+====================================================================
+
+1.js
+-----
+
+1.js
+----
+const x=10
+export const n3 = 30;  // export without default
+export const n4 = 40;  // export without default
+
+export default n1;  // export with default
+
+2.js
+----
+const n2=20
+export default n2;
+
+3.js
+-----
+import n1,{n3,n4} from "./1.js";  
+
+import n2 from "./2.js"; 
+
+console.log(n1+n2+n3+n4); 
+// expected output is Nan because n1 is not defined. But we are exporting only one "export default" and we are importing only one n1 in export default format so the x value will come and store in n1. so the ouput is 100 only.
+
+                            // OR
+3.js
+-----
+import y,{n3,n4} from "./1.js";  
+
+import n2 from "./2.js"; 
+
+console.log(y+n2+n3+n4); 
+// expected output is Nan because y is not defined. But we are exporting only one "export default" and we are importing only one n1 in export default format so the x value will come and store in n1. so the ouput is 100 only.
+
+o/p: 100
+
+Note: so if it is export with default then we can hold it with any reference. x = n1 = y
+but if it is export without default we can hold with the same variable reference.
+
+
+
+===========================================================================
+
+
+1.js
+----
+const x=10
+export const n3 = 30;  // export without default
+
+export const f1 = () => {return 40};  // export without default
+
+export default x;  // export with default
+
+2.js
+----
+const n2=20
+export default n2;
+
+3.js
+-----
+import y,{n3,f1} from "./1.js";  
+
+import n2 from "./2.js"; 
+
+console.log(y+n2+n3+f1());
+
+
+o/p: 100
+
+==========================================================================
+
+as keyword:
+-----------
 1.js
 
 const x=10
@@ -11,7 +210,7 @@ export default x
 
 2.js
 const n2=20
-export const n3=300
+export const n3=30
 export default n2;
 
 3.js
@@ -20,6 +219,8 @@ export default n2;
  import  n2,{n3 as an3}   from "./2.js"
  console.log(y+n2+n3+f1()+an3)
 
-100
+ // Here we got n3 reference from 1.js and 2.js files, so to remove the ambiguity b/w them we used as keyword while importing as shown above.
+
+o/p: 130
 ==========================
 
