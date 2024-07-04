@@ -1,39 +1,69 @@
-check node installed or not ?
+https://react.dev/learn/start-a-new-react-project
 
-open commandpropmpt
->node -v
+to create a basic skelton of react js application, we have to use some commands.
+
+we have the below frameworks which are built on top or React js to build the basic skelton of Reactjs Application
+
+Next.js :- Next.js Pages Router is a full-stack React framework.
+
+Remix :
+Remix is a full-stack React framework with nested routing.
+
+Gatsby :
+Gatsby is a React framework for fast CMS-backed websites.
+
+Expo (for native apps) : used in React Native.
+Expo is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.
+
+Among these popular one is Next.js
+
+to use Next.js we need to setup the things
+
+first one is we need to install node js in our system
+
+check node is installed or not ?
+
+open commandpropmpt and type
+
+> node -v
 
 not there - "node" is not recognized as an internal or external command,
 operable program or batch file.
-what we have to - install node s/w
+what we have to - install node s/w : https://nodejs.org/en/download - go to prebuilt installer and download LTS(long term support) verison. Double click the downloaded file and install it. now again check in cmd
 
-if there - 18.7.0
+if there - it gives version 18.7.0
 
 or
-> npm
-==============
 
-check create-next-app command
+> npm
+
+second step: to create next js application we need to check "create-next-app" command is available or not.
 
 cmd> create-next-app
 
-there
+there -
 
-not there - "create-next-app" is not recognized as an internal or external command,operable program or batch file.
-what we have to do - npm  i -g create-next-app
+if not there - "create-next-app" is not recognized as an internal or external command,operable program or batch file.
+
+what we have to do install it. By using npm we can install/make the command available
+
+go to cmd and type - npm i -g create-next-app o/p: added 1 package in secs
+
+i stands for install, g stands for global (system level)
 
 ===================
+Now the setup is done
 
-go to workspace folder open command propmt
+go to workspace folder and create New folder and open command propmt and type below command
 
->create-next-app <app-name>
+> create-next-app <app-name>
 
 √ Would you like to use TypeScript? ... No 
 √ Would you like to use ESLint? ... Yes
 √ Would you like to use Tailwind CSS? ... No 
 √ Would you like to use "src/" directory? ... No 
-√ Would you like to use App Router? (recommended) ...  Yes
-√ Would you like to customize the default import alias (@/*)? ... No 
+√ Would you like to use App Router? (recommended) ... Yes
+√ Would you like to customize the default import alias (@/\*)? ... No 
 Creating a new Next.js app in C:UsersadminDocumentsworkspace eact20-05-2024 eactapplicationsmy-first-web-app.
 
-=======================
+--> now the basic react js skelton is ready.
