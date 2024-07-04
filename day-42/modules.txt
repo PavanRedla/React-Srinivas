@@ -1,0 +1,25 @@
+
+modules - export , default, import , as
+
+
+1.js
+
+const x=10
+export const n3=30
+export const f1=()=>{return 40}
+export default x
+
+2.js
+const n2=20
+export const n3=300
+export default n2;
+
+3.js
+ 
+ import  y,{n3,f1}  from "./1.js"
+ import  n2,{n3 as an3}   from "./2.js"
+ console.log(y+n2+n3+f1()+an3)
+
+100
+==========================
+

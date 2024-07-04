@@ -1,0 +1,39 @@
+check node installed or not ?
+
+open commandpropmpt
+>node -v
+
+not there - "node" is not recognized as an internal or external command,
+operable program or batch file.
+what we have to - install node s/w
+
+if there - 18.7.0
+
+or
+> npm
+==============
+
+check create-next-app command
+
+cmd> create-next-app
+
+there
+
+not there - "create-next-app" is not recognized as an internal or external command,operable program or batch file.
+what we have to do - npm  i -g create-next-app
+
+===================
+
+go to workspace folder open command propmt
+
+>create-next-app <app-name>
+
+√ Would you like to use TypeScript? ... No 
+√ Would you like to use ESLint? ... Yes
+√ Would you like to use Tailwind CSS? ... No 
+√ Would you like to use "src/" directory? ... No 
+√ Would you like to use App Router? (recommended) ...  Yes
+√ Would you like to customize the default import alias (@/*)? ... No 
+Creating a new Next.js app in C:UsersadminDocumentsworkspace eact20-05-2024 eactapplicationsmy-first-web-app.
+
+=======================

@@ -13,12 +13,9 @@ Create a variable with array of objects (3 objects, object should have name, run
 
   console.log(arr);
 
-  let arr2 = arr.map((item) => {
-    return ({...item, item.hun = 4});
+  let arr2 = arr.map((obj, ind) => {
+    return { ...obj, hun: 100 };
   });
 
-  //   function addProp(item) {
-  //     return (item.hun = 4);
-  //   }
   console.log(arr2);
 </script>

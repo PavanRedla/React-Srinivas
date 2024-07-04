@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX(axios)</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- axios cdn link -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
+      integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      .loader {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: black;
+        opacity: 0.3;
+      }
+      .loader + img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Loader = () => {
+        return (
+          <>
+            <div className="loader"></div>
+            <img src="loading.gif" />
+          </>
+        );
+      };
+
+      const Pagination = ({ pgNo, totalPages, setpgNo }) => {
+        const inputRef = React.useRef();
+        const handleClick = (eve) => {
+          console.log(eve.target.innerText); // Go or Prev or Next
+
+          // if we click the next button then page number should get incremented and if we click previous button page
+          // number should be decremented and if we click Go button then pageno should be set to the page number entered
+          // input box which is beside to GO button.
+          // pgNo is a state variable, to upate it we have to use setPgNo function. we donot have setPgNo function in
+          // Pagination component it is present in Table component. so get the setPgNo function as props from Table to Pagination component.
+
+          switch (eve.target.innerText) {
+            case "Next":
+              setpgNo(pgNo + 1);
+              break;
+
+            case "Prev":
+              setpgNo(pgNo - 1);
+              break;
+
+            default:
+              const no = Number(inputRef.current.value);
+              if (no < 1 || no > totalPages) {
+                alert("Invalid Page Number");
+                return;
+              }
+              setpgNo(no);
+              break;
+          }
+        };
+        return (
+          <div className="pagination">
+            <div>
+              <button onClick={handleClick}>Go</button>{" "}
+              <input type="number" ref={inputRef} />
+            </div>
+            <div>
+              <button onClick={handleClick} disabled={pgNo === 1}>
+                Prev
+              </button>
+              {pgNo}
+              <button onClick={handleClick} disabled={pgNo === totalPages}>
+                Next
+              </button>
+            </div>
+            <div>Toatal Pages:{totalPages} </div>
+          </div>
+        );
+      };
+      const Table = ({ headers, data, columns, perPage }) => {
+        const [pgNo, setpgNo] = React.useState(1);
+        // on first time load and for every change of pgNo state variable we have to perform the operation. so we can use
+        // useEffect hook. pgNo state variable is present in Table component so we have to write the useEffect in Table component.
+
+        const [currentData, setCurrentData] = React.useState([]);
+        // on first time load we should display the entire data, we have to display only two records per page. so instead of using data variable we have to use currentData variable in table creation.
+
+        React.useEffect(() => {
+          const end = perPage * pgNo;
+          const start = end - perPage;
+          setCurrentData(data.slice(start, end));
+        }, [pgNo]);
+        return (
+          <div>
+            <Pagination
+              pgNo={pgNo}
+              totalPages={Math.ceil(data.length / perPage)}
+              setpgNo={setpgNo}
+            />
+            <table border="2px" style={{ marginTop: "20px" }}>
+              <thead>
+                <tr>
+                  {headers.map((ele, ind) => {
+                    return <th key={ind}>{ele}</th>;
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {currentData.map((obj, ind) => {
+                  return (
+                    <tr key={ind}>
+                      {columns.map((ele, index) => {
+                        return <td key={index}>{obj[ele]}</td>;
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <Pagination
+              pgNo={pgNo}
+              totalPages={Math.ceil(data.length / perPage)}
+              setpgNo={setpgNo}
+            />
+          </div>
+        );
+      };
+
+      const App = () => {
+        const [isShowLoader, setIsShowLoader] = React.useState(false);
+        const [photos, setPhotos] = React.useState([]);
+        //const handleClick = () => {
+        //   setIsShowLoader(true);
+        //  axios.get(),  axios.put(),  axios.post(),  axios.patch(),  axios.delete() will give the below promise object in return. so handle them using then or await.
+        // axios
+        //   .get("https://jsonplaceholder.typicode.com/photos")
+        //   .then((res) => {
+        //     console.log("success", res);
+
+        /*
+          res is an object, inside the object we have one property called data. our expected result is present in this data property so update photos state variable with res.data
+
+            {data: Array(5000), status: 200, statusText: '', headers: r, config: {…}, …}
+
+            data:(5000) [
+
+            0:{albumId: 1, id: 1, title: 'accusamus beatae ad facilis cum similique qui sunt', url: 'https://via.placeholder.com/600/92c952', thumbnailUrl: 'https://via.placeholder.com/150/92c952'}
+
+            1:{albumId: 1, id: 2, title: 'reprehenderit est deserunt velit ipsam', url: 'https://via.placeholder.com/600/771796', thumbnailUrl: 'https://via.placeholder.com/150/771796'}
+
+            ]
+              */
+        //   setPhotos(res.data);
+        // })
+        // .catch((ex) => {
+        //   console.log("failure", ex);
+        // })
+        // .finally(() => {
+        //   console.log("finally");
+        //  setIsShowLoader(false);
+        // });
+
+        // then catch finally are method types present in Promise class, which takes one callback function as a parameter and returns promise object
+        // then calls its callback function by passing one parameter when Promise object returns the success response
+        // catch calls its callback function by passing one parameter when Promise object returns the failure response
+        // finally calls its callback function when Promise object returns either success/failure response
+        //};
+        // using await
+
+        const handleClick = async () => {
+          setIsShowLoader(true);
+          try {
+            let res = await axios.get(
+              "https://jsonplaceholder.typicode.com/photos"
+            );
+            setPhotos(res.data);
+          } catch (e) {
+            console.log("fail", ex);
+          } finally {
+            console.log("fianlly");
+            setIsShowLoader(false);
+          }
+        };
+        return (
+          <div>
+            <button onClick={handleClick}>
+              <b>Get Data</b>
+            </button>
+            <p>
+              {photos.length > 0 && (
+                <Table
+                  headers={["ID", "TITLE", "URL"]}
+                  data={photos}
+                  columns={["id", "title", "url"]}
+                  perPage={50}
+                />
+              )}
+            </p>
+            {isShowLoader && <Loader />}
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
+<!-- 
+    write a program to display 5000 photos 
+
+    per page 100 photos
+
+    total pages = math.ceil(totalrecords.length/perpage) = 50
+
+    page-1:
+
+    totalRecords.slice(0,100);
+
+    page-2: 
+    
+    totalRecords.slice(100,200)
+
+    Generic form
+
+    const end = perPage * pgNO
+    const start = end - perPage
+
+    totalRecords.slice(start,end)
+
+    Axios:
+
+    axios is a 3rd party library, so we need to load the axios library in the browser using cdn link
+
+    go to google search for axios library cdn link
+
+    go to first link and copy the axios.min.js cdn link and paste it in header section of the program.
+
+   now go and check in sources tab you are able to find the axios library
+
+   go to console and check for axios library
+
+    axios
+    ƒ (){return e.apply(t,arguments)}
+
+    axios.get
+    ƒ (){return e.apply(t,arguments)}
+
+    axios.post
+    ƒ (){return e.apply(t,arguments)}
+
+    axios.put
+    ƒ (){return e.apply(t,arguments)}
+
+    axios.delete
+    ƒ (){return e.apply(t,arguments)}
+
+    axios.patch
+    ƒ (){return e.apply(t,arguments)}
+
+    Note: get, put, post, patch, delete are functions so we can call them
+    All the methods will give Promise object as a result.
+
+    axios.get(),  axios.put(),  axios.post(),  axios.patch(),  axios.delete() will give the below promise object in return
+     so handle them using then or await.
+
+    Promise {<rejected>: TypeError: Cannot read properties of undefined (reading 'protocol')
+        at https://cdnjs.cloudflare…}
+
+-->
