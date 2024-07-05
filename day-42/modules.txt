@@ -224,3 +224,15 @@ export default n2;
 o/p: 130
 ==========================
 
+import React, {useEffect} from "react";
+
+React       - export with default
+useEffect   - export without default
+
+Rules:
+------
+Min export with default     - 0
+Max export with default     - 1
+
+Min export without default  - 0
+Max export without default  - any

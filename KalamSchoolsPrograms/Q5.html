@@ -3,3 +3,18 @@
 Create array with some random numbers.
 On that array, perform some operation with Array “every” method and “some” method. -->
 
+<script>
+  // every method returns true if all the element in an array satisfies the specified condition
+  var marks = [88, 68, 10, 65, 33];
+  let res1 = marks.every((ele, ind, oa) => {
+    return ele > 100;
+  });
+  console.log(res1);
+
+  // some method returns true if any of the element in an array satisfies the specified condition
+  var runs = [88, 68, 110, 16, 33];
+  let res2 = runs.some((ele, ind, oa) => {
+    return ele > 100;
+  });
+  console.log(res2);
+</script>

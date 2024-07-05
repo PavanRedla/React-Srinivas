@@ -47,7 +47,9 @@ if not there - "create-next-app" is not recognized as an internal or external co
 
 what we have to do install it. By using npm we can install/make the command available
 
-go to cmd and type - npm i -g create-next-app o/p: added 1 package in secs
+go to cmd and type - npm i -g create-next-app
+
+o/p: added 1 package in secs
 
 i stands for install, g stands for global (system level)
 

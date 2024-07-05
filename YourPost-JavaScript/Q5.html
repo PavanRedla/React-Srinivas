@@ -21,10 +21,19 @@ Ans: true -->
 <script>
   var arr1 = [10, 20, 30, 40];
 
-  var arr2 = [10, 20, 30, 40];
+  var arr2 = [20, 10, 30, 40, 50];
 
   //   arr1==arr2  - false (reference comparison)
-  function equals(val1, val2) {}
+  function equals(val1, val2) {
+    val1.sort();
+    val2.sort();
+    console.log(val1, val2);
+    if (JSON.stringify(val1) === JSON.stringify(val2)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-  equals(arr1, arr2);
+  console.log(equals(arr1, arr2));
 </script>
