@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-14</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [data, setData] = React.useState([""]);
+
+        const handleAddClick = (eve) => {
+          setData([...data, ""]);
+        };
+
+        const handleDeleteClick = (ind) => {
+          const clonedData = [...data];
+          clonedData.splice(ind, 1);
+          setData(clonedData);
+        };
+
+        const handleChange = (eve) => {
+          const { id, value } = eve.target;
+          const clonedData = [...data];
+          clonedData[id] = value;
+          setData(clonedData);
+        };
+
+        const fnSubmit = (eve) => {
+          console.log(data);
+        };
+
+        return (
+          <div>
+            {data.map((ele, ind) => {
+              return (
+                <p key={ind}>
+                  <b>Player {ind + 1} </b>
+                  <input id={ind} value={ele} onChange={handleChange} />
+                  <button onClick={handleAddClick}> Add</button>
+                  {data.length > 1 && (
+                    <button
+                      onClick={() => {
+                        handleDeleteClick(ind);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </p>
+              );
+            })}
+            <button onClick={fnSubmit}>Submit</button>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

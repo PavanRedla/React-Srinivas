@@ -33,7 +33,7 @@
               hobbiesArr.splice(index, 1);
             }
 
-            obj[name] = hobbiesArr.sort().join();
+            setObj({ ...obj, [name]: hobbiesArr.sort().join() });
           } else {
             setObj({ ...obj, [name]: value });
           }

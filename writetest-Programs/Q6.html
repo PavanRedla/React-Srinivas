@@ -22,3 +22,18 @@ fnFindSum([10,20,30])
   let res = fnFindSum([10, 20, 30]);
   console.log(res);
 </script>
+
+<script>
+  // reduce method takes two parameters as input.    1. callback function 2. initial value.
+  // reduce method calls the callback function by passing 4 parameters(initial value/first ele, element index of ele, array)
+  // if we pass second parameter for reduce method then that parameter will be taken as initial value of callback fucntion,
+  /// otherwise first element in the array will be the initial value.
+  function fnFindSum(input) {
+    return input.reduce((acc, ele, ind, oa) => {
+      console.log(acc, ele, ind, oa);
+      return acc + ele;
+    }, 0);
+  }
+  let result = fnFindSum([10, 20, 30]);
+  console.log(result);
+</script>

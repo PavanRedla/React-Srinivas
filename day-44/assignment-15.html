@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-15</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <style>
+      .pl-30 {
+        padding-left: 30px;
+      }
+      .mb-20 {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const config = [
+          {
+            level: 1,
+            name: "Courses",
+            isChecked: false,
+            items: [
+              {
+                level: 2,
+                name: "Java",
+                parent: "Courses",
+                isChecked: false,
+              },
+              {
+                level: 2,
+                name: "UI",
+                parent: "Courses",
+                isChecked: false,
+              },
+            ],
+          },
+          {
+            level: 1,
+            name: "Movies",
+            isChecked: false,
+            items: [
+              {
+                level: 2,
+                name: "Kalki",
+                parent: "Movies",
+                isChecked: false,
+              },
+              {
+                level: 2,
+                name: "RRR",
+                parent: "Movies",
+                isChecked: false,
+              },
+              {
+                level: 2,
+                name: "Pushpa",
+                parent: "Movies",
+                isChecked: false,
+              },
+            ],
+          },
+        ];
+        const [data, setData] = React.useState(config);
+
+        const handleChange = (eve) => {
+          console.log(eve.target);
+        };
+
+        return (
+          <div>
+            {data.map(({ level, name, items, isChecked }, ind) => {
+              return (
+                <div key={ind} className="mb-20">
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleChange}
+                    name={name}
+                    data-level={level}
+                  />
+                  {name}
+                  {items.map(({ level, name, parent, isChecked }, index) => {
+                    return (
+                      <div key={index} className="pl-30">
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={handleChange}
+                          name={name}
+                          data-level={level}
+                          data-parent={parent}
+                        />
+                        {name}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
