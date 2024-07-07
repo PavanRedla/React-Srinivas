@@ -68,19 +68,66 @@
         ];
         const [data, setData] = React.useState(config);
 
-        const handleChange = (eve) => {
-          console.log(eve.target);
+        const handleChange = (eve, obj, parentIndex) => {
+          // console.log(eve.target, obj);
+          // if we want to read any attribute whose name starting with "data-" then we have to use dataset property.
+          // to access data-level attribute we use dataset.level
+          const { name, dataset, checked } = event.target;
+          const parentObj = JSON.parse(JSON.stringify(obj));
+          const clonedData = JSON.parse(JSON.stringify(data));
+          // console.log(name, dataset.level);
+          if (checked) {
+            if (dataset.level == 1) {
+              parentObj.isChecked = true;
+              parentObj.items.forEach((obj) => {
+                obj.isChecked = true;
+              });
+            } else {
+              const checkedEle = parentObj.items.find((obj) => {
+                debugger;
+                return obj.name === name;
+              });
+              console.log(checkedEle);
+              checkedEle.isChecked = true;
+              const isAllChecked = parentObj.items.every((obj) => {
+                return obj.isChecked === true;
+              });
+              console.log(isAllChecked);
+              if (isAllChecked) {
+                parentObj.isChecked = true;
+              }
+            }
+          } else {
+            if (dataset.level == 1) {
+              parentObj.isChecked = false;
+              parentObj.items.forEach((obj) => {
+                obj.isChecked = false;
+              });
+            } else {
+              const checkedEle = parentObj.items.find((obj) => {
+                return obj.name === name;
+              });
+              console.log(checkedEle);
+              checkedEle.isChecked = false;
+              parentObj.isChecked = false;
+            }
+          }
+          clonedData.splice(parentIndex, 1, parentObj);
+          setData(clonedData);
         };
 
         return (
           <div>
-            {data.map(({ level, name, items, isChecked }, ind) => {
+            {data.map((obj, parentIndex) => {
+              const { level, name, items, isChecked } = obj;
               return (
-                <div key={ind} className="mb-20">
+                <div key={parentIndex} className="mb-20">
                   <input
                     type="checkbox"
                     checked={isChecked}
-                    onChange={handleChange}
+                    onChange={(eve) => {
+                      handleChange(eve, obj, parentIndex);
+                    }}
                     name={name}
                     data-level={level}
                   />
@@ -91,7 +138,9 @@
                         <input
                           type="checkbox"
                           checked={isChecked}
-                          onChange={handleChange}
+                          onChange={(eve) => {
+                            handleChange(eve, obj, parentIndex);
+                          }}
                           name={name}
                           data-level={level}
                           data-parent={parent}
