@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-17</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <style>
+      .card {
+        height: 200px;
+        width: 150px;
+        display: flex;
+        font-size: 50px;
+        border: 1px solid red;
+        justify-content: center;
+        align-items: center;
+        margin-left: 15px;
+      }
+
+      .hide {
+        background-color: red;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [data, setData] = React.useState([]);
+        const [isHide, setIsHide] = React.useState(true);
+
+        React.useEffect(() => {
+          const randomData = getRandomValues();
+          setData(randomData);
+        }, []);
+        const handleShow = () => {
+          setIsHide(false);
+        };
+
+        const handleHide = () => {
+          setIsHide(true);
+          const randomData = getRandomValues();
+          setData(randomData);
+        };
+
+        const getRandomValues = () => {
+          const data = ["A", "B", "C", "D"];
+          for (let i = 0; i < data.length; i++) {
+            const currValue = data[i];
+            const currIndex = i + 1;
+            const randomIndex = Math.floor(Math.random() * currIndex);
+            data[i] = data[randomIndex];
+            data[randomIndex] = currValue;
+          }
+          return data;
+        };
+        return (
+          <>
+            <div style={{ display: "flex" }}>
+              {data.map((ele, ind) => {
+                return (
+                  <div key={ind} className={`card ${isHide ? "hide" : ""} `}>
+                    {ele}
+                  </div>
+                );
+              })}
+            </div>
+            <p>
+              <button onClick={handleShow} style={{ margin: "20px" }}>
+                Show
+              </button>
+              <button onClick={handleHide}>Hide</button>
+            </p>
+          </>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

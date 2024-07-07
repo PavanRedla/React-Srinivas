@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-16</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [cnt, setCnt] = React.useState(0);
+        React.useEffect(() => {
+          window.document.title = "count " + cnt;
+        }, [cnt]);
+        const handleClick = () => {
+          setCnt(cnt + 1);
+        };
+        return (
+          <div>
+            <p>Count :{cnt}</p>
+            <button onClick={handleClick}>Increment</button>
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

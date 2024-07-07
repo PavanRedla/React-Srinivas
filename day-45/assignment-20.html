@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-20</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <style>
+      .items-div {
+        height: 200px;
+        width: 100px;
+        border: 1px solid red;
+        padding: 10px;
+      }
+      .items-div > div {
+        line-height: 30px;
+      }
+      .items-div > div:hover {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+      }
+      .move {
+        display: flex;
+        gap: 10px;
+      }
+      .active {
+        background-color: red !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Items = ({ data, handleItemClick, name, clickedItem }) => {
+        return (
+          <div className="items-div">
+            {data.map((ele, ind) => {
+              return (
+                <div
+                  className={clickedItem === ele ? "active" : ""}
+                  data-name={name}
+                  key={ind}
+                  onClick={handleItemClick}
+                >
+                  {ele}
+                </div>
+              );
+            })}
+          </div>
+        );
+      };
+      const Move = ({ listItems }) => {
+        const [left, setLeft] = React.useState(listItems.left);
+        const [right, setRight] = React.useState(listItems.right);
+
+        const [leftItem, setLeftItem] = React.useState("");
+        const [rightItem, setRightItem] = React.useState("");
+
+        const handleItemClick = (eve) => {
+          const { dataset, innerText } = eve.target;
+          console.log(dataset.name, innerText);
+          if (dataset.name === "left") {
+            setLeftItem(innerText);
+          }
+          if (dataset.name === "right") {
+            setRightItem(innerText);
+          }
+        };
+        const handleRightClick = () => {
+          const _left = [...left];
+          const _right = [...right];
+          _left.splice(_left.indexOf(leftItem), 1);
+          _right.push(leftItem);
+          setLeft(_left);
+          setRight(_right);
+          setLeftItem("");
+        };
+        const handleLeftClick = () => {
+          const _left = [...left];
+          const _right = [...right];
+          _right.splice(_right.indexOf(rightItem), 1);
+          _left.push(rightItem);
+          setLeft(_left);
+          setRight(_right);
+          setRightItem("");
+        };
+        return (
+          <div className="move">
+            <Items
+              clickedItem={leftItem}
+              name="left"
+              data={left}
+              handleItemClick={handleItemClick}
+            />
+            <div>
+              <p>
+                <button disabled={!rightItem} onClick={handleLeftClick}>
+                  Move Left
+                </button>
+              </p>
+              <p>
+                <button disabled={!leftItem} onClick={handleRightClick}>
+                  Move Right
+                </button>
+              </p>
+            </div>
+            <Items
+              clickedItem={rightItem}
+              name="right"
+              data={right}
+              handleItemClick={handleItemClick}
+            />
+          </div>
+        );
+      };
+      const App = () => {
+        return (
+          <div>
+            <Move
+              listItems={{
+                left: ["Sachin", "Dhoni", "Kohli"],
+                right: ["UV", "Panth"],
+              }}
+            />
+          </div>
+        );
+      };
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
