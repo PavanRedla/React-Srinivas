@@ -1,4 +1,11 @@
-<!-- JavaScript:
+<!-- 
+
+React:
+
+https://kalamschools.com/#/react-programs?name=sorting
+
+JavaScript:
+
 
 var o1={
  “name”:"Sachin"
@@ -36,10 +43,22 @@ using JSON.stringifyand JSON.parse methods -->
   };
   var o2 = Object.assign({}, o1);
   o2.name = "Dhoni";
+  console.log(o1);
+  console.log(o2);
 
-  var o1 = {
-    name: "Sachin",
+  var o3 = {
+    name: "Kohli",
   };
-  var o2 = { ...o1 };
-  o2.name = "Dhoni";
+  var o4 = { ...o1 };
+  o4.name = "Panth";
+
+  console.log(o3);
+  console.log(o4);
+
+  var o5 = { name: "SKY" };
+  var o6 = JSON.parse(JSON.stringify(o5));
+  o6.name = "Ruturaj";
+
+  console.log(o5);
+  console.log(o6);
 </script>
