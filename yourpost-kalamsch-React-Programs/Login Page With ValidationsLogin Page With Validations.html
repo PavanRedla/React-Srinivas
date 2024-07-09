@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const data = [
+        {
+          id: "uname",
+          lbl: "User Name",
+          type: "text",
+          errorMsg: "Please Enter UID",
+          isShowErrMsg: false,
+          val: "",
+        },
+        {
+          id: "pwd",
+          lbl: "Password",
+          type: "password",
+          errorMsg: "Please Enter Password",
+          isShowErrMsg: false,
+          val: "",
+        },
+      ];
+      const Input = (props) => {
+        const { lbl, type, errorMsg, isShowErrMsg, fnChange, id, val } = props;
+        return (
+          <div className="row mb-3">
+            <div className="col-sm-5 text-end">
+              <b>{lbl}:</b>
+            </div>
+            <div className="col-sm-3">
+              <input
+                id={id}
+                onChange={fnChange}
+                type={type}
+                className="form-control"
+                value={val}
+              />
+            </div>
+            <div className="col-sm-4">
+              {isShowErrMsg && <b className="text-danger">{errorMsg}</b>}
+            </div>
+          </div>
+        );
+      };
+      const App = () => {
+        const [inputCtrlArr, setInputCtrlArr] = React.useState(data);
+        const [request, setRequest] = React.useState("");
+        const fnLogin = () => {
+          let isFormValid = true;
+          let dataObj = {};
+          let _data = [...inputCtrlArr];
+          //let _data=JSON.parse(JSON.stringify(inputCtrlArr));
+          _data.forEach((obj) => {
+            dataObj[obj.id] = obj.val;
+            if (!obj.val) {
+              isFormValid = false;
+              obj.isShowErrMsg = true;
+            }
+          });
+          if (!isFormValid) {
+            setInputCtrlArr(_data);
+            return;
+          }
+          setRequest(
+            "Now we can send request to the server with this data " +
+              JSON.stringify(dataObj)
+          );
+          console.log(dataObj);
+        };
+        const fnChange = (eve) => {
+          const { id, value } = eve.target;
+          //find object
+          let _data = [...inputCtrlArr];
+          //let _data=JSON.parse(JSON.stringify(inputCtrlArr));
+          const inputControlObj = _data.find((obj) => {
+            return obj.id == id;
+          });
+          inputControlObj.isShowErrMsg = value ? false : true;
+          inputControlObj.val = value;
+          setInputCtrlArr(_data);
+        };
+        return (
+          <div>
+            <h1 className="text-center bg-primary text-white pt-3 pb-3 mb-3">
+              Login
+            </h1>
+            <div className="container-fluid">
+              {inputCtrlArr.map((obj) => {
+                return <Input {...obj} fnChange={fnChange} />;
+              })}
+
+              <div className="row mb-3">
+                <div className="offset-sm-5 col-sm-7">
+                  <button onClick={fnLogin} className="btn btn-primary">
+                    Login
+                  </button>
+                </div>
+              </div>
+              <h5 className="text-center">{request}</h5>
+            </div>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+    <!--
+         Note: this page is a great way to try React but it's not suitable for production.
+         It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+         
+         Read this page for starting a new React project with JSX:
+         https://react.dev/learn/start-a-new-react-project
+         
+         Read this page for adding React with JSX to an existing project:
+         https://react.dev/learn/add-react-to-an-existing-project
+         -->
+  </body>
+</html>

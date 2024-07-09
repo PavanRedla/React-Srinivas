@@ -1,6 +1,10 @@
 <!-- 
 Day 9 : 
 
+React:
+
+https://kalamschools.com/#/react-programs?name=login
+
 JavaScript:
 
 const players=[
@@ -64,37 +68,23 @@ Write code snippet -
       hun: 76,
     },
   ];
-  players.find(function (obj) {
-    return (players.name = "kohli");
+  let res1 = players.find(function (obj) {
+    return obj.name == "Kohli";
   });
+  console.log(res1);
 
-  players.filter(function (obj) {
-    return "players.runs>18000";
+  let res2 = players.filter(function (obj) {
+    return obj.runs > 18000;
   });
+  console.log(res2);
 
-  players.every(function (obj) {
-    return "players.hun≥1";
+  let res3 = players.every(function (obj) {
+    return obj.hun >= 1;
   });
+  console.log(res3);
 
-  players.forEach(function (obj) {
-    return (players.fif = players.hun / 2);
+  let res4 = players.map(function (obj) {
+    return (obj.fif = obj.hun / 2);
   });
-
-  //   players.find(function(obj)
-  //            {
-  //                return obj.name="kholi"
-  //            })
-
-  // players.find(function(obj)
-  //            {
-  //                return obj.runs >18000
-  //            })
-  // players.some(function(obj)
-  //            {
-  //                return obj.hun >1
-  //            })
-  // players.map(function(obj)
-  //            {
-  //                return obj.fif=obj.hun/2
-  //            })
+  console.log(players);
 </script>

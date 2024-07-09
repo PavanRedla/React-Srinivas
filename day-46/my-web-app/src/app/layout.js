@@ -5,6 +5,8 @@ import { Header } from "@/Header/Header";
 import { Footer } from "@/Footer/Footer";
 import { Menu } from "@/Menu/Menu";
 
+import "bootstrap/dist/css/bootstrap.css"; // importing directly from node_modules
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
