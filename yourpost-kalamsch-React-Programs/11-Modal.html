@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: black;
+        right: 0;
+        bottom: 0;
+        opacity: 0.5;
+      }
+      .modalContent {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto;
+        height: 150px;
+        width: 300px;
+        border-radius: 15px;
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Modal = (props) => {
+        const { text, isShowOk, fnOK, fnClose } = props;
+        debugger;
+        return (
+          <div>
+            <div className="mask"></div>
+            <div className="px-3 py-3 modalContent">
+              <h5 className="mb-5">{text}</h5>
+              <div className="text-end">
+                {isShowOk && (
+                  <button className="btn btn-primary me-3" onClick={fnOK}>
+                    OK
+                  </button>
+                )}
+                <button className="btn btn-primary" onClick={fnClose}>
+                  CLOSE
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      };
+      const App = () => {
+        const [showModal, setShowModal] = React.useState(false);
+        const [text, setText] = React.useState("");
+        const [showOkBtn, setShowOkBtn] = React.useState(false);
+        const fnShowModalInfo = () => {
+          setShowOkBtn(false);
+          setText("Hey...hi..");
+          setShowModal(true);
+        };
+        const fnShowModalConfirm = () => {
+          setShowOkBtn(true);
+          setText("Are you sure...");
+          setShowModal(true);
+        };
+        const fnClose = () => {
+          alert("You pressed close button");
+          setShowModal(false);
+        };
+        const fnOK = () => {
+          alert("You pressed ok button");
+          setShowModal(false);
+        };
+        return (
+          <div>
+            {showModal && (
+              <Modal
+                text={text}
+                isShowOk={showOkBtn}
+                fnOK={fnOK}
+                fnClose={fnClose}
+              />
+            )}
+            <button onClick={fnShowModalInfo} className="btn btn-primary me-3">
+              Show Info Modal
+            </button>
+            <button onClick={fnShowModalConfirm} className="btn btn-primary">
+              Show Confirm Modal
+            </button>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+    <!--
+         Note: this page is a great way to try React but it's not suitable for production.
+         It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+         
+         Read this page for starting a new React project with JSX:
+         https://react.dev/learn/start-a-new-react-project
+         
+         Read this page for adding React with JSX to an existing project:
+         https://react.dev/learn/add-react-to-an-existing-project
+         -->
+  </body>
+</html>
