@@ -27,23 +27,46 @@ const result=arr.myMap((val,ind)=>{
 result should be [32,25,45,93] -->
 
 <script>
-  Array.prototype.myMap = function (callback) {
-    var result_array = [];
+  //   Lets create our own map method[mymap]
+  // Step 1:
+  // We will create a new method[mymap] which allows us to useArray.mymap()
+  // In order to use Array.mymap() we have to havemymap()'s definition in Array.prototype.
 
-    for (let i = 0; i < this.length; i++) {
-      //this refers to Array
+  // Array.prototype.mymap = function () {};
 
-      return result_array.push(callback(this[i], i));
+  // Now we will be able to run[1,2,3].mymap(); which will returnundefined.
+
+  // Step 2:
+  // map is called with function as an argument inside it. (eg:[1,2].map(function(val, index, arr){})). So, ourmymap function should accept a function as an argument.
+  // The function in the argument should be called for each value in the array with 3 arguments:
+  // The current element
+  // Current element's index
+  // Entire Array
+  // this refers to the array on whichmymap is done. this is the array itself.
+
+  // Array.prototype.mymap = function (callback) {
+  //   for (let index = 0; index < this.length; index++) {
+  //     callback(this[index], index, this);
+  //   }
+  // };
+
+  // Step 3:
+  // Finally, we output the result to a new array and return them.
+
+  Array.prototype.mymap = function (callback) {
+    const resultArray = [];
+    for (let index = 0; index < this.length; index++) {
+      resultArray.push(callback(this[index], index, this));
     }
+    console.log(resultArray);
+    return resultArray;
   };
 
-  /*const callback=(value,index)=>{
-
-return value;
-
-}*/
-
-  const result = arr.myMap((val, ind) => {
+  const arr2 = [22, 15, 35, 83];
+  const result2 = arr2.mymap((val, ind, arr2) => {
+    debugger;
     return val + 10;
   });
+
+  console.log(result2);
 </script>
