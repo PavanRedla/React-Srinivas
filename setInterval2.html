@@ -1,0 +1,20 @@
+<!-- clearInterval: -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fnSetInterval() {
+        var interval = setInterval(function () {
+          alert("5sec completed");
+        }, 5000);
+        clearInterval(interval);
+        //no alert message is displayed, why because, we cleared that interval before 5sec.
+      }
+    </script>
+  </head>
+
+  <body>
+    <input type="button" value="submit" onclick="fnSetInterval()" />
+  </body>
+</html>

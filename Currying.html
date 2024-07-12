@@ -1,0 +1,38 @@
+<!-- Currying:
+
+
+Currying is a transformation of function, like f1(a,b) into f1(a)(b).
+We can achieve currying by using bind method and closure.
+A curried function which take multiple arguments, one at a time.
+
+Using closure: -->
+<script>
+  function sum(n1) {
+    return function (n2) {
+      return n1 + n2;
+    };
+  }
+
+  var fnRes = sum(3);
+  fnRes(4);
+  //  output: 7
+  fnRes(10);
+  //  output: 13
+</script>
+
+<!-- In the above example, sum method take one argument and return a function.
+That return function take one more argument and returns result.
+Overall in side sum method, we used 2 arguments n1,n2, but we passed those arguments one at a time for each function call.
+Using bind: -->
+
+<script>
+  function sum(n1, n2) {
+    console.log(n1 + n2);
+  }
+
+  var fnRes = sum.bind(this, 10);
+  fnRes(4);
+  //   output: 14;
+  fnRes(10);
+  //   output: 20;
+</script>

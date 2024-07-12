@@ -1,0 +1,91 @@
+<!-- 
+
+
+Set Timeout: Wait for some time, and then do some operation, then you will go with setTimeout. 
+setTimeout method takes three parameters, callback function,time(milli sec),data(argument type is rest) By
+using clearTimeout method, we can clear timeout operation in the middle.
+clearTimeout method take one parameter, your timeout. setTimeout: -->
+
+<script>
+  setTimeout(function () {
+    console.log("5 sec completed");
+  }, 5000);
+  //   4
+  //   VM257:2 5 sec completed
+
+  setTimeout(function () {
+    console.log("5 sec completed");
+  }, 5000);
+  //   5
+  //   VM259:2 5 sec completed
+
+  setTimeout(function () {
+    console.log("5 sec completed");
+  }, 5000);
+  //   6
+  //   VM261:2 5 sec completed
+
+  //Note: Each and Every time setTimeout returns a unique id along with callback function output.
+  // that unique id is used to clear the Timeout. suppose, the setTimeout function is going to call the callback function in the next 10 sec, but we donot want it to call it. In that case we can use the id to clear the timeout as shown in setTimeout2.html.
+
+  setTimeout(
+    function () {
+      console.log("5 sec completed");
+    },
+    5000,
+    1,
+    2,
+    3
+  );
+  // 7
+  // VM281:2 5 sec completed
+
+  var id = setTimeout(
+    function () {
+      console.log("5 sec completed");
+    },
+    5000,
+    1,
+    2,
+    3
+  );
+  // undefined
+  // VM294:2 5 sec completed
+
+  var id = setTimeout(
+    function (a, b, c) {
+      console.log("5 sec completed");
+    },
+    5000,
+    1,
+    2,
+    3
+  );
+  // undefined
+  // VM301:2 5 sec completed
+
+  var id = setTimeout(
+    function (a, b, c) {
+      console.log("5 sec completed", a, b, c);
+    },
+    5000,
+    1,
+    2,
+    3
+  );
+  // undefined
+  // VM337:2 5 sec completed 1 2 3
+
+  var id = setTimeout(
+    function (...x) {
+      console.log("5 sec completed", x);
+    },
+    5000,
+    1,
+    2,
+    3
+  );
+
+  // undefined
+  // VM369:2 5 sec completed (3) [1, 2, 3]
+</script>

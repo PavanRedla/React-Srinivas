@@ -1,0 +1,102 @@
+<!-- Set Interval:
+-- If you want to perform one operation repetedly, for a particular amount of time, then we can go with setInterval.
+-- setInterval method takes three parameters, callback function,time(milli sec),data(argument type is rest operator)
+-- By using clearInterval method, we can clear that interval in the middle.
+-- clearInterval method take one parameter, your interval. -->
+
+<script>
+  //Note: Each and Every time setTimeInterval returns a unique id along with callback function output.
+  // that unique id is used to clear the Time Interval. suppose, the setTimeInterval function is going to call the callback function for every next 10 sec, but we donot want it to call it. In that case we can use the id to clear the timeInterval as shown in setTimeInterval2.html.
+
+  //   setInterval
+  // ƒ setInterval() { [native code] }
+
+  setInterval(function () {
+    console.log("called");
+  }, 2000);
+  // 18 // Each and Every time setTimeInterval returns a unique id along with callback function output.
+  // 9VM572:2 called
+
+  clearInterval(18); // to stop the above setInterval Function to call the callback passed to it for every 2 sec we have to clear it using the id that is returned by the setInterval function and by using clearInterval method.
+
+  //   undefined
+
+  setInterval(
+    function (a, b, c) {
+      console.log("called", a, b, c);
+    },
+    2000,
+    1,
+    2,
+    3
+  );
+  //   19
+  //   9VM686:2 called 1 2 3
+  clearInterval(19);
+  //   undefined
+
+  setInterval(
+    function (...x) {
+      console.log("called", a, b, c);
+    },
+    2000,
+    1,
+    2,
+    3
+  );
+
+  //   20
+  //   7VM746:2 Uncaught ReferenceError: a is not defined
+  //       at <anonymous>:2:26
+  //   (anonymous) @ VM746:2
+
+  setInterval(
+    function (...x) {
+      console.log("called", x);
+    },
+    2000,
+    1,
+    2,
+    3
+  );
+
+  // 21
+  // VM804:2 called (3) [1, 2, 3]
+  // VM804:2 called (3) [1, 2, 3]
+  // VM804:2 called (3) [1, 2, 3]
+  // VM804:2 called (3) [1, 2, 3]
+  // VM804:2 called (3) [1, 2, 3]
+  // VM804:2 called (3) [1, 2, 3]
+  // VM804:2 called (3) [1, 2, 3]
+  // VM804:2 called (3) [1, 2, 3]
+
+  clearInterval(21);
+  // undefined
+
+  var Interval = setInterval(
+    function (...x) {
+      console.log("called", x);
+    },
+    2000,
+    1,
+    2,
+    3
+  );
+
+  //   undefined;
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+  // VM874:2 called (3) [1, 2, 3]
+
+  clearInterval(Interval);
+  // undefined
+</script>

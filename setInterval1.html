@@ -1,0 +1,25 @@
+<!-- Set Interval:
+-- If you want to perform one operation repetedly, for a particular amount of time, then we can go with setInterval.
+-- setInterval method takes three parameters, callback function,time(milli sec),data(argument type is rest operator)
+-- By using clearInterval method, we can clear that interval in the middle.
+-- clearInterval method take one parameter, your interval. -->
+
+<!-- setInterval: -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fnSetInterval() {
+        setInterval(function () {
+          //each 3sec this alert message displayed
+          alert("3sec over");
+        }, 3000);
+      }
+    </script>
+  </head>
+
+  <body>
+    <input type="button" value="submit" onclick="fnSetInterval()" />
+  </body>
+</html>

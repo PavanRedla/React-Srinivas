@@ -1,0 +1,20 @@
+<!-- clearTimeout: -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fnSetTimeout() {
+        var timeout = setTimeout(function () {
+          alert("5sec completed");
+        }, 5000);
+        clearTimeout(timeout);
+        //no alert message is displayed, why because, we cleared that timeout before 5sec.
+      }
+    </script>
+  </head>
+
+  <body>
+    <input type="button" value="submit" onclick="fnSetTimeout()" />
+  </body>
+</html>

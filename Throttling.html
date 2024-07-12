@@ -1,0 +1,55 @@
+<!--
+
+Throttling:
+
+We are going to implement throttling to optimizing performance of your web application.
+Using throttling we can limiting the no of times call a function, which achieves the performance of your webapplication. -->
+
+<!-- sample.html -->
+
+<!-- <script>
+              function fnResize(){
+                 console.log('fnResize called')
+               }
+               window.addEventListener('resize',function(){
+                   fnResize();
+               });
+
+
+            </script> -->
+
+<!-- In the above example, fnResize method called, for browser width or height change. So that this method call, may impact our performance.
+So by using throttling concept, we have to limit the fnResize method calls. -->
+
+<!-- sample.html -->
+
+<script>
+  var _flag = true;
+  var timer;
+  function fnResize() {
+    console.log("fnResize called");
+  }
+
+  function fnThrottling() {
+    if (_flag) {
+      fnResize();
+      _flag = false;
+    }
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fnResize();
+    }, 3000);
+  }
+  window.addEventListener("resize", function () {
+    fnThrottling();
+  });
+</script>
+
+<!-- 
+// The main differece between debouncing and throttling is, in throttling, target action method(fnResize) is going to call for the first event, but in debouncing target action(fnResize) method is going to call by checking time interval.
+// In the above example:
+// Created timer, _flag variables.
+// For every resize event fnThrottling method gets called, in this method, if _flag value true then we called fnResize method, we clear the timeout, and creates a new timeout and assigne to timer variable.
+// From settimeout callback method, we called our "fnResize" method.
+// Here the "fnResize" method not called for every resize event(every pixel change in browser width).
+// If the time lag between one resize event to another resize event grater than 300 milli seconds, then only settimeout callback method executed and it called fnResize, otherwise settimeout gets cleared. -->
