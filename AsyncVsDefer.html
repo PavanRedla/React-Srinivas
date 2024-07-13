@@ -41,14 +41,18 @@ html file loaded into browser, browser load content line by line
 h1 tag loaded, painted Sachin into browser.
 Next loaded script tag, while loading script tag, it perform two operations, loading script file(sample.js),execute script(sample.js).
 If there is no errors while executing script(sample.js), it loads the next line, 'div' tag.
+
 async:
+
 html file loaded into browser, browser load content line by line
 h1 tag loaded, painted Sachin into browser.
 Next loaded script tag with async attribute.
 So both sample.js and html tags are loading parallelly.
 Once sample.js loading completed , html loading stopped immediatly and started sample.js execution
 Once sample.js execution completed,again resumes html tags loading(if any)
+
 defer:
+
 html file loaded into browser, browser execute content line by line
 h1 tag loaded, painted Sachin into browser.
 Next loaded script tag with defer attribute.

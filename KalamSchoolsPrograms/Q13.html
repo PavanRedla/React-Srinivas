@@ -3,3 +3,34 @@
 Write a class which have two variables and methods ?
 One class using function keyword
 One class using class keyword -->
+
+<!-- Using function Keyword -->
+<script>
+  function Bus() {
+    this.fw = 2;
+    this.bw = 4;
+    this.totalWheels = function () {
+      return this.fw + this.bw;
+    };
+  }
+
+  var busObj = new Bus();
+  console.log(busObj);
+  console.log(busObj.fw, busObj.bw, busObj.totalWheels());
+</script>
+
+<!-- Using class Keyword -->
+
+<script>
+  class Bike {
+    fw = 1;
+    bw = 1;
+    totalWheels() {
+      return this.fw + this.bw;
+    }
+  }
+
+  var bikeObj = new Bike();
+  console.log(bikeObj);
+  console.log(bikeObj.fw, bikeObj.bw, bikeObj.totalWheels());
+</script>

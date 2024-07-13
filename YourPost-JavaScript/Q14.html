@@ -30,13 +30,17 @@ result should be 35 -->
 <script>
   Array.prototype.myFind = function (callback) {
     for (let i = 0; i < this.length; i++) {
+      debugger;
       if (callback(this[i], i, this)) {
         return this[i];
       }
     }
     return undefined;
   };
+  const arr = [22, 15, 35, 83];
   const result = arr.myFind((val, ind, oa) => {
+    debugger;
     return val == 35;
   });
+  console.log(result);
 </script>
