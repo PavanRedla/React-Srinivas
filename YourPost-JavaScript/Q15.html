@@ -26,4 +26,48 @@ const result=arr.myEvery((val,ind,oa)=>{
 
 result should be true -->
 
+<script>
+  Array.prototype.myEvery = (cb,thisArg) => {
+    for (let i = 0; i < thisArg.length; i++) {
+      debugger;
+      if (!cb(thisArg[i], i)) {
+        return false;
+      }
+    }
+   
+    return true;
+  };
 
+  const arr = [22, 15, 35, 83];
+  const result = arr.myEvery((val, ind) => {
+    debugger;
+    return val > 10;
+  },arr);
+  console.log(result);
+</script>
+
+<!-- <script>
+  Array.prototype.myEvery = function (callback) {
+    //let arr = []
+
+    let output = false;
+
+    for (let index = 0; index < this.length; index++) {
+      // const element = array[index];
+
+      if (!callback(this[index], index)) {
+        output = false;
+
+        break;
+      } else {
+        output = true;
+      }
+    }
+
+    return output;
+  };
+
+  const ans = players.myEvery((player) => player.hun >= 1);
+
+  console.log(ans); -->
+</script>

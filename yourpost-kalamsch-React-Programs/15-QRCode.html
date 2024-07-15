@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!--QR code library-->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      #qrcode {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [qrCode, setQRCode] = React.useState();
+        const contentRef = React.useRef(null);
+        const fnClick = () => {
+          debugger;
+          const qrcodeContainer = document.getElementById("qrcode");
+          qrcodeContainer.innerHTML = "";
+          // Create a new QRCode instance
+          const qrcode = new QRCode(qrcodeContainer, {
+            text: contentRef.current.value,
+            width: 128,
+            height: 128,
+          });
+        };
+        return (
+          <div>
+            <p>
+              Content: <textarea ref={contentRef}></textarea>
+            </p>
+            <button className="btn btn-primary" onClick={fnClick}>
+              Generator QR Code To Above Content
+            </button>
+
+            <div id="qrcode"></div>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+    <!--
+         Note: this page is a great way to try React but it's not suitable for production.
+         It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+         
+         Read this page for starting a new React project with JSX:
+         https://react.dev/learn/start-a-new-react-project
+         
+         Read this page for adding React with JSX to an existing project:
+         https://react.dev/learn/add-react-to-an-existing-project
+         -->
+  </body>
+</html>

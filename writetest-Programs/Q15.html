@@ -14,6 +14,7 @@ Note: Panagram is a Sentence, which containing every letter of the alphabet -->
 <script>
   function isPangram(sentence) {
     let uniqsentence = new Set();
+    console.log(uniqsentence);
 
     let lowercase = sentence.toLowerCase();
 
@@ -24,7 +25,7 @@ Note: Panagram is a Sentence, which containing every letter of the alphabet -->
         uniqsentence.add(char);
       }
     }
-
+    console.log(uniqsentence);
     return uniqsentence.size === 26;
   }
 

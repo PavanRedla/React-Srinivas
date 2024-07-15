@@ -2,5 +2,9 @@ import React from "react";
 import "./Header.css";
 
 export const Header = () => {
-  return <div className="header">My First Next App</div>;
+  return (
+    <div data-testId="header" className="header">
+      My First Next App
+    </div>
+  );
 };
