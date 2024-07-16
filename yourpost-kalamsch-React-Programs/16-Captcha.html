@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      #captcha {
+        border: 1px solid red;
+        margin: 10px;
+        padding: 10px;
+        font-size: 20px;
+        letter-spacing: 10px;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [captcha, setCapatch] = React.useState("");
+        const [data, setData] = React.useState("");
+        React.useEffect(() => {
+          fnGenerateCaptcha();
+        }, []);
+        const fnGenerateCaptcha = () => {
+          let chars = "";
+
+          const randomchar =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+          // Generate captcha for length of 5 with random character
+          for (let i = 1; i <= 5; i++) {
+            chars += randomchar.charAt(Math.random() * randomchar.length);
+            debugger;
+          }
+          setCapatch(chars);
+        };
+        const fnValidate = () => {
+          if (data == captcha) {
+            alert("Successfully Validated");
+          } else {
+            alert("Invalid Captcha");
+          }
+        };
+        return (
+          <div className="mt-5">
+            <p>
+              <span id="captcha">{captcha}</span>
+              <button onClick={fnGenerateCaptcha} className="btn btn-primary">
+                refresh
+              </button>
+            </p>
+            <p>
+              <b>Enter Captcha:</b>{" "}
+              <input onChange={(eve) => setData(eve.target.value)} />{" "}
+              <button onClick={fnValidate} className="btn btn-primary">
+                Validate
+              </button>
+            </p>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+    <!--
+         Note: this page is a great way to try React but it's not suitable for production.
+         It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+         
+         Read this page for starting a new React project with JSX:
+         https://react.dev/learn/start-a-new-react-project
+         
+         Read this page for adding React with JSX to an existing project:
+         https://react.dev/learn/add-react-to-an-existing-project
+         -->
+  </body>
+</html>
