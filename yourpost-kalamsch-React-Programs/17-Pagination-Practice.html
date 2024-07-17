@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const data = [
+        {
+          id: 1,
+          name: "Sachin",
+          loc: "Mumbai",
+        },
+        {
+          id: 2,
+          name: "Dhoni",
+          loc: "Ranchi",
+        },
+        {
+          id: 3,
+          name: "Kohli",
+          loc: "Delhi",
+        },
+        {
+          id: 4,
+          name: "Dravid",
+          loc: "Banglore",
+        },
+        {
+          id: 5,
+          name: "Ganguly",
+          loc: "Kolkata",
+        },
+        {
+          id: 6,
+          name: "Rayudu",
+          loc: "Andhra",
+        },
+        {
+          id: 7,
+          name: "Azhar",
+          loc: "Hyderabad",
+        },
+        {
+          id: 8,
+          name: "VVS",
+          loc: "Hyderabad",
+        },
+        {
+          id: 9,
+          name: "Lara",
+          loc: "WestIndies",
+        },
+      ];
+
+      const Pagination = ({ currPage, setCurrPage, totalPages }) => {
+        const inputRef = React.useRef();
+        const fnGo = () => {
+          const pgNo = inputRef.current.value;
+          if (pgNo <= 1 || pgNo >= totalPages) {
+            alert("Invalid entry");
+            return;
+          }
+          setCurrPage(pgNo);
+        };
+        const fnPrev = () => {
+          setCurrPage(currPage - 1);
+        };
+        const fnNext = () => {
+          setCurrPage(currPage + 1);
+        };
+        return (
+          <div className="pagination">
+            <span>
+              Go To :<input ref={inputRef} type="number" />
+              <button onClick={fnGo}>GoTo</button>
+            </span>
+            <button onClick={fnPrev} disabled={currPage == 1}>
+              Prev
+            </button>
+            {currPage}
+            <button onClick={fnNext} disabled={currPage == totalPages}>
+              Next
+            </button>
+            <span>Total Pages:{totalPages}</span>
+          </div>
+        );
+      };
+
+      const App = () => {
+        const perPage = 2;
+        const [currPage, setCurrPage] = React.useState(1);
+        const [players, setPlayers] = React.useState([]);
+        React.useEffect(() => {
+          const end = currPage * perPage;
+          const start = end - perPage;
+          setPlayers(data.slice(start, end));
+        }, [currPage]);
+        return (
+          <div>
+            <p>Total Records: {data.length}</p>
+            <p>Per Page: {perPage}</p>
+
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                {players.map(({ id, name, loc }, ind) => {
+                  return (
+                    <tr key={ind}>
+                      <td>{id}</td>
+                      <td>{name}</td>
+                      <td>{loc}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <Pagination
+              currPage={currPage}
+              setCurrPage={setCurrPage}
+              totalPages={Math.ceil(data.length / perPage)}
+            />
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

@@ -2,3 +2,39 @@
 
 Write a code snippet , which represents setTimeout functionality.
 Write a code snippet , which represents setInterval functionality. -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fnSetInterval() {
+        setInterval(function () {
+          //each 3sec this alert message displayed
+          alert("3sec over");
+        }, 3000);
+      }
+    </script>
+  </head>
+
+  <body>
+    <input type="button" value="submit" onclick="fnSetInterval()" />
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fnSetTimeout() {
+        setTimeout(function () {
+          //after 3sec this alert message displayed
+          alert("3sec completed");
+        }, 3000);
+      }
+    </script>
+  </head>
+
+  <body>
+    <input type="button" value="submit" onclick="fnSetTimeout()" />
+  </body>
+</html> -->

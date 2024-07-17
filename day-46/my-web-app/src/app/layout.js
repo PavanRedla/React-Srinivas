@@ -15,11 +15,28 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const menuItems = [
+    {
+      id: "home",
+      path: "home",
+      text: "Home",
+    },
+    {
+      id: "about",
+      path: "about",
+      text: "About",
+    },
+    {
+      id: "contact",
+      path: "contact",
+      text: "Contact",
+    },
+  ];
   return (
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <Menu />
+        <Menu menuItems={menuItems} />
         {children}
         <Footer />
       </body>

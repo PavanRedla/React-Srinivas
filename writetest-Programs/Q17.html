@@ -24,6 +24,22 @@ let num2 = 18; -->
   let num1 = 12;
   let num2 = 18;
 
-  gcd(12, 18);
+  console.log(gcd(12, 18));
   //output: 6;
+</script>
+
+<script>
+  function gcd(a, b) {
+    for (let temp = b; b !== 0; ) {
+      b = a % b;
+      a = temp;
+      temp = b;
+    }
+    return a;
+  }
+
+  let a = 12;
+  let b = 18;
+
+  console.log(gcd(a, b));
 </script>
