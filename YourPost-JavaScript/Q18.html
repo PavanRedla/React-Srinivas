@@ -7,3 +7,46 @@ https://kalamschools.com/#/react-programs?name=iframe
 JavaScript:
 
 Implement a debounce function in JavaScript that limits the frequency of a function’s execution when it’s called repeatedly within a specified time frame ? -->
+
+<!-- Debouncing: -->
+
+<!-- We are going to implement debouncing, to optimizing performance of your web application.
+By limiting, no of times call a function, we can achieves the performance of your webapplication. -->
+
+<!-- sample.html -->
+<!-- 
+<script>
+  function fnSearch() {
+    console.log("fnSearch called");
+  }
+</script>
+
+<input onkeyup="fnSearch()" placeholder="Search..." /> -->
+
+<!-- In the above example, fnSearch method called for each and every keyup event. So that this method call may impact our performance.
+So by using debouncing concept, we have to limit the fnSearch method calls. -->
+
+<!-- sample.html -->
+
+<script>
+  var timer;
+  function fnSearch() {
+    console.log("fnSearch called");
+  }
+
+  function fnDebounce() {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fnSearch();
+    }, 300);
+  }
+
+  <input onkeyup="fnDebounce()" placeholder="Search..." />;
+
+  // In the above example
+  // Created timer variable
+  // For every keyup event fnDebounce method gets called, in this method we clear the timeout, and creates a new timeout and assigne to timer variable.
+  // From settimeout callback method, we called our "fnSearch" method.
+  //  Here the "fnSearch" method not called for every keyup event.
+  // If the time lag between one keyup event to another keyup event grater than 300 milli seconds, then only settimeout callback method executed and it called fnSearh, otherwise settimeout gets cleared.
+</script>

@@ -10,7 +10,7 @@ export const About = () => {
       <h3>
         {name} --- {location}
       </h3>
-      <h3>{add(10, 20)}</h3>
+      <h3 data-testid="add">{add(10, 20)}</h3>
       <h3>
         {busObj.fw} - {busObj.bw} - {busObj.totalWheels()} - {busObj.getColor()}{" "}
       </h3>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [selFile, setSelFile] = React.useState("");
+        const fnChange = (eve) => {
+          const file = eve.target.files[0];
+          const { size, type } = file;
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            setSelFile(reader.result);
+          };
+          reader.onerror = () => {
+            setSelFile("");
+            alert("Somethig went wrong");
+          };
+        };
+        return (
+          <div>
+            <ol>
+              <li>Select File</li>
+              <li>File can be any type</li>
+              <li>Render file content inside iframe.</li>
+            </ol>
+            <p>
+              <b>Select Image:</b>
+              <input type="file" onChange={fnChange} />
+            </p>
+            <p>
+              <iframe
+                style={{ border: "1px solid red" }}
+                src={selFile}
+                width="100%"
+                height="400px"
+              ></iframe>
+            </p>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+    <!--
+         Note: this page is a great way to try React but it's not suitable for production.
+         It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+         
+         Read this page for starting a new React project with JSX:
+         https://react.dev/learn/start-a-new-react-project
+         
+         Read this page for adding React with JSX to an existing project:
+         https://react.dev/learn/add-react-to-an-existing-project
+         -->
+  </body>
+</html>
