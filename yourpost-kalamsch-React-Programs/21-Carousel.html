@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Load Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+    />
+    <style>
+      img {
+        width: 100%;
+        height: 500px;
+        border: 1px solid red;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [cnt, setCnt] = React.useState(1);
+        const fnStartTimer = () => {
+          setInterval(() => {
+            setCnt((cnt) => {
+              if (cnt == 3) {
+                return 1;
+              }
+              return cnt + 1;
+            });
+          }, 5000);
+        };
+        React.useEffect(() => {
+          fnStartTimer();
+        }, []);
+
+        return (
+          <div>
+            <ol>
+              <li>
+                To run in your local, take three images and named as 1.jpg,
+                2.jpg and 3.jpg
+              </li>
+              <li>
+                Make sure above three images and the sorce code file should be
+                in the same folder.{" "}
+              </li>
+            </ol>
+            <img alt={`${cnt}.jpg`} src={`${cnt}.jpg`}></img>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

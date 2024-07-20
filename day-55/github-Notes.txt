@@ -1,0 +1,118 @@
+How we can check, in you machine git there or not there ?
+
+>git 
+    there - git commands
+    not-there - is not recognized as an internal or external command,
+operable program or batch file. 
+        we have to install git s/w
+
+2. git isntalled in my machinen , but if I run git command in my machine getting
+  message like "git is not recognized as an internal or external command,
+operable program or batch file."
+
+    In this case we have to set the path.
+        a. copy bin path
+        b. search AdvancedSystemsettting- environmental varibale - select path-edit -new - add above copied item.
+
+
+--------------------
+create an account in github.com
+
+========================================
+
+Which version control u used in your applicaiton ? git
+
+===============
+
+if you have the repo url (main), how you can get the code in your local machine ?
+
+repo url - https://github.com/chenchalasrinuui/9amapp.git
+
+> git clone https://github.com/chenchalasrinuui/9amapp.git
+
+
+---------
+how to check , u r in which branch ?
+
+    git branch
+
+how to create u r own branch ?
+
+    a. from which brnach , you want me to create new branch (main)
+    b. go to main branch
+    c. git checkout main
+
+    d. git checkout -b d4
+    e. git push --set-upstream origin d4
+
+=======================
+
+create b3 branch from b4  brach
+
+    1. go to b4 branch - git checkout b4
+
+    2. git checkout -b b3
+    3. git push --set-upstream origin b3
+
+==============================
+
+How to push my localchanges to my branch ?
+
+a. makesure your local changes done and tested
+
+b. get the changed files - git status
+
+c. add the files to commit - git add *
+    if you want restore added files - git restore --staged *
+    if you want to add a specific file(s) to commit - git add <filepath> <filepath>
+d. git commit -m "helloworld"
+e. git push
+
+
+======================
+
+How to merge my b1 branch into main branch if main is protected branch
+
+    1. By raising Pull request
+
+===============================
+
+How to merge b1 branch in to b2 branch (not protected)
+
+    1. go to b2 branch
+        git checkout b2
+    2. git branch -b2
+    3. git merge b1
+    4. git commit -
+    5. git push
+===============================
+
+if local branch(main) not sync with clound branch(main)
+
+    - git pull
+
+==============================
+
+How to revert the commited changes
+
+    get the commit id - 
+        git log
+        
+    git revert <commit id>
+
+============================
+
+1. my code in one repo (r1) inside one branch (b1)
+    how to we can get it  in local?
+        git clone <repo url>
+
+2. my code in the local in folder, want to move that code into one repo ?
+    a. find the code in the local
+    b. create an empty repo
+    c. git init
+    d. git add *
+       d. git commit -m "first commit"
+       e.git branch -M main
+       d. git remote add origin https://github.com/chenchalasrinuui/my-web-app.git 
+      f.git push -u origin main
+    

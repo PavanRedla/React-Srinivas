@@ -47,9 +47,9 @@ output should be  Lara,Sachin ,Pointing objects in the array -->
     },
   ];
 
-  //   players.sort((a, b) => {
-  //     return a.retiredOn - b.retiredOn;
-  //   });
+  players.sort((a, b) => {
+    return new Date(a.retiredOn) - new Date(b.retiredOn);
+  });
 
   console.log(players);
 </script>

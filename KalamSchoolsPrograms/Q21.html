@@ -1,3 +1,95 @@
 <!-- Que 21:
 
 Write an example code snippet about call and apply methods. -->
+
+<!-- call(), apply(), bind():
+call():
+
+call() is used to call javascript function, by making an external object available to that function.
+call() always takes an object as a first argument.
+second argument onwards, it takes calling function arguments.
+Ex: -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var obj = {
+        n1: 10,
+      };
+      function findSum(n2, n3) {
+        console.log(this.n1 + n2 + n3);
+      }
+      findSum.call(obj, 20, 30);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+<!-- Note:
+
+result: 60
+we are calling findSum method by passing object(obj) and 2 argments(n2,n3);
+First argument always object, ie which object make it available to findSum while calling.
+second argument onwards, are findSum arguments.
+apply():
+
+apply() is used to execute javascript function, by making an external object available to that function.
+apply() always takes an object as a first argument.
+second argument is an array, which contains calling function arguments.
+Ex: -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+   <script>
+        var obj={
+            'n1':10
+        }
+        function findSum(n2,n3){
+            console.log(this.n1+n2+n3);
+        }
+        findSum.apply(obj,[20,30]);
+   </script>
+</head>
+<body>
+</body>
+</html> -->
+
+<!--         
+Note:
+
+result: 60
+we are calling findSum method by passing object(obj) and an array argments([n2,n3]);
+First argument always object, i.e. which object make it available to findSum while calling.
+second argument is an array, which contains findSum arguments.
+bind():
+
+bind() is used bind one object to javascript function.
+bind() always returns function, with binding object.
+Ex: -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+   <script>
+        var obj={
+            'n1':10
+        }
+        function findSum(n2,n3){
+            console.log(this.n1+n2+n3);
+        }
+        var findSum=findSum.bind(obj);
+        findSum(20,30);
+   </script>
+</head>
+<body>
+</body>
+</html> -->
+
+<!-- Note:
+
+result: 60
+First bind object to findSum method using bind method.;
+bind() returns function with binding object, so hold return function with one variable.
+At last call that variable. -->

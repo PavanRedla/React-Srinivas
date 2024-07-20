@@ -3,3 +3,64 @@
 Write a code snippet, to perform insert/update/delete/retrieve operations in Cookie storage
 Try to write using document.cookie.
 Another way using cookieStore object. -->
+
+<!-- 
+Cookies:
+
+Cookies data stored based on domain name.
+We can see the cookie data in developer window(f12), application tab.
+Data stored in the cookies, always in the form of key,value pairs.
+The key is always unique
+We have two type of cookies:
+1) inmemory cookie
+2) persistent cookie
+
+Inmemory Cookie:
+
+Inmemory cookie data is available only in the current browser(notlike sessionStorage available for one tab). Once browser closed, cookie data was gone.
+Inmemory cookie data is available for all tabs in the browser for the same domain.
+Ex: -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      document.cookie = "name=sachin";
+      //Inserted sachin value with name as key in cookie.
+
+      document.cookie = "name=dhoni";
+      //alredy name key is there, so if key is already existed, it updates the value, if not it insert new one.
+
+      document.cookie;
+      //res : returns all the cookies in the browser for that domain name in the string format.
+
+      document.cookie =
+        "name=sachin;expires=Fri Apr 18 2019 17:09:12 GMT+0530 (India Standard Time)";
+      //If you observe above, you can find expires.If we give expires value before today date, then that cookie was removed.
+    </script>
+  </head>
+  <body></body>
+</html>
+<!--           
+persistent Cookie:
+
+If you want to store data in cookies for a particular amount of time, irrespective of tab closing or browser closing or system shutdown. Then we can go with persistent cookies.
+We are using 'expires' key, to give the expiry date for cookie.
+Ex: -->
+
+<!-- <!DOCTYPE html>
+          <html>
+          <head>
+            <script>
+            document.cookie="name=sachin;expires=Fri Apr 5 2032 17:09:12 GMT+0530 (India Standard Time)";
+               //Inserted sachin value with name as key in cookie on the domain name, and it expires on Fri Apr 5 2032 17:09:12.
+
+               //remaing all operations like update,retrive and delete, like Inmemory cookie.
+
+               </script>
+          </head>
+          <body>
+              
+          </body>
+          </html>
+           -->

@@ -1,3 +1,86 @@
 <!-- Que 20:
 
 Write a code snippet, to get the latitude and longitude using navigator BOM object ? -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location</title>
+    <script src="../react.development.js"></script>
+    <script src="../babel.min.js"></script>
+    <script src="../react-dom.development.js"></script>
+  </head>
+  <body>
+    <!--     
+      // navigator is the BOM object using which we can find the longitude and latitude of our location.
+
+      // navigator is the predefined object of Navigator class
+
+      /*
+        console:
+
+        > navigator
+
+        < Navigator {....geolocation: Geolocation(){}, ...}
+
+        we have geolocation object in Naigator class and we can access the data using . notation or square brackets.
+
+         > navigator.geolocation
+
+        < Geolocation { .... getCurrentPosition : function getCurrentPosition() { [native code] }}
+
+        we have getCurrentPosition function in navigator.geolocation, so we can call it.
+
+         > navigator.geolocation.getCurrentPosition()
+
+        <Uncaught TypeError: Failed to execute 'getCurrentPosition' on 'Geolocation': 1 argument required, but only 0 present
+
+        so we have to call getCurrentPosition with atleast one parameter.
+
+        getCurrentPosition accepts the success callback function as parameter as shown below
+         syntax: navigator.geolocation.getCurrentPosition(function(successCallback,?errorCallback,?options))
+
+         max parameters - 3  and min. parameter is 1
+
+         > navigator.geolocation.getCurrentPosition(function(a, b, c){
+            console.log('called',a,b,c);
+         })
+
+         o/p: called GeoLocationPosition {coords:GeolocationCoordinates {latitude: 17.0005383, longitude: 81.8040345, altitude: null, accuracy: 296842.8380282947, altitudeAccuracy: null, …}} undefined undefined
+
+          so, getCurrentPosition calls the callback function by passing one parameter called GeolocationPosition and that parameter is object type. and in that object we have one property called "coords" and it is also an object which contains latitude and longitude properties.
+
+        */ -->
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const [data, setData] = React.useState("");
+        const [mapUrl, setMapUrl] = React.useState("");
+
+        const handleClick = () => {
+          navigator.geolocation.getCurrentPosition((data) => {
+            const { latitude, longitude } = data.coords;
+            setData(`${latitude}-${longitude}`);
+            setMapUrl(
+              `https://google.com/maps?&output=embed&q=${latitude},${longitude}`
+            );
+          });
+        };
+        return (
+          <div>
+            <button onClick={handleClick}>Get Location</button>
+            <h3>{data}</h3>
+            {mapUrl && <iframe width="100%" height="800px" src={mapUrl} />}
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

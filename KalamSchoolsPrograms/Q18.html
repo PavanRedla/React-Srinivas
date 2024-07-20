@@ -2,3 +2,81 @@
 
 Write a code snippet to insert/update/delete/retrieve the data in localStorage
 Try to write in 2 ways. -->
+
+<script>
+  // Insert
+  localStorage.setItem("name", "Sachin");
+  localStorage.loc = "Mumbai";
+  localStorage["hun"] = 100;
+  localStorage.setItem("runs", 10000);
+
+  // Update
+  localStorage.setItem("name", "Dhoni");
+  localStorage["loc"] = "Chennai";
+
+  // retrieve
+  console.log(localStorage.hun);
+  console.log(localStorage["loc"]);
+  console.log(localStorage.getItem("name"));
+  console.log(localStorage.key(0)); // syntax: key function takes index as a paramter.
+  console.log(localStorage.length);
+
+  // Delete
+  delete localStorage.hun;
+  localStorage.removeItem("loc");
+
+  // Delete all records
+  localStorage.clear();
+</script>
+
+<!-- 
+Local Storage:
+
+Local Storage data stored based on domain name.
+We can see the Local Storage data in developer window(f12), application tab.
+Local Storage data always persist to that particular domain name always, like open new tab, or close your browswer and open, or shutdown your system, until unless you clear data manually using below methods.
+Data stored in the Local Storage, always in the form of key,value pairs
+The key is always unique and string type, value maybe string or number type.
+setItem(key,value) is the method, for insert and update the data in sessionStorage
+removeItem(key) is the method, for removing data from sessionStorage.
+getItem(key) is the method,for retrieve the data from sessionStorage.
+clear() is the method, to clear total sessionStorage data.
+Above 4 method are available in window object.
+Ex:
+
+
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <script>
+                localStorage.setItem('name','sachin');
+                //one item store in the local storage with the key name.
+                
+                localStorage.setItem('age',40);
+                localStorage.setItem('loc','mumbai');
+                //three  items stored in the local storage.
+               
+                localStorage.setItem('age',30);
+                //The above operation is update operation, because, if key(age) is alreay there, then operation is update, if not operation is insert.
+               
+                localStorage.getItem('name');
+                //result: sachin
+          
+                localStorage.removeItem('age');
+                //Now age item is remove from local storage, so now we have 2 items.
+               
+                localStorage.clear();
+                //clear method is used to clear total data from local storage.
+                
+                localStorage.getItem('name');
+                //Result: null
+                //now there is no items in local storage. In local storage if we didn't find that item key, it returns always null.
+          
+            </script>
+          </head>
+          <body>
+              
+          </body>
+          </html>
+
+-->

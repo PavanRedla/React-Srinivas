@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const fnDownload = () => {
+          fetch("https://unpkg.com/react@18/umd/react.development.js")
+            .then((response) => response.text())
+            .then((jsCode) => {
+              const blob = new Blob([jsCode], {
+                type: "application/javascript",
+              });
+              const blobUrl = URL.createObjectURL(blob);
+              console.log(111, blobUrl);
+              const aElement = document.createElement("a");
+              aElement.setAttribute("download", "react");
+              const href = blobUrl;
+              aElement.href = href;
+              aElement.setAttribute("target", "_blank");
+              aElement.click();
+            });
+        };
+        return (
+          <div>
+            <p>To download file from external websites</p>
+            <p>
+              <button onClick={fnDownload}>
+                Downlaod react.development.js
+              </button>
+            </p>
+            <p>To download file from same website</p>
+            <a href="react-dom.development.js" download>
+              Downlaod react-dom.development.js
+            </a>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
+
+<!-- The download attribute specifies that the target will be downloaded when a user clicks on the hyperlink.
+
+This attribute is only used if the href attribute is set.
+
+The value of the download attribute will be the new name of the downloaded file. There are no restrictions on allowed values, and the browser will automatically detect the correct file extension and add it to the file (.img, .pdf, .txt, .html, etc.). -->

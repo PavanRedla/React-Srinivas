@@ -31,6 +31,16 @@ export default function RootLayout({ children }) {
       path: "contact",
       text: "Contact",
     },
+    {
+      id: "count",
+      path: "count",
+      text: "Count",
+    },
+    {
+      id: "photos",
+      path: "photos",
+      text: "Photos",
+    },
   ];
   return (
     <html lang="en">

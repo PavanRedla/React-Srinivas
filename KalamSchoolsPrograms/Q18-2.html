@@ -1,0 +1,83 @@
+<script>
+  // Insert
+  sessionStorage.setItem("name", "Sachin");
+  sessionStorage.loc = "Mumbai";
+  sessionStorage["hun"] = 100;
+  sessionStorage.setItem("runs", 10000);
+
+  // Update
+  sessionStorage.setItem("name", "Dhoni");
+  sessionStorage["loc"] = "Chennai";
+
+  // retrieve
+  console.log(sessionStorage.hun);
+  console.log(sessionStorage["loc"]);
+  console.log(sessionStorage.getItem("name"));
+  console.log(sessionStorage.key(0)); // syntax: key function takes index as a paramter.
+  console.log(sessionStorage.length);
+
+  // Delete
+  delete sessionStorage.hun;
+  sessionStorage.removeItem("loc");
+
+  // Delete all records
+  sessionStorage.clear();
+</script>
+
+<!-- 
+Browser Storages:
+If you want to store the data in browser, frequently we are using below 3.
+sessionStorage
+localStorage
+cookies
+
+Session Storage:
+---------------
+
+Session Storage data stored based on domain name.
+We can see the Session Storage data in developer window(f12), application tab.
+Session Storage data always persist to that particular tab only. Once tab is closed, the sessionStorage data was gone.
+Data stored in the Session Storage, always in the form of key,value pairs
+The key is always unique and string type, value maybe string or number type.
+setItem(key,value) is the method, for insert and update the data in sessionStorage
+removeItem(key) is the method, for removing data from sessionStorage.
+getItem(key) is the method,for retrieve the data from sessionStorage.
+clear() is the method, to clear total sessionStorage data.
+Above 4 method are available in window object. 
+
+         <!DOCTYPE html>
+          <html>
+          <head>
+            <script>
+                sessionStorage.setItem('name','sachin');
+                //one item store in the session storage with the key name.
+               
+                sessionStorage.setItem('age',40);
+                sessionStorage.setItem('loc','mumbai');
+                //three  items stored in the session storage.
+               
+                sessionStorage.setItem('age',30);
+                //The above operation is update operation, because, if key(age) is alreay there, then operation is update, if not operation is insert.
+                
+                sessionStorage.getItem('name');
+                //result: sachin
+          
+                sessionStorage.removeItem('age');
+                //Now age item is remove from session storage, so now we have 2 items.
+                
+                sessionStorage.clear();
+                //clear method is used to clear total data from session storage.
+                
+                sessionStorage.getItem('name');
+                //Result: null
+                //now there is no items in session storage. In session storage if we didn't find that item key, it returns always null.
+          
+            </script>
+          </head>
+          <body>
+              
+          </body>
+          </html>
+
+
+-->

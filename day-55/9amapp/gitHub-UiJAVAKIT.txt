@@ -1,0 +1,83 @@
+Introduction:
+Git Version Control System is a opensource software, that tracks the changes to a file.
+To work with Git, first install git software in your machine and set system path.
+To work with Git, we frquently used below commands
+clone
+pull
+status
+add
+restore
+commit
+push
+merge
+
+Usage:
+clone:
+
+Using clone command, we can get the files and folders from git repository.<b>syntax: </b> git clone <git repository url>
+status:
+
+Using status command, we can get the changed files and folders.<b>syntax: </b> git staus
+add:
+
+Using add command, we can add the files to commit.<b>syntax: </b> git add *
+or
+<b>syntax: </b> git add <file path> <file path>
+restore:
+
+Using restore command, we can restore added files or folders.<b>syntax: </b> git restore *
+or
+<b>syntax: </b> git restore <file path> <file path>
+commit:
+
+Using commit command, we can commit the code.<b>syntax: </b> git commit -m <message name>
+push:
+
+Using push command, we can push the code into repository.
+<b>syntax: </b> git push
+
+Click Here To Watch in YouTube.
+To check the branch:
+
+Using below commands we can check, we are in which branch.
+<b>syntax:</b> git branch
+
+create new branch:
+
+Using below commands we can create the branch.
+<b>syntax:</b> git checkout -b <branch name> git push
+
+change brach:
+
+Using below command we can shift from one branch to another branch.
+<b>syntax:</b> git checkout <branch name>
+
+Click Here To Watch in YouTube.
+pull:
+
+Using pull command, we can pull the code from repository to local fodler.
+<b>syntax: </b> git pull
+
+merge:
+
+Using merge command, we can merge the code from one branch to another branch.
+<b>syntax: </b> git merge <branch name>
+
+Click Here To Watch in YouTube.
+Add existing folder to git repository:
+
+Using below commands, we can add a folder to repository.
+ 
+             1. git init
+             2. git add *
+             3. git commit -m <commit message>
+             4. git remote add origin <repository path>
+             5. git push
+          
+
+Click Here To Watch in YouTube.
+.gitignore file:
+
+We can avoid the files and folder to commit, by adding those files and folders in .gitignore file.
+Create a .gitignore file
+Mention files/folder names in .gitignore file line by line.
