@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Load Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+    />
+    <style>
+      .content {
+        display: inline-block;
+        text-align: center;
+        width: 300px;
+        border: 1px solid red;
+        margin: auto;
+        height: 200px;
+        background: #e4e4ec;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const slideContent = [
+          {
+            heading: "Slide 1",
+            content: "This is Sachin",
+          },
+          {
+            heading: "Slide 2",
+            content: "This is Dhoni",
+          },
+          {
+            heading: "Slide 3",
+            content: "This is Kohli",
+          },
+        ];
+        const [cnt, setCnt] = React.useState(0);
+        const [data, setData] = React.useState({});
+        React.useEffect(() => {
+          setData(slideContent[cnt]);
+        }, [cnt]);
+
+        return (
+          <div>
+            <div className="content">
+              <h3>{data.heading}</h3>
+              <h5>{data.content}</h5>
+            </div>
+            <div>
+              <button
+                disabled={cnt == 0}
+                onClick={() => setCnt(cnt - 1)}
+                className="btn btn-primary"
+              >
+                Prev
+              </button>
+              <button
+                disabled={cnt == slideContent.length - 1}
+                onClick={() => setCnt(cnt + 1)}
+                className="btn btn-primary"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
