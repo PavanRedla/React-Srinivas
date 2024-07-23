@@ -1,3 +1,84 @@
 <!-- Que 23:
 
 Write code snippet, about closure ? -->
+
+<!-- // Closure: // We can define closure like, the function(inner) with in the
+function, and my inner function can access outer function variables,global
+variables and own variables. // In Java Script, we can declare variable in local
+or global. // If we declare the variable as gloabl, it may effected by others.
+// So i don't want to expose my variable to out side, at the same time i want to
+perform some operations on that variable. // Ex: -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      var i = 1;
+      function fnIncrement() {
+        i = i + 1;
+        console.log(i);
+      }
+    </script>
+  </head>
+  <body>
+    <input type="button" value="Increment" onclick="fnIncrement()" />
+  </body>
+</html> -->
+
+<!-- // If you observe above example, if you click on button, it increments i value and print that value in console.
+ // But here we declare i as a global variable,so that there may be a chance, somebody can change that value. 
+ // So I don't want to declare that variable as a gloable, want to make it as local. 
+// If I declare that variable like local, not one can access from outside. -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      function fnIncrement() {
+        var i = 1;
+        i = i + 1;
+        console.log(i);
+      }
+    </script>
+  </head>
+  <body>
+    <input type="button" value="Increment" onclick="fnIncrement()" />
+  </body>
+</html> -->
+
+<!-- If you observe above example, we declare i variable as local Now if I click on
+button, every time my i value reset to 1. So in my console always print 2 only.
+But my requirement is increament value for each button click. So in the above
+code var i=1; should have to execute only one time, and remaining statements
+should have to execute for every button click. So for separation, we can keep
+i=i+1;console.log(i) statements in one function, that function is an inner
+function. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      function fnIncrement() {
+        var i = 1;
+        return function () {
+          i = i + 1;
+          console.log(i);
+        };
+      }
+      var inc = fnIncrement();
+    </script>
+  </head>
+  <body>
+    <input type="button" value="Increment" onclick="inc()" />
+  </body>
+</html>
+
+<!-- If you observe above example, I creted one inner function, that can access outer
+variable i. In that inner function I perform increment opartion and my outer
+function return inner function. Now I call outer function on page load, So that
+it execute var i=1; statement and it return inner function. I hold that return
+inner function with one variable, and give that variable to my button click So
+now am not expose my variable to out side and the same time i can perform some
+opartion on that variable. So now we can define the closure like, the function
+with in the function, and my inner function can access outer function
+variables,global variables and own variables -->

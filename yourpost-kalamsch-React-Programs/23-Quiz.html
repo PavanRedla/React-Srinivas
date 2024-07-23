@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Question = ({ que, options, type, index, id, handleChange }) => {
+        const opts = ["A", "B", "C", "D"];
+        return (
+          <div>
+            <h3>
+              {index + 1} . {que}
+            </h3>
+            {options.map((val, ind) => {
+              return (
+                <p key={`p_${ind}`}>
+                  {opts[ind]}{" "}
+                  <input
+                    onChange={handleChange}
+                    value={opts[ind]}
+                    name={id}
+                    type={type == "S" ? "radio" : "checkbox"}
+                  />
+                  {val}
+                </p>
+              );
+            })}
+          </div>
+        );
+      };
+
+      const App = () => {
+        const keyAns = { 1: "B", 2: "BC", 3: "C", 4: "AC" };
+        const [stdAns, setStdAns] = React.useState({});
+
+        const questions = [
+          {
+            id: 1,
+            que: "is React framework or lib ?",
+            options: ["Framework", "Lib"],
+            type: "S",
+          },
+          {
+            id: 2,
+            que: "Below which are react hooks",
+            options: ["state", "useRef", "useContext", "props"],
+            type: "M",
+          },
+          {
+            id: 3,
+            que: "How to pass the data from child to parent ?",
+            options: ["props", "refs", "callback", "None of the Above"],
+            type: "S",
+          },
+          {
+            id: 4,
+            que: "How many ways we can pass the data from parent to child",
+            options: ["redux", "class", "context", "object"],
+            type: "M",
+          },
+        ];
+        const handleChange = (eve) => {
+          const { name, value, type, checked } = eve.target;
+          if (type === "checkbox") {
+            const checkedValues = stdAns[name] ? stdAns[name].split("") : [];
+            if (checked) {
+              checkedValues.push(value);
+            } else {
+              const index = checkedValues.indexOf(value);
+              checkedValues.splice(index, 1);
+            }
+            setStdAns({ ...stdAns, [name]: checkedValues.sort().join("") });
+          } else {
+            setStdAns({ ...stdAns, [name]: value });
+          }
+        };
+        const fnSubmit = () => {
+          let marks = 0;
+          for (let key in stdAns) {
+            if (keyAns[key] === stdAns[key]) {
+              marks = marks + 1;
+            }
+          }
+
+          alert(`you got ${marks} marks.`);
+        };
+        return (
+          <div>
+            {questions.map((obj, ind) => {
+              return (
+                <Question
+                  key={`que_${ind}`}
+                  index={ind}
+                  handleChange={handleChange}
+                  {...obj}
+                />
+              );
+            })}
+            <button onClick={fnSubmit}>Submit</button>
+          </div>
+        );
+      };
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+    <!--
+         Note: this page is a great way to try React but it's not suitable for production.
+         It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+         
+         Read this page for starting a new React project with JSX:
+         https://react.dev/learn/start-a-new-react-project
+         
+         Read this page for adding React with JSX to an existing project:
+         https://react.dev/learn/add-react-to-an-existing-project
+         -->
+  </body>
+</html>
