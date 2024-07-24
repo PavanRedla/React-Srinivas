@@ -7,3 +7,17 @@ https://kalamschools.com/#/react-programs?name=menu
 JavaScript:
 
 Write a function that generates a random alphanumeric string of a given length.  -->
+<script>
+  function randomString(length, chars) {
+    var result = "";
+    for (var i = length; i > 0; --i)
+      result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+  }
+  let n = +prompt("Enter the value of n: ");
+  var rString = randomString(
+    n,
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  );
+  console.log(rString);
+</script>
