@@ -1,0 +1,45 @@
+About Package.json:
+In the Package.json we need to place all application dependent libraries in the dependencies(Object type) section.
+
+                    package.json
+
+                    dependencies:{
+                    react:~18.2.0
+                    react-dom:^18.2.0
+                    next:18.2.0
+                    }
+
+In the above , if you observe we have three libraries(react,react-dom,next) added.
+react:18.2.0 in this react is a library name and it's version is 18.2.0
+In 18.2.0 , 18 is major 2 is minor and o is patch version.
+
+If there is a small bug, then after fixing the bug new patch version is released. e.g:18.2.0 t0 18.2.1
+If there is a defect, then after fixing the defect, minor version gets released. e.g": 18.3.0
+If there is a new feature, then after adding the new feature in the library, major version is released. e.g:19.0.0
+
+Above react and react-dom versions prefix with ~ and ^ notations.
+
+Tilde (~) notation:
+
+It is used for automatically updating the patch updates.
+Tilde ~ notation freezes the major version and minor version
+The ~18.2.0 will update all the future patch updates. We have to write just ~18.2.0 and all the next patch update dependencies. For example, 18.2.1, 18.2.2, 18.2.3……………18.2.x.
+
+Caret (^) notation :
+
+It is used for automatically updating the minor updates along with patch updates.
+The ^1.2.4 will update all the future Minor and patch updates, for example, ^1.2.4 will automatically change the dependency to 1.x.x if any update occurs.
+
+to change all the major, minor and patch version we need to use npm-check-updates command.
+
+If the above command is not present in your machine, install it using below command.
+
+install specific version: npm i <packagename>@<version>
+To check all the libraries latest versions
+
+                npm i -g npm-check-updates
+
+To update major, minor and patch versions run ncu -u
+To update minor and patch versions run ncu -u -t minor
+To update patch versions run ncu -u -t patch
+Here -u for update and -t for target.

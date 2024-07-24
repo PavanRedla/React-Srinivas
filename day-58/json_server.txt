@@ -1,0 +1,54 @@
+// JSON Server:
+
+// Install json-server lib npm i json-server.
+// create data.json
+
+                {
+                  "players":["Sachin","Dhoni","Kohli"],
+                  "playersInfo":[
+                      {
+                          "name":"Sachin",
+                          "runs":20000,
+                          "loc":"Mumbai"
+                      },
+                      {
+                          "name":"Dhoni",
+                          "runs":10000,
+                          "loc":"Ranchi"
+                      },
+                      {
+                          "name":"Kohli",
+                          "runs":5000,
+                          "loc":"Delhi"
+                      }
+                  ]
+              }
+              
+              
+// To run : json-server data.json
+// Run with specific port: json-server --watch db.json --port 3004
+http://localhost:3000/players
+
+//                 output:
+//                 ["Sachin","Dhoni","Kohli"],
+                
+// http://localhost:3000/playersInfo
+
+                output:
+                [
+                  {
+                      "name":"Sachin",
+                      "runs":20000,
+                      "loc":"Mumbai"
+                  },
+                  {
+                      "name":"Dhoni",
+                      "runs":10000,
+                      "loc":"Ranchi"
+                  },
+                  {
+                      "name":"Kohli",
+                      "runs":5000,
+                      "loc":"Delhi"
+                  }
+              ]
