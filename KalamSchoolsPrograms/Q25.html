@@ -1,2 +1,60 @@
 <!-- Can you create your own exception class ?
 Write a sample code to throw the above exception using throw keyword. -->
+
+<!-- throw:
+
+throw is used to raise our own exceptions.
+Some of the exeception are handled by Java Script by default and Some are we have to handle and raise our own exceptions using throw keyword. -->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+</head>
+<body>
+   <input type="button" value="submit" onclick="fnSubmit()" />
+   <script>
+       function fnSubmit(){
+        var sal=-100;
+           try{
+            if(sal < 0){
+              throw('Salary should be positive number');
+            }
+           }catch(e){
+             sal=0;
+           }
+           finally{
+             console.log('am executed always');
+           }
+
+            console.log("My salary is..."+sal);
+       }
+
+   </script>
+</body>
+</html> -->
+
+<!--           
+If you observe above example, we have sal variable with -100 value.
+You know salary should not nagative. But my Java Script doesn't know, it just treat like sal is one variable.
+In this case we have to handle and raise an exception.
+So using throw keywork we can raise our own exceptions by passing exception message also.
+Once my exception raised in try block, then corresponding catch block is exception with error message.There we provide some alternate solution like set the sal value to zero.
+And then my finally block is going to executed.  -->
+
+<script>
+  function getRectArea(width, height) {
+    if (isNaN(width) || isNaN(height)) {
+      throw new Error("Parameter is not a number!");
+    }
+  }
+
+  try {
+    getRectArea(3, "A");
+  } catch (e) {
+    console.error(e);
+    // Expected output: Error: Parameter is not a number!
+    console.log(e);
+  }
+</script>
