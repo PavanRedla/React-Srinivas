@@ -22,5 +22,6 @@ a.myToString() // "true" -->
   Boolean.prototype.myToString = function () {
     return [this].join();
   };
-  console.log(a.myToString());
+  console.log(a, typeof a);
+  console.log(a.myToString(), typeof a.myToString());
 </script>

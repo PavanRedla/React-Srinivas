@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .progress-bar {
+        width: 400px;
+        background: #e3e2e2;
+        height: 20px;
+      }
+      .progress-bar > div {
+        background: green;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const [width, setWidth] = React.useState(0);
+        const valRef = React.useRef();
+        const fnClick = () => {
+          setWidth(0);
+          const val = valRef.current.value;
+          if (val < 0 || val > 100) {
+            alert("Enter the values in between 0 and 100");
+            return;
+          }
+          const percent = (val / 100) * 400;
+          console.log(percent);
+          const interval = setInterval(() => {
+            setWidth((val) => {
+              if (val >= percent) {
+                clearInterval(interval);
+                return val;
+              }
+              console.log(val);
+              return val + 1;
+            });
+          }, 10);
+        };
+        return (
+          <div>
+            <p>
+              Enter value(0% to 100% Between) :
+              <input ref={valRef} type="number" />
+              <button onClick={fnClick}>Submit</button>
+            </p>
+            <div className="progress-bar">
+              <div style={{ width }}></div>
+            </div>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
