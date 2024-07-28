@@ -18,3 +18,20 @@ Object.prototype.myHasOwnProperty=function(){
 }
 obj.myHasOwnProperty("n1") // true
 obj.myHasOwnProperty("n3") // false -->
+
+<script>
+  let obj = { n1: 10, n2: 20 };
+
+  Object.prototype.myHasOwnProperty = function (checkKey) {
+    let keys = Object.keys(this);
+    console.log(checkKey);
+    for (i of keys) {
+      if (i === checkKey) {
+        return true;
+      }
+    }
+    return false;
+  };
+  console.log(obj.myHasOwnProperty("n1")); // true
+  console.log(obj.myHasOwnProperty("n3")); // false
+</script>
