@@ -3,3 +3,82 @@
 Create an async function and return some value.
 Get the return value using then
 Another way using await keyword -->
+
+<!-- async and await:
+async:
+async keyword is used to turn a function into async function.
+async functions always returns "promise".
+If we use "await" keyword inside function body, then that function should be "async" function.
+Syntax for async function:
+
+              async function f1(){
+                 return 10;
+               }
+
+            
+How async function works:
+
+               function f1(){
+                 return 10;
+               }
+               f1();
+               output: 10
+
+            
+In the above code nothing new, just call f1 function , it returns 10.
+
+              async function f1(){
+                 return 10;
+               }
+               f1();
+               output: Promise {<fulfilled>: 10}
+
+            
+In the above code, f1 is an async method, if we call f1 it returns a "Promise"
+If any method returns a promise, we can handle that promise with "then" and "catch".
+
+              async function f1(){
+                 return 10;
+               }
+
+               f1()
+               .then(
+                 (data)=>{
+                  console.log(data)
+                 }
+               )
+               .catch(
+                (data)=>{
+                 console.log(data)
+                }
+              )
+
+              output: 10
+            
+await:
+await keyword always works inside async functions.
+Have to put await keyword infront of any asynchronous function calls which returns Promise. -->
+<script>
+  function fnAsynchronousOperation() {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve(10);
+      }, 5000);
+    });
+  }
+
+  async function f1() {
+    const data = await fnAsynchronousOperation();
+    console.log(data);
+  }
+
+  //    output(after 5 sec):
+  //    10
+</script>
+
+<!-- "await" follows fnAsynchronousOperation.
+In fnAsynchronousOperation we handle some asynchronous Operations like AJAX,setTimeout.
+Once asynchronous Operation completed, it return Promise with success or failure data.
+If asynchronous Operation take some time, in that time remaining statements will not execute, those are waiting.
+The await keyword pauses the execution of the async function until the promise is resolved.
+Once promise resolved, then remaining statements starts it's execution. -->
