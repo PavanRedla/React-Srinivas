@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>useReducer Hook</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      //   const App = () => {
+      //     const [cnt, setCnt] = React.useState(0);
+      //     const [name, setName] = React.useState("Sachin");
+      //     const fnIncrement = () => {
+      //       setCnt(cnt + 1);
+      //     };
+      //     const fnToggleName = () => {
+      //       setName(name == "Sachin" ? "Dhoni" : "Sachin");
+      //     };
+      //     return (
+      //       <div>
+      //         <h1>{cnt}</h1>
+      //         <button onClick={fnIncrement}>Increment</button>
+      //         <h1>{name}</h1>
+      //         <button onClick={fnToggleName}>Toggle Name</button>
+      //       </div>
+      //     );
+      //   };
+      const App = () => {
+        // create initial data
+        const init = {
+          cnt: 0,
+          name: "Sachin",
+        };
+
+        // create reducer
+
+        const reducer = (state, action) => {
+          switch (action.type) {
+            case "CNT_UPDATE":
+              return {
+                ...state,
+                cnt: action.payload,
+              };
+            case "NAME_UPDATE":
+              return {
+                ...state,
+                name: action.payload,
+              };
+          }
+          console.log(action);
+        };
+
+        // register the above reducer with useReducer hook.
+        // In redux, we use configureStore to register the reducer.
+        // In this case, we use useReducer Hook to register the reducer and useReducer comes from React
+
+        // dispatch method is required to dispatch the data to reducer.
+        // useSelector hook is required to retrieve the data.
+
+        // useReducer is a hook which returns an array which contains the current state variable(which holds the initial data) and dispatch method.
+        const [state, dispatch] = React.useReducer(reducer, init);
+        console.log(state);
+
+        const [cnt, setCnt] = React.useState(0);
+        const [name, setName] = React.useState("Sachin");
+        const fnIncrement = () => {
+          //   setCnt(cnt + 1);
+          dispatch({ type: "CNT_UPDATE", payload: state.cnt + 1 });
+        };
+        const fnToggleName = () => {
+          //   setName(name == "Sachin" ? "Dhoni" : "Sachin");
+          dispatch({
+            type: "NAME_UPDATE",
+            payload: state.name === "Sachin" ? "Dhoni" : "Sachin",
+          });
+        };
+        return (
+          <div>
+            <h1>{state.cnt}</h1>
+            <button onClick={fnIncrement}>Increment</button>
+            <h1>{state.name}</h1>
+            <button onClick={fnToggleName}>Toggle Name</button>
+          </div>
+        );
+      };
+
+      const rootContainer = ReactDOM.createRoot(
+        document.querySelector("#root")
+      );
+      rootContainer.render(<App />);
+    </script>
+  </body>
+</html>

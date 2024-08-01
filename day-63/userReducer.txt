@@ -1,0 +1,210 @@
+UseReducer
+useReducer is used to store and update states, just like the useState Hook. It accepts a reducer function as its first parameter and the initial state as the second.
+
+useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. useReducer also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.
+
+useReducer is alternative to useState
+useReducer is a method which takes 2 arguments first arg is reducer and second arg is initial value, and useReducer returns array destruction with two values state and dispatch
+Reducer is a normal function which will return newState ie.,newState=reducer(currentState,action)
+initial value represents initial state
+state represents newState
+Where as dispatch carries dispatched data or action to the reducer
+finally we can say
+
+const [newState,dispatch]=useReducer(reducer,initialValue)
+
+useReducer is hook for state management in react
+
+Ex1:
+
+        import React,{useReducer} from 'react';
+
+        const initialValue=0;
+        const reducer=(state,action)=>{
+        switch(action){
+            case "INC":
+                return state+1
+        case "DEC":
+            return state-1
+            case "RESET":
+                return initialValue
+            default:
+                return state
+        }
+        }
+
+        function Counter(props) {
+            const [count,dispatch]=useReducer(reducer,initialValue)
+            return (
+                <div>
+                    <div>Count:{count}</div>
+                    <button onClick={()=>dispatch("INC")}>Increment</button>
+                    <button onClick={()=>dispatch("DEC")}>Decrement</button>
+                    <button onClick={()=>dispatch("RESET")}>Reset</button>
+                </div>
+            );
+        }
+
+        export default Counter;
+                  
+Ex2:
+
+            import React, { useReducer } from "react";
+
+            const initialState = {
+            firstCount: 0,
+            secondCounter: 10,
+            };
+            const reducer = (state, action) => {
+            switch (action.type) {
+                case "INC1":
+                return {
+                    ...state,
+                    firstCount: state.firstCount + action.value,
+                };
+                case "DEC1":
+                return {
+                    ...state,
+                    firstCount: state.firstCount - action.value,
+                };
+                case "RESET":
+                return initialState;
+                case "INC5":
+                return {
+                    ...state,
+                    firstCount: state.firstCount + action.value,
+                };
+                case "DEC5":
+                return {
+                    ...state,
+                    firstCount: state.firstCount - action.value,
+                };
+                case "INC2":
+                return {
+                    ...state,
+                    secondCounter: state.secondCounter + action.value,
+                };
+
+                case "DEC2":
+                return {
+                    ...state,
+                    secondCounter: state.secondCounter - action.value,
+                };
+            }
+            };
+            function Counter(props) {
+            const [state, dispatch] = useReducer(reducer, initialState);
+            return (
+                <div>
+                <div>Counter1 is:{state.firstCount}</div>
+                <div>Counter2 is:{state.secondCounter}</div>
+                <button onClick={() => dispatch({ type: "INC1", value: 1 })}>
+                    Increment1
+                </button>
+                <button onClick={() => dispatch({ type: "DEC1", value: 1 })}>
+                    Decrement1
+                </button>
+                <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
+                <button onClick={() => dispatch({ type: "INC5", value: 5 })}>
+                    Increment5
+                </button>
+                <button onClick={() => dispatch({ type: "DEC5", value: 5 })}>
+                    Decrement5
+                </button>
+                <button onClick={() => dispatch({ type: "INC2", value: 2 })}>
+                    Increment Counter Second
+                </button>
+                <button onClick={() => dispatch({ type: "DEC2", value: 2 })}>
+                    Decrement Counter Second
+                </button>
+                </div>
+            );
+            }
+
+            export default Counter;
+
+                  
+Ex3((useReducer+Context::: For state management at application level)):
+
+            import React, { useContext, useReducer, useRef } from "react";
+
+            const ctx = React.createContext();
+            const initialValues = {
+            name: "",
+            location: "",
+            };
+            const reducer = (state, action) => {
+            switch (action.type) {
+                case "NAME":
+                return {
+                    ...state,
+                    name: action.payload,
+                };
+                case "LOC":
+                return {
+                    ...state,
+                    location: action.payload,
+                };
+            }
+            };
+
+            function ParentComponent() {
+            const [state, dispatch] = useReducer(reducer, initialValues);
+            return (
+                <>
+                <ctx.Provider value={{ state, dispatch }}>
+                    <A />
+                    <B />
+                    <C />
+                </ctx.Provider>
+                </>
+            );
+            }
+            export default ParentComponent;
+
+            function A() {
+            const nameRef = useRef(null);
+            const { state, dispatch } = useContext(ctx);
+            return (
+                <div>
+                <h1>I'm A:</h1>
+                <input ref={nameRef} />
+                <input
+                    type="button"
+                    value="GetName"
+                    onClick={() =>
+                    dispatch({ type: "NAME", payload: nameRef.current.value })
+                    }
+                />
+                </div>
+            );
+            }
+
+            function B() {
+            const locRef = useRef(null);
+            const { state, dispatch } = useContext(ctx);
+            return (
+                <div>
+                <h1>I'm B:</h1>
+                <input ref={locRef} />
+                <input
+                    type="button"
+                    value="GetLoc"
+                    onClick={() => dispatch({ type: "LOC", payload: locRef.current.value })}
+                />
+                </div>
+            );
+            }
+
+            function C() {
+            const { state, dispatch } = useContext(ctx);
+            return (
+                <div>
+                <h1>I'm C:</h1>
+                <h2>Name:{state.name}</h2>
+                <h2>Location:{state.location}</h2>
+                </div>
+            );
+            }
+            
+Prev
