@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Memo</title>
+    <script src="../react.development.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <script src="../babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        console.log("A Component");
+        const [data, setData] = React.useState([]);
+        const [name, setName] = React.useState("Sachin");
+
+        const [isLoading, handleTransition] = React.useTransition();
+
+        const fnSubmit = () => {
+          handleTransition(() => {
+            const items = [];
+            for (let i = 1; i <= 50000; i++) {
+              items.push("items---" + i);
+            }
+            setData(items);
+          });
+
+          setName(name === "Sachin" ? "Dhoni" : "Sachin");
+        };
+
+        return (
+          <div>
+            <h1>{name}</h1>
+            <button onClick={fnSubmit}>Submit</button>
+            {isLoading ? (
+              "Loading..."
+            ) : (
+              <ol>
+                {data.map((item, index) => {
+                  return <li key={index}>{item}</li>;
+                })}
+              </ol>
+            )}
+          </div>
+        );
+      };
+
+      const rootContainer = ReactDOM.createRoot(
+        document.querySelector("#root")
+      );
+      rootContainer.render(<App />);
+    </script>
+  </body>
+</html>

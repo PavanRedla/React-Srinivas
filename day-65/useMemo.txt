@@ -1,0 +1,50 @@
+useMemo:
+The useMemo is a hook used in the functional component of react that returns a memoized value. ... In react also, we use this concept, whenever in the React component, the state and props do not change the component and the component does not re-render, it shows the same output.
+
+OR
+useMemo() is a React Hook that we can use to wrap functions within a component. We can use this to ensure that the values within that function are re-computed only when one of its dependencies change.
+
+
+            import React, { useState,useMemo} from 'react';
+
+            function Parent(props) {
+                const [count,setCount]=useState(0)
+                const [name,setName]=useState("")
+                return (
+                    <div>
+                        <div>I'm Parent and Count value:{count}</div>
+                        <button onClick={()=>setCount(prev=>prev+1)}>IncCount</button>
+                        <input onChange={(e)=>setName(e.target.value)}/>
+                        <Child count={count}/>
+                    </div>
+                );
+            }
+
+            export default Parent;
+
+            function Child(props) {
+                console.log("Child is rendering")
+            
+            let childData=  useMemo(()=>{ 
+                    let  output=0;
+                    for(let i=0;i<500000000;i++){
+                        output++
+                    }
+                    return output
+                },[])
+                
+            
+                return (
+                    <div>
+                        <h1>I'm Child</h1>
+                        <div>child data:{childData}count:{props.count}</div>
+                    </div>
+                );
+            }
+
+            Child=React.memo(Child)
+                  
+In the above example, if we will not wrap with useMemo,to print count value in the browser for every onclick it delays
+The reason is, component will execute for loop and initialise the value and it doesn't memorise by default for every rendering of the component
+To memorise the value and telling to the component not to compute(not to execute if no changes are there ) same value
+So that it will not delays for every click, delays at only first time load while executing first time

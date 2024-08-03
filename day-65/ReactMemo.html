@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Memo</title>
+    <script src="../react.development.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <script src="../babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const B = React.memo(() => {
+        // to avoid unwanted re-renderings of a component we use memo method in React.
+        console.log("B Component");
+
+        return (
+          <div>
+            <h1>B</h1>
+          </div>
+        );
+      });
+      const App = () => {
+        console.log("A Component");
+        const [cnt, setCnt] = React.useState(0);
+        const fnIncrement = () => {
+          setCnt(cnt + 1);
+        };
+        return (
+          <div>
+            <h1>A</h1>
+            <h1>{cnt}</h1>
+            <button onClick={fnIncrement}>Increment</button>
+            <B />
+          </div>
+        );
+      };
+
+      const rootContainer = ReactDOM.createRoot(
+        document.querySelector("#root")
+      );
+      rootContainer.render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+React.memo()
+React. memo is a higher order component. If your component renders the same result given the same props, you can wrap it in a call to React. memo for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+
+React.memo() always works at component level, It's similar like Pure Components in our class Components.
+A common situation that makes a component render with the same props is being forced to render by a parent component.
+Ex1:
+
+              import React, { useState } from 'react';
+
+              function Parent(props) {
+                  const [count,setCount]=useState(0)
+                  return (
+                      <div>
+                          <div>I'm Parent and Count value:{count}</div>
+                          <button onClick={()=>setCount(prev=>prev+1)}>IncCount</button>
+                          <Child/>
+                      </div>
+                  );
+              }
+
+              export default Parent;
+
+
+              function Child(props) {
+                  console.log("Child is rendering")
+                  return (
+                      <div>
+                          <h1>I'm Child</h1>
+                      </div>
+                  );
+              }
+
+              Child=React.memo(Child)
+            
+In the above example if you remove React.memo for the child component,for each and every button clicking in the parent component our child component also render and it will print console message for every incrementing count at parent
+Infact there is no changes at child,still it is rendering due to parent component changes
+To avoid this, we need memorise our child by wrapping React.memo
+So that if no changes at child component, it will not re-render
+Console message will print only one time in the first time load
+Ex2:
+
+          import React, { useState } from 'react';
+
+          function Parent(props) {
+              const [count,setCount]=useState(0)
+              const [name,setName]=useState("")
+              return (
+                  <div>
+                      <div>I'm Parent and Count value:{count}</div>
+                      <button onClick={()=>setCount(prev=>prev+1)}>IncCount</button>
+                      <input onChange={(e)=>setName(e.target.value)}/>
+                      <Child count={count}/>
+                  </div>
+              );
+          }
+
+          export default Parent;
+
+
+          function Child(props) {
+              console.log("Child is rendering")
+              return (
+                  <div>
+                      <h1>I'm Child</h1>
+                      <div>{props.count}</div>
+                  </div>
+              );
+          }
+
+          Child=React.memo(Child)
+            
+In above example child has to re-render only for each and every count change.
+But if you comment last line ie., Child=React.memo(Child), it will re-render for each and every count change and input field onChange
+That shouln't happen, to avoid that we should make use of React.memo
+So that child component will not re-render for text field changes,based on it's prop changes(Counter) it will re-render
+Note:: useMemo works for only primitive data types props
+If it complex data type like functions,Objects,arrays then we should have to go other techniques like useCallback for function type

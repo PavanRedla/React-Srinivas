@@ -1,0 +1,41 @@
+useCallback:
+------------
+useCallback will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate ).
+
+If we will pass function as a prop to child from the parent,that for each and every rendering of the parent component, that prop function will reinitalise the value at value.
+So that the child will re-render without any state or prop change
+This shouldn't happen, to avoid this unnecessary re-renders of child
+We should enclose useCallback in the parent, before passing as a prop to child
+Ex1:
+
+            import React, { useState,useCallback} from 'react';
+            function Parent(props) {
+                const [count,setCount]=useState(0)
+                const [name,setName]=useState("")
+                const updateCounter=useCallback(()=>setCount(prev=>prev+1),[count])
+                return (
+                    <div>
+                        <div>I'm Parent and Count value:{count}</div>
+                        <button onClick={()=>setCount(prev=>prev+1)}>IncCount</button>
+                        <input onChange={(e)=>setName(e.target.value)}/>
+                        <Child count={count} updateCounter={updateCounter}/>
+                    </div>
+                );
+            }
+
+            export default Parent;
+
+
+            function Child(props) {
+                console.log("Child is rendering")
+                return (
+                    <div>
+                        <h1>I'm Child</h1>
+                        <div>{props.count}</div>
+                        <button onClick={props.updateCounter}>Click me</button>
+                    </div>
+                );
+            }
+
+            Child=React.memo(Child)
+            

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Memo</title>
+    <script src="../react.development.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <script src="../babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        console.log("A Component");
+        const [cnt, setCnt] = React.useState(0);
+        const [name, setName] = React.useState("Sachin");
+        const fnIncrement = () => {
+          setCnt(cnt + 1);
+        };
+        const fnToggle = () => {
+          setName(name === "Sachin" ? "Dhoni" : "Sachin");
+        };
+        // const fnCheck = () => {
+        //   console.log("5k lines");
+        //   return cnt % 2 === 0 ? "Even" : "Odd";
+        // };
+        // if we write like above function then it is getting rerendered even if we change the name state variable.
+        // i.e., it should not rerender / recalculate whether the cnt is even or odd if we donot change the count.
+        // it should give the previous memoised value so we have to write like this.
+
+        const result = React.useMemo(() => {
+          console.log("5k lines");
+          return cnt % 2 === 0 ? "Even" : "Odd";
+        }, [cnt]);
+
+        return (
+          <div>
+            <h1>A</h1>
+            <h1>{cnt}</h1>
+            <button onClick={fnIncrement}>Increment</button>
+            <h1>{result}</h1>
+            <h1>{name}</h1>
+            <button onClick={fnToggle}>Toggle Name</button>
+          </div>
+        );
+      };
+
+      const rootContainer = ReactDOM.createRoot(
+        document.querySelector("#root")
+      );
+      rootContainer.render(<App />);
+    </script>
+  </body>
+</html>
