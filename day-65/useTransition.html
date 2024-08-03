@@ -16,6 +16,26 @@
         const [data, setData] = React.useState([]);
         const [name, setName] = React.useState("Sachin");
 
+        // const fnSubmit = () => {
+        //
+        //     const items = [];
+        //     for (let i = 1; i <= 50000; i++) {
+        //       items.push("items---" + i);
+        //     }
+        //     setData(items);
+        //
+
+        //   setName(name === "Sachin" ? "Dhoni" : "Sachin");
+        // };
+
+        // if we use above method, then after the for loop gets executed then data state varible gets updated. until then the name state variable will not render in the browser.
+        // so name and data state variables are getting rendered at the same time in the browser.
+        // React.useTransition is the hook which makes the state variables to render individually when they are ready to render.
+
+        // React.useTransition hook returns an array with 2 elements
+        // 1st element is a variable which tells about the progress of the operation you want to handle separately
+        // 2nd element is function which you want to handle separately so that remaining state variables are rendered meanwhile.
+
         const [isLoading, handleTransition] = React.useTransition();
 
         const fnSubmit = () => {
