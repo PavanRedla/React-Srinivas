@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Hooks</title>
+    <script src="../react.development.js"></script>
+    <script src="../react-dom.development.js"></script>
+    <script src="../babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      //   const Button = () => {
+      //     const [count, setCount] = React.useState(0);
+      //     const fnIncrement = () => {
+      //       setCount(count + 1);
+      //     };
+      //     return (
+      //       <div>
+      //         <button onClick={fnIncrement}>Click Count {count} times</button>
+      //       </div>
+      //     );
+      //   };
+      //   const Text = () => {
+      //     const [count, setCount] = React.useState(0);
+      //     const fnIncrement = () => {
+      //       setCount(count + 1);
+      //     };
+      //     return (
+      //       <div>
+      //         <h1 onMouseOver={fnIncrement}>Click Count {count} times</h1>
+      //       </div>
+      //     );
+      //   };
+      //   const App = () => {
+      //     return (
+      //       <div>
+      //         <Button />
+      //         <Text />
+      //       </div>
+      //     );
+      //   };
+
+      // In the above code, we used duplicate code, and in this case, the template is not same, one is button, and the other one is Text , so we cannot use Reusbale component here.
+
+      // But here, the increment functionality used for both the components is same. So to share the same functionality across mutliple components we use Higher order components and we can also use Custom Hooks.
+
+      // HOC can be used for both class and functional components. and HOC are present from starting of the React.
+      // Custom Hooks works only for functional components.
+
+      const useIncrement = (init) => {
+        const [count, setCount] = React.useState(init);
+        const fnIncrement = () => {
+          setCount(count + 1);
+        };
+        return [count, fnIncrement];
+      };
+
+      const Button = () => {
+        const [count, fnIncrement] = useIncrement(0);
+        return (
+          <div>
+            <button onClick={fnIncrement}>Click Count {count} times</button>
+          </div>
+        );
+      };
+      const Text = () => {
+        const [count, fnIncrement] = useIncrement(50);
+        return (
+          <div>
+            <h1 onMouseOver={fnIncrement}>Click Count {count} times</h1>
+          </div>
+        );
+      };
+      const App = () => {
+        return (
+          <div>
+            <Button />
+            <Text />
+          </div>
+        );
+      };
+
+      const rootContainer = ReactDOM.createRoot(
+        document.querySelector("#root")
+      );
+      rootContainer.render(<App />);
+    </script>
+  </body>
+</html>
